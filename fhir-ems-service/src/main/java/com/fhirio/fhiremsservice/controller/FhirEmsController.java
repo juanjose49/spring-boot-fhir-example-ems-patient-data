@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class FhirEmsController {
 
 	@RequestMapping(value = "/hello-world", method = RequestMethod.GET)
-	public ResponseEntity<String> getInvisibox() {
+	public ResponseEntity<String> getHelloWorld() {
 		return new ResponseEntity<String>("Hello World!", HttpStatus.OK);
 	}
 	
