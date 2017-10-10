@@ -2,4 +2,24 @@
 The contents of this directory is a Spring Boot Java application that was bootstrapped using the Spring Boot Initializer.
 
 ## Development
-To work on this application you will have to install maven on your local machine. At present, there is no need to add any custom global/user settings. To run the application locally, please follow the directions included in thise link: https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-running-your-application.html.
+To work on this application you will have to install maven on your local machine. At present, there is no need to add any custom global/user settings. To run the application locally, please do the following: 
+
+1. In root directory, run: 
+
+```
+sudo mvn dockerfile:build
+```
+
+2. Once that is complete, notice: 
+
+```
+[INFO] Image will be built as fhir-ems-service:0.0.1-SNAPSHOT
+```
+
+3. We can then run our container with the above image name: 
+
+```
+sudo docker run -it --name fhir -p 8080:8080 fhir-ems-service:0.0.1-SNAPSHOT 
+```
+
+TODO: Write a wrapper script to handle docker-compose, maven etc
