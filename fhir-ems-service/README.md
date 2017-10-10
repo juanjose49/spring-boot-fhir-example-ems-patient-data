@@ -23,3 +23,12 @@ sudo docker run -it --name fhir -p 8080:8080 fhir-ems-service:0.0.1-SNAPSHOT
 ```
 
 TODO: Write a wrapper script to handle docker-compose, maven etc
+
+
+
+OR
+
+You can run outside of container by: 
+
+1. mvn clean install
+2. java -jar target/nameofjar.jar
