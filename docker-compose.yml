@@ -1,0 +1,26 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./fhir-ems-UIclient
+    ports:
+     - "80:80"
+    networks:
+      fhirio-net:
+        ipv4_address: 172.18.0.2
+  backend:
+    build:
+      context: ./fhir-ems-service
+    ports:
+      - "8080:8080"
+    networks:
+      fhirio-net:
+        ipv4_address: 172.18.0.3
+
+networks:
+  fhirio-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.18.0.0/16
