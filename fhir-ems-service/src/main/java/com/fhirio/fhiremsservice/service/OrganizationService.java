@@ -3,6 +3,7 @@ package com.fhirio.fhiremsservice.service;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,33 +12,69 @@ import com.fhirio.fhiremsservice.domain.Organization;
 
 public class OrganizationService {
 	private Map<Integer, Organization> organizationMap = new HashMap<>();
-	@Autowired
-	private EmergencyService emergencyService;
-	
+
+	/**
+	 * Basic constructor that initializes some mock data.
+	 */
 	public OrganizationService(){
 		// bootstrap organizations
-		Organization org = new Organization(Integer.valueOf(1));
+		Organization org = new Organization();
+		org.setOrganizationUuid(Integer.valueOf(1));
 		org.setPendingEmergencyIds(Arrays.asList(Integer.valueOf(1),Integer.valueOf(2)));
 		org.setActiveEmergencyIds(Arrays.asList(Integer.valueOf(3)));
 		org.setClosedEmergencyIds(Arrays.asList(Integer.valueOf(4),Integer.valueOf(5)));
 		organizationMap.put(Integer.valueOf(1), org);
 	}
 	
+	/**
+	 * Gets an Organization based on a UUID.
+	 * 
+	 * @param organizationUuid the Organization's UUID.
+	 * @return the Organization.
+	 */
 	public Organization getOrganization(Integer organizationUuid){
 		return this.organizationMap.get(organizationUuid);
 	}
 	
-	public boolean addPendingEmergency(Integer organizationUuid, Emergency emergency){
-		//TODO: add id to organization and persist emergency with EmergencyService.
-		return false;
-	}
-	public boolean movePendingEmergencyToActiveEmergency(Integer organizationUuid, Integer emergencyUuid){
-		//TODO
-		return false;
+	/**
+	 * Saves the given Organization with a new UUID.
+	 * 
+	 * @param organization the Organization to save.
+	 * @return the Organization with updated UUID.
+	 */
+	public Organization saveOrganization(Organization organization){
+		Integer uuid = UUID.randomUUID().toString().hashCode();
+		organization.setOrganizationUuid(uuid);
+		this.organizationMap.put(uuid, organization);
+		return organization;
 	}
 	
-	public boolean moveActiveEmergencyToClosedEmergency(Integer organizationUuid, Integer emergencyUuid){
+	/**
+	 * Replaces the existing Organization that has a matching UUID.
+	 * 
+	 * @param organization the updated Organization
+	 * @return the updated Organization.
+	 */
+	public Organization updateOrganization(Organization organization){
 		//TODO
-		return false;
+		return null;
+	}
+	
+	/**
+	 * Gets the Organization Map, which maps a UUID to the
+	 * corresponding Organization.
+	 * 
+	 * @return the Organization Map.
+	 */
+	public Map<Integer, Organization> getOrganizationMap() {
+		return organizationMap;
+	}
+
+	/**
+	 * Sets the Organization Map, which maps a UUID to the
+	 * corresponding Organization.
+	 */
+	public void setOrganizationMap(Map<Integer, Organization> organizationMap) {
+		this.organizationMap = organizationMap;
 	}
 }

@@ -2,12 +2,43 @@ package com.fhirio.fhiremsservice.domain;
 
 import java.util.List;
 
+/**
+ * The Emergency class holds all the pertinent information
+ * to a specific emergency that may be pending, active or closed.
+ *
+ */
 public class Emergency {
+	/**
+	 * The UUID corresponding to the Emergency.
+	 */
 	private Integer emergencyUuid;
+	
+	/**
+	 * The title/headline related to the Emergency.
+	 */
 	private String emergencyTitle;
+	
+	/**
+	 * The address where the Emergency is taking place.
+	 */
 	private String pickupLocation;
+	
+	/**
+	 * A List of UUIDs that correspond to patients that
+	 * may fit the Patient's profile as found on FHIR API.
+	 */
 	private List<Integer> possiblePatientUuids;
+	
+	/**
+	 * Once the emergency personnel have positively identified
+	 * a Patient, the Patient's UUID will be set on here.
+	 */
 	private Integer identifiedPatientUuid;
+	
+	/**
+	 * The state of the Emergency.
+	 */
+	private EmergencyState emergencyState;
 	
 	
 	public Emergency(Integer emergencyUuid, String emergencyTitle, String pickupLocation,
@@ -18,6 +49,7 @@ public class Emergency {
 		this.pickupLocation = pickupLocation;
 		this.possiblePatientUuids = possiblePatientUuids;
 	}
+	
 	public Integer getEmergencyUuid() {
 		return emergencyUuid;
 	}
@@ -47,6 +79,12 @@ public class Emergency {
 	}
 	public void setIdentifiedPatientUuid(Integer identifiedPatientUuid) {
 		this.identifiedPatientUuid = identifiedPatientUuid;
+	}
+	public EmergencyState getEmergencyState() {
+		return emergencyState;
+	}
+	public void setEmergencyState(EmergencyState emergencyState) {
+		this.emergencyState = emergencyState;
 	}
 	
 	

@@ -1,11 +1,24 @@
 package com.fhirio.fhiremsservice.domain;
 
 /**
- * This will likely be substituted by the FHIR Patient concept.
+ * The Patient class is meant to represent all the health information
+ * related to a patient involved in an emergency.
+ * Note: This will likely be substituted by the FHIR Patient class.
  */
 public class Patient {
+	/**
+	 * The UUID that corresponds to a Patient.
+	 */
 	private Integer patientUuid;
+	
+	/**
+	 * The Patient's first name.
+	 */
 	private String firstName;
+	
+	/**
+	 * The Patient's last name.
+	 */
 	private String lastName;
 	
 	

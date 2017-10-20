@@ -1,0 +1,61 @@
+package com.fhirio.fhiremsservice.service;
+
+import static org.junit.Assert.*;
+
+import java.util.HashMap;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.fhirio.fhiremsservice.domain.User;
+
+
+import java.util.Map;
+
+import org.junit.*;
+import org.junit.runner.*;
+import static org.mockito.Mockito.*;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.boot.test.context.*;
+import org.springframework.boot.test.mock.mockito.*;
+import org.springframework.test.context.junit4.*;
+
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.BDDMockito.*;
+
+import java.util.Arrays;
+
+import com.fhirio.fhiremsservice.domain.Emergency;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class UserServiceTest {
+	@Autowired
+	private UserService userService;
+	
+	@Before
+	public void setup(){
+		HashMap<Integer, User> userMap = new HashMap<>();
+		//bootstrap users
+		userMap.put(Integer.valueOf(1), new User(1, "emspersonnel", "John", "Smith", 1));
+		userMap.put(Integer.valueOf(2), new User(2, "emscallcenter", "Jane", "Smith", 1));
+		this.userService.setUserMap(userMap);
+		
+	}
+	
+	@Test
+	public void testGetUser_user_is_available(){
+		User user = this.userService.getUser(2);
+		assertThat(user).isNotNull();
+		assertThat(user.getUserName()).isEqualTo("emscallcenter");
+	}
+	
+	@Test
+	public void testGetUser_user_is_not_available(){
+		User user = this.userService.getUser(-1);
+		assertThat(user).isNull();
+	}
+
+}

@@ -3,16 +3,21 @@ package com.fhirio.fhiremsservice.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The Organization class is what binds together Users of
+ * the EMS service and Emergencies.
+ */
 public class Organization {
+	/**
+	 * The UUID that corresponds to the Organization.
+	 */
 	private Integer organizationUuid;
-	private List<Integer> pendingEmergencyIds = new ArrayList<>();
-	private List<Integer> activeEmergencyIds = new ArrayList<>();
-	private List<Integer> closedEmergencyIds = new ArrayList<>();
 	
-	public Organization(Integer organizationUuid) {
-		super();
-		this.organizationUuid = organizationUuid;
-	}
+	/**
+	 * The List of UUIDs that corresponds to all the 
+	 * Emergencies handled by the Organization.
+	 */
+	private List<Integer> emergencyUuids = new ArrayList<>();
 	
 	public Integer getOrganizationUuid() {
 		return organizationUuid;
@@ -20,22 +25,11 @@ public class Organization {
 	public void setOrganizationUuid(Integer organizationUuid) {
 		this.organizationUuid = organizationUuid;
 	}
-	public List<Integer> getPendingEmergencyIds() {
-		return pendingEmergencyIds;
+	public List<Integer> getEmergencyUuids() {
+		return emergencyUuids;
 	}
-	public void setPendingEmergencyIds(List<Integer> pendingEmergencyIds) {
-		this.pendingEmergencyIds = pendingEmergencyIds;
+	public void setEmergencyUuids(List<Integer> emergencyUuids) {
+		this.emergencyUuids = emergencyUuids;
 	}
-	public List<Integer> getActiveEmergencyIds() {
-		return activeEmergencyIds;
-	}
-	public void setActiveEmergencyIds(List<Integer> activeEmergencyIds) {
-		this.activeEmergencyIds = activeEmergencyIds;
-	}
-	public List<Integer> getClosedEmergencyIds() {
-		return closedEmergencyIds;
-	}
-	public void setClosedEmergencyIds(List<Integer> closedEmergencyIds) {
-		this.closedEmergencyIds = closedEmergencyIds;
-	}
+
 }

@@ -1,10 +1,36 @@
 package com.fhirio.fhiremsservice.domain;
 
+/**
+ * The User class corresponds to a specific user of 
+ * the application that may be emergency personnel or 
+ * call center personnel.
+ *
+ */
 public class User {
+	/**
+	 * The UUID that corresponds to a specific user.
+	 */
 	private Integer userUuid;
+	
+	/**
+	 * The username that corresponds to a specific user.
+	 */
 	private String userName;
+	
+	/**
+	 * The user's first name.
+	 */
 	private String firstName;
+	
+	/**
+	 * The user's last name.
+	 */
 	private String lastName;
+	
+	/**
+	 * The UUID that corresponds to the organization that 
+	 * the user belongs to.
+	 */
 	private Integer organizationUuid;
 	
 	public User(Integer userUuid, String userName, String firstName, String lastName, Integer organizationUuid) {

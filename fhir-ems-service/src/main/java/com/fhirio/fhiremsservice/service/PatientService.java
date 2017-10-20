@@ -8,6 +8,9 @@ import com.fhirio.fhiremsservice.domain.Patient;
 public class PatientService {
 	private Map<Integer, Patient> patientMap = new HashMap<>();
 	
+	/**
+	 * Basic constructor used to initialize mock data.
+	 */
 	public PatientService(){
 		patientMap.put(Integer.valueOf(1), new Patient(1,"Johnathan", "Borne"));
 		patientMap.put(Integer.valueOf(2), new Patient(2,"Mary", "Carry"));
@@ -21,8 +24,33 @@ public class PatientService {
 		patientMap.put(Integer.valueOf(10), new Patient(10,"Adam", "Klein"));
 	}
 	
+	/**
+	 * Retrieves a Patient based on a UUID. 
+	 * TODO: use FHIR API to retrieve patients.
+	 * 
+	 * @param patientUuid the Patient's UUID.
+	 * @return the Patient.
+	 */
 	public Patient getPatient(Integer patientUuid){
 		return patientMap.get(patientUuid);
+	}
+
+	/**
+	 * Gets the Patient Map, which maps a patient's UUID
+	 * to the Patient.
+	 * 
+	 * @return the Patient Map
+	 */
+	public Map<Integer, Patient> getPatientMap() {
+		return patientMap;
+	}
+	
+	/**
+	 * Gets the Patient Map, which maps a patient's UUID
+	 * to the Patient.
+	 */
+	public void setPatientMap(Map<Integer, Patient> patientMap) {
+		this.patientMap = patientMap;
 	}
 	
 }
