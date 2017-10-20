@@ -22,3 +22,8 @@ sudo docker-compose up --build
 sudo docker-compose down
 ```
 
+# Services
+
+Angular runs on :80
+
+Spring runs on :8080
