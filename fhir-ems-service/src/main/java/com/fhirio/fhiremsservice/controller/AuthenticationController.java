@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fhirio.fhiremsservice.domain.Authentication;
-import com.fhirio.fhiremsservice.domain.User;
+import com.fhirio.fhiremsservice.domain.Token;
 import com.fhirio.fhiremsservice.service.AuthenticationService;
 
 
@@ -29,12 +29,12 @@ public class AuthenticationController {
 	 * @return
 	 */
 	@RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<User> authenticate(@RequestBody Authentication auth) {
-		User user = authService.authenticate(auth);
-		if(user != null){
-			return new ResponseEntity<User>(user, HttpStatus.OK);
+	public ResponseEntity<Token> authenticate(@RequestBody Authentication auth) {
+		Token token = authService.authenticate(auth);
+		if(token != null){
+			return new ResponseEntity<Token>(token, HttpStatus.OK);
 		}else{
-			return new ResponseEntity<User>(user, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Token>(token, HttpStatus.NOT_FOUND);
 		}
 	}
 }

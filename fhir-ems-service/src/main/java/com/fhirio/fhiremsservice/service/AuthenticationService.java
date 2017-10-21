@@ -3,15 +3,11 @@ package com.fhirio.fhiremsservice.service;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.fhirio.fhiremsservice.domain.Authentication;
-import com.fhirio.fhiremsservice.domain.User;
+import com.fhirio.fhiremsservice.domain.Token;
 
 public class AuthenticationService {
 	private Map<Integer, Integer> authenticationMap = new HashMap<>();
-	@Autowired
-	private UserService userService;
 	
 	/**
 	 * Basic constructor initializing some mock data.
@@ -35,11 +31,11 @@ public class AuthenticationService {
 	 * @param password the user's password.
 	 * @return the User object
 	 */
-	public User authenticate(Authentication auth){
+	public Token authenticate(Authentication auth){
 		int hashedUser = (auth.getUserName()+auth.getPassword()).hashCode();
 		Integer userId = authenticationMap.get(hashedUser);
 		if( userId != null){
-			return userService.getUser(userId);
+			return new Token(userId);
 		}
 		return null;
 	}
