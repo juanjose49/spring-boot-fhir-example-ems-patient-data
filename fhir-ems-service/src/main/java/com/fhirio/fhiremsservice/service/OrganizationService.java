@@ -5,9 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.fhirio.fhiremsservice.domain.Emergency;
 import com.fhirio.fhiremsservice.domain.Organization;
 
 public class OrganizationService {
@@ -20,9 +17,7 @@ public class OrganizationService {
 		// bootstrap organizations
 		Organization org = new Organization();
 		org.setOrganizationUuid(Integer.valueOf(1));
-		org.setPendingEmergencyIds(Arrays.asList(Integer.valueOf(1),Integer.valueOf(2)));
-		org.setActiveEmergencyIds(Arrays.asList(Integer.valueOf(3)));
-		org.setClosedEmergencyIds(Arrays.asList(Integer.valueOf(4),Integer.valueOf(5)));
+		org.setEmergencyUuids(Arrays.asList(1,2,3,4,5));
 		organizationMap.put(Integer.valueOf(1), org);
 	}
 	

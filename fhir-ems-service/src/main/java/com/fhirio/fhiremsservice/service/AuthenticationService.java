@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.fhirio.fhiremsservice.domain.Authentication;
 import com.fhirio.fhiremsservice.domain.User;
 
 public class AuthenticationService {
@@ -34,8 +35,8 @@ public class AuthenticationService {
 	 * @param password the user's password.
 	 * @return the User object
 	 */
-	public User authenticate(String userName, String password){
-		int hashedUser = (userName+password).hashCode();
+	public User authenticate(Authentication auth){
+		int hashedUser = (auth.getUserName()+auth.getPassword()).hashCode();
 		Integer userId = authenticationMap.get(hashedUser);
 		if( userId != null){
 			return userService.getUser(userId);

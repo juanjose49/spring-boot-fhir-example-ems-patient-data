@@ -1,25 +1,16 @@
 package com.fhirio.fhiremsservice.service;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.*;
-import org.junit.runner.*;
-import static org.mockito.Mockito.*;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.boot.test.context.*;
-import org.springframework.boot.test.mock.mockito.*;
-import org.springframework.test.context.junit4.*;
-
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.BDDMockito.*;
-
-import java.util.Arrays;
-
-import com.fhirio.fhiremsservice.domain.Emergency;
-import com.fhirio.fhiremsservice.domain.User;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.fhirio.fhiremsservice.domain.Patient;
 

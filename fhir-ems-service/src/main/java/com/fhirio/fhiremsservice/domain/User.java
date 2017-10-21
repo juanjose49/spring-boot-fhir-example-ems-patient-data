@@ -33,6 +33,8 @@ public class User {
 	 */
 	private Integer organizationUuid;
 	
+	public User(){}
+	
 	public User(Integer userUuid, String userName, String firstName, String lastName, Integer organizationUuid) {
 		super();
 		this.userUuid = userUuid;
