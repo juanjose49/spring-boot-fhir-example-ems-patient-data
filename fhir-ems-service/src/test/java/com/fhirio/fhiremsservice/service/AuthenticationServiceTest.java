@@ -1,19 +1,23 @@
 package com.fhirio.fhiremsservice.service;
 
-import org.junit.*;
-import org.junit.runner.*;
-import static org.mockito.Mockito.*;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.boot.test.context.*;
-import org.springframework.boot.test.mock.mockito.*;
-import org.springframework.test.context.junit4.*;
-
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.BDDMockito.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.fhirio.fhiremsservice.domain.Authentication;
 import com.fhirio.fhiremsservice.domain.User;
 
 @RunWith(SpringRunner.class)
@@ -43,7 +47,7 @@ public class AuthenticationServiceTest {
 	
 	@Test
 	public void testAuthentication_user_is_valid() {
-		User user = authenticationService.authenticate("emspersonnel", "password");
+		User user = authenticationService.authenticate(new Authentication("emspersonnel", "password"));
 		assertThat(user.getUserUuid()).isEqualTo(1);
 		verify(userService).getUser(1);
 
@@ -51,7 +55,7 @@ public class AuthenticationServiceTest {
 	
 	@Test
 	public void testAuthentication_user_is_invalid(){
-		User user = authenticationService.authenticate("invalidemspersonnel", "password");
+		User user = authenticationService.authenticate(new Authentication("invalidemspersonnel", "password"));
 		assertThat(user).isNull();
 		verify(userService,times(0)).getUser(anyInt());
 	}

@@ -21,6 +21,7 @@ public class Patient {
 	 */
 	private String lastName;
 	
+	public Patient(){}
 	
 	public Patient(Integer patientUuid, String firstName, String lastName) {
 		super();

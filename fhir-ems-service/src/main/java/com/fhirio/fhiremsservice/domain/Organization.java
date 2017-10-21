@@ -19,6 +19,8 @@ public class Organization {
 	 */
 	private List<Integer> emergencyUuids = new ArrayList<>();
 	
+	public Organization(){}
+	
 	public Integer getOrganizationUuid() {
 		return organizationUuid;
 	}
