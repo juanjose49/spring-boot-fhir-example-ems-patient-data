@@ -6,12 +6,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!--<link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">-->
     <script type="text/javascript" language="javascript"  src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <link rel="stylesheet" href="/css/login.css">
-    <script src="/js/login.js"></script>
-
-    <!--<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>-->
+    <script src="/js/dashboard.js"></script>
     <style>
 
 
@@ -24,19 +20,15 @@
             <a class="navbar-brand" href="#">EMS Patient Data Platform</a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="instructors.html">Emergencies</a></li>
-            <li><a href="students.html">Some other page</a></li>
             <li class="active"><a href="index.html">Login</a></li>
+            <li><a href="students.html">Some other page</a></li>
         </ul>
     </div>
 </nav>
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <div class="wrapper">
-            <h2 class="form-signin-heading">Please login</h2>
-            <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" /><br>
-            <input type="password" class="form-control" name="password" placeholder="Password" required=""/><br>
-            <button class="btn btn-lg btn-primary btn-block" onClick="authenticate();">Login</button>
+            <h2 class="form-signin-heading" id="welcomeUser">Some Dashboard item</h2>
         </div>
     </div>
 </div>
