@@ -1,15 +1,21 @@
 package com.fhirio.fhiremsservice.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.fhirio.fhiremsservice.domain.Emergency;
 import com.fhirio.fhiremsservice.domain.Organization;
 
 public class OrganizationService {
 	private Map<Integer, Organization> organizationMap = new HashMap<>();
-
+	@Autowired
+	private EmergencyService emergencyService;
 	/**
 	 * Basic constructor that initializes some mock data.
 	 */
@@ -29,6 +35,28 @@ public class OrganizationService {
 	 */
 	public Organization getOrganization(Integer organizationUuid){
 		return this.organizationMap.get(organizationUuid);
+	}
+	
+	/**
+	 * Returns an Organization with all of the Emergencies loaded 
+	 * instead of only the UUIDs.
+	 * 
+	 * @param organizationUuid the Organization UUID.
+	 * @return the verbose Organization.
+	 */
+	public Organization getVerboseOrganiation(Integer organizationUuid) {
+		Organization organization = this.getOrganization(organizationUuid);
+		List<Emergency> emergencies = new ArrayList<>();
+		for(Integer emergencyId : organization.getEmergencyUuids()){
+			Emergency emergency = emergencyService.getEmergency(emergencyId);
+			if(emergency != null){
+				emergencies.add(emergency);
+			}
+		}
+		Organization verboseOrganization = new Organization();
+		verboseOrganization.setOrganizationUuid(organization.getOrganizationUuid());
+		verboseOrganization.setEmergencies(emergencies);
+		return verboseOrganization;
 	}
 	
 	/**
@@ -72,4 +100,6 @@ public class OrganizationService {
 	public void setOrganizationMap(Map<Integer, Organization> organizationMap) {
 		this.organizationMap = organizationMap;
 	}
+
+
 }

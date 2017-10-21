@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fhirio.fhiremsservice.domain.Organization;
@@ -25,8 +26,15 @@ public class OrganizationController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{organizationUuid}", method = RequestMethod.GET)
-	public ResponseEntity<Organization> getOrganization(@PathVariable Integer organizationUuid) {
-		Organization organization = organizationService.getOrganization(organizationUuid);
+	public ResponseEntity<Organization> getOrganization(
+			@RequestParam(value="verbose", required=false, defaultValue="false") Boolean isVerbose,
+			@PathVariable Integer organizationUuid) {
+		Organization organization = null;
+		if(isVerbose){
+			organization = organizationService.getVerboseOrganiation(organizationUuid);
+		}else{
+			organization = organizationService.getOrganization(organizationUuid);
+		}
 		if(organization !=null){
 			return new ResponseEntity<Organization>(organization, HttpStatus.OK);
 		}else{

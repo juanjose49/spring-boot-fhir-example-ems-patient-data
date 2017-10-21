@@ -1,6 +1,5 @@
 package com.fhirio.fhiremsservice.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +16,9 @@ public class Organization {
 	 * The List of UUIDs that corresponds to all the 
 	 * Emergencies handled by the Organization.
 	 */
-	private List<Integer> emergencyUuids = new ArrayList<>();
+	private List<Integer> emergencyUuids;
+	
+	private List<Emergency> emergencies;
 	
 	public Organization(){}
 	
@@ -32,6 +33,14 @@ public class Organization {
 	}
 	public void setEmergencyUuids(List<Integer> emergencyUuids) {
 		this.emergencyUuids = emergencyUuids;
+	}
+
+	public List<Emergency> getEmergencies() {
+		return emergencies;
+	}
+
+	public void setEmergencies(List<Emergency> emergencies) {
+		this.emergencies = emergencies;
 	}
 
 }
