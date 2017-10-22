@@ -47,7 +47,7 @@ $(document).ready(function () {
                 mData: "Action",
                 bSortable: false,
                 mRender: function (data, type, row) {
-                    return '<a href="emergency.html?id='+row.emergencyUuid+'" class="btn btn-default btn-sm" role="button">Open</a>'
+                    return '<a href="emergency.html?id='+token+'&emergencyid='+row.emergencyUuid+'" class="btn btn-default btn-sm" role="button">Open</a>'
                 }
             }
         ],

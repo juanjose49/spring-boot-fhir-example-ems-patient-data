@@ -18,7 +18,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 
 $(document).ready(function () {
-   var token = getUrlParameter('id');
+   var token = getUrlParameter('emergencyid');
    console.log(token);
 
     $.ajax({
