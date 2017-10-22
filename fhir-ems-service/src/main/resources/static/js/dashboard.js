@@ -15,6 +15,8 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 
 
+
+
 $(document).ready(function () {
    var token = getUrlParameter('id');
    console.log(token);
@@ -27,6 +29,20 @@ $(document).ready(function () {
 
         }
     });
+
+
+
+    var table = $('#emergenciesTable').DataTable({
+        //"sAjaxSource": "/api/organization/"+token+"?verbose=true",
+        "sAjaxSource": "https://api.myjson.com/bins/rxc6n",
+        "sAjaxDataProp": "emergencies",
+        "order": [[ 0, "asc" ]],
+        "aoColumns": [
+            { "mData": "emergencyTitle" },
+            { "mData": "pickupLocation" },
+            { "mData": "emergencyState" }
+        ]
+    })
 
 });
 
