@@ -33,16 +33,38 @@ $(document).ready(function () {
 
 
     var table = $('#emergenciesTable').DataTable({
-        //"sAjaxSource": "/api/organization/"+token+"?verbose=true",
-        "sAjaxSource": "https://api.myjson.com/bins/rxc6n",
+
+        "sAjaxSource": "/api/organization/"+token+"?verbose=true",
         "sAjaxDataProp": "emergencies",
-        "order": [[ 0, "asc" ]],
+        "orderClasses": false,
+        "order": [[ 3, "asc" ]],
         "aoColumns": [
+            { "mData": "emergencyUuid" },
             { "mData": "emergencyTitle" },
             { "mData": "pickupLocation" },
-            { "mData": "emergencyState" }
-        ]
-    })
+            { "mData": "emergencyState" },
+            {
+                mData: "Action",
+                bSortable: false,
+                mRender: function (data, type, row) {
+                    return '<a href="emergency.html?id='+row.emergencyUuid+'" class="btn btn-default btn-sm" role="button">Open</a>'
+                }
+            }
+        ],
+        "createdRow": function( row, data, dataIndex ) {
+
+            if ( data.emergencyState == "CLOSED" ) {
+                $(row).css( "background-color", "#ff4444" );
+
+            } else if (data.emergencyState == "PENDING"){
+                $(row).css( "background-color", "#ffbb33" );
+            } else if (data.emergencyState == "ACTIVE"){
+                $(row).css( "background-color", "#00C851" );
+
+            }
+        },
+
+    });
 
 });
 
