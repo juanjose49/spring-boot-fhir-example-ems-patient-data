@@ -1,14 +1,22 @@
 package com.fhirio.fhiremsservice.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fhirio.fhiremsservice.domain.Emergency;
 import com.fhirio.fhiremsservice.domain.EmergencyState;
+import com.fhirio.fhiremsservice.domain.Organization;
+import com.fhirio.fhiremsservice.domain.Patient;
 
 public class EmergencyService {
 	private Map<Integer, Emergency> emergencyMap = new HashMap<>();
+	@Autowired
+	private PatientService patientService;
 	
 	/**
 	 * Basic constructor that initializes EmergencyService with mock
@@ -38,6 +46,25 @@ public class EmergencyService {
 	 */
 	public Emergency getEmergency(Integer emergencyUuid){
 		return emergencyMap.get(emergencyUuid);
+	}
+	
+	public Emergency getVerboseEmergency(Integer emergencyUuid) {
+		Emergency emergency = this.getEmergency(emergencyUuid);
+		List<Patient> possiblePatients = new ArrayList<>();
+		for(Integer patientId : emergency.getPossiblePatientUuids()){
+			Patient patient = patientService.getPatient(patientId);
+			if(patient != null){
+				possiblePatients.add(patient);
+			}
+		}
+		Emergency verboseEmergency = new Emergency();
+		verboseEmergency.setEmergencyUuid(emergency.getEmergencyUuid());
+		verboseEmergency.setEmergencyState(emergency.getEmergencyState());
+		verboseEmergency.setEmergencyTitle(emergency.getEmergencyTitle());
+		verboseEmergency.setIdentifiedPatientUuid(emergency.getIdentifiedPatientUuid());
+		verboseEmergency.setPickupLocation(emergency.getPickupLocation());
+		verboseEmergency.setPossiblePatients(possiblePatients);
+		return verboseEmergency;
 	}
 	
 	/**
@@ -84,4 +111,5 @@ public class EmergencyService {
 	public void setEmergencyMap(Map<Integer, Emergency> emergencyMap) {
 		this.emergencyMap = emergencyMap;
 	}
+
 }

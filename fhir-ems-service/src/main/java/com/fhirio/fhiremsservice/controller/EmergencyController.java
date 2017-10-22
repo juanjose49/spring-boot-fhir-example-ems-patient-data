@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fhirio.fhiremsservice.domain.Emergency;
@@ -25,8 +26,16 @@ public class EmergencyController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{emergencyUuid}", method = RequestMethod.GET)
-	public ResponseEntity<Emergency> getEmergency(@PathVariable Integer emergencyUuid) {
-		Emergency emergency = emergencyService.getEmergency(emergencyUuid);
+	public ResponseEntity<Emergency> getEmergency(
+			@RequestParam(value="verbose", required=false, defaultValue="false") Boolean isVerbose,
+			@PathVariable Integer emergencyUuid) {
+		Emergency emergency = null;
+		if(isVerbose){
+			emergency = emergencyService.getVerboseEmergency(emergencyUuid);
+		}else{
+			emergency = emergencyService.getEmergency(emergencyUuid);
+		}
+		
 		if(emergency !=null){
 			return new ResponseEntity<Emergency>(emergency, HttpStatus.OK);
 		}else{

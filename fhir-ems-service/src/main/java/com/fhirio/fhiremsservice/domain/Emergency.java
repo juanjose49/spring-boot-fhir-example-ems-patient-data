@@ -29,6 +29,8 @@ public class Emergency {
 	 */
 	private List<Integer> possiblePatientUuids;
 	
+	private List<Patient> possiblePatients;
+	
 	/**
 	 * Once the emergency personnel have positively identified
 	 * a Patient, the Patient's UUID will be set on here.
@@ -76,6 +78,14 @@ public class Emergency {
 	public void setPossiblePatientUuids(List<Integer> possiblePatientUuids) {
 		this.possiblePatientUuids = possiblePatientUuids;
 	}
+	public List<Patient> getPossiblePatients() {
+		return possiblePatients;
+	}
+
+	public void setPossiblePatients(List<Patient> possiblePatients) {
+		this.possiblePatients = possiblePatients;
+	}
+
 	public Integer getIdentifiedPatientUuid() {
 		return identifiedPatientUuid;
 	}
