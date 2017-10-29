@@ -9,13 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fhirio.fhiremsservice.Connection;
-import com.fhirio.fhiremsservice.PatientDetails;
+import com.fhirio.fhiremsservice.FhirClient;
+
 
 /**
  * 
@@ -25,7 +26,7 @@ import com.fhirio.fhiremsservice.PatientDetails;
 @RestController()
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
-public class PatientDetailsController {
+public class FhirController {
 	/**
 	 * Instance Variables
 	 */
@@ -37,12 +38,12 @@ public class PatientDetailsController {
 	 * @param response
 	 * @return patient name
 	 */
-	@RequestMapping(value = "/getPatientName.json", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody String getPatientName(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value = "/patient/{patientUuid}/name", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody String getPatientName(@PathVariable("patientUuid") String patientUuid, HttpServletRequest request, HttpServletResponse response) {
 
-		PatientDetails patientDetails = new PatientDetails(new Connection(baseUrl));
+		FhirClient fhirClient = new FhirClient(baseUrl);
 	
-		return patientDetails.getNameByPatientID(request.getParameter("id"));
+		return fhirClient.getNameByPatientID(patientUuid);
 	}
 	
 	/**
@@ -51,11 +52,11 @@ public class PatientDetailsController {
 	 * @param response
 	 * @return patient id list
 	 */
-	@RequestMapping(value = "/getPatientIdList.json", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/patient/list", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody List<String> getPatientIdList(HttpServletRequest request, HttpServletResponse response) {
 
-		PatientDetails patientDetails = new PatientDetails(new Connection(baseUrl));
+		FhirClient fhirClient = new FhirClient(baseUrl);
 	
-		return patientDetails.getIDByPatientName(request.getParameter("name"));
+		return fhirClient.getIDByPatientName(request.getParameter("name"));
 	}
 }
