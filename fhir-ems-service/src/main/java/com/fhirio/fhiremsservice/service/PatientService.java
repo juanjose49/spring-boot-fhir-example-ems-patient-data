@@ -1,7 +1,10 @@
 package com.fhirio.fhiremsservice.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
 import com.fhirio.fhiremsservice.domain.Patient;
 
@@ -51,6 +54,15 @@ public class PatientService {
 	 */
 	public void setPatientMap(Map<Integer, Patient> patientMap) {
 		this.patientMap = patientMap;
+	}
+
+	public List<Integer> getPossiblePatientUuids(Patient patient) {
+		List<Patient> patients = new ArrayList<>(patientMap.values());
+		List<Integer> possiblePatientUuids = new ArrayList<>();
+		for(int i=0; i<3; i++){
+			possiblePatientUuids.add(patients.get(ThreadLocalRandom.current().nextInt(0, patients.size())).getPatientUuid());
+		}
+		return possiblePatientUuids;
 	}
 	
 }

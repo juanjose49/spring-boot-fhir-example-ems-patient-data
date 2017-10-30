@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fhirio.fhiremsservice.domain.Emergency;
 import com.fhirio.fhiremsservice.domain.EmergencyState;
-import com.fhirio.fhiremsservice.domain.Organization;
 import com.fhirio.fhiremsservice.domain.Patient;
 
 public class EmergencyService {
@@ -18,25 +17,28 @@ public class EmergencyService {
 	@Autowired
 	private PatientService patientService;
 	
+	@Autowired
+	private OrganizationService orgService;
+	
 	/**
 	 * Basic constructor that initializes EmergencyService with mock
 	 * data.
 	 */
 	public EmergencyService(){
 		Emergency emergency = new Emergency(Integer.valueOf(1),"Student Fainted in Class","1122 Fowler St. 30309",Arrays.asList(1,2), EmergencyState.PENDING);
-		emergencyMap.put(Integer.valueOf(1), emergency);
+		saveEmergency(emergency);
 		
 		emergency = new Emergency(Integer.valueOf(2),"Car Accident on I85","I85 between exits 89 and 91",Arrays.asList(3,4), EmergencyState.PENDING);
-		emergencyMap.put(Integer.valueOf(2), emergency);
+		saveEmergency(emergency);
 		
 		emergency = new Emergency(Integer.valueOf(3),"Man had Heart Attack in Restaurant","Subway on Georgia Tech Campus",Arrays.asList(5,6), EmergencyState.ACTIVE);
-		emergencyMap.put(Integer.valueOf(3), emergency);
+		saveEmergency(emergency);
 		
 		emergency = new Emergency(Integer.valueOf(4),"Dog bit Man in Neighborhood","2022 Happy Hills 30456",Arrays.asList(7,8), EmergencyState.CLOSED);
-		emergencyMap.put(Integer.valueOf(4), emergency);
+		saveEmergency(emergency);
 		
 		emergency = new Emergency(Integer.valueOf(5),"Alcohol Poisoning at PIKE Fraternity","3212 Notso Happy Hills 30213",Arrays.asList(9,10), EmergencyState.CLOSED);
-		emergencyMap.put(Integer.valueOf(5), emergency);
+		saveEmergency(emergency);
 	}
 	/**
 	 * Get an Emergency based on the Emergency's UUID.
@@ -75,9 +77,16 @@ public class EmergencyService {
 	 * @param emergency the Emergency that will be saved.
 	 * @return the updated Emergency with new UUID.
 	 */
-	public Emergency saveEmergency(Emergency emergency){
-		//TODO
-		return null;
+	public Emergency createEmergency(Emergency emergency) {
+		emergency.setEmergencyUuid(UuidService.getUuid());
+		emergency.setEmergencyState(EmergencyState.PENDING);
+		List<Integer> possiblePatientUuids = 
+				patientService.getPossiblePatientUuids(emergency.getPatient());
+		emergency.setPossiblePatientUuids(possiblePatientUuids);
+		emergency = saveEmergency(emergency);
+		orgService.addEmergencyUuidToOrganization(
+				emergency.getOrganizationUuid(), emergency.getEmergencyUuid());
+		return emergency;
 	}
 	
 	/**
@@ -92,6 +101,11 @@ public class EmergencyService {
 	public Emergency identifyPatient(Integer emergencyUuid,Integer identifiedPatientUuid){
 		//TODO
 		return null;
+	}
+	
+	protected Emergency saveEmergency(Emergency emergency){
+		emergencyMap.put(emergency.getEmergencyUuid(), emergency);
+		return emergency;
 	}
 	
 	/**
@@ -111,5 +125,6 @@ public class EmergencyService {
 	public void setEmergencyMap(Map<Integer, Emergency> emergencyMap) {
 		this.emergencyMap = emergencyMap;
 	}
+
 
 }

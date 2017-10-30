@@ -1,5 +1,6 @@
 package com.fhirio.fhiremsservice.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,13 +24,15 @@ public class Emergency {
 	 */
 	private String pickupLocation;
 	
+	private Patient patient;
+	
 	/**
 	 * A List of UUIDs that correspond to patients that
 	 * may fit the Patient's profile as found on FHIR API.
 	 */
-	private List<Integer> possiblePatientUuids;
+	private List<Integer> possiblePatientUuids = new ArrayList<>();
 	
-	private List<Patient> possiblePatients;
+	private List<Patient> possiblePatients = new ArrayList<>();
 	
 	/**
 	 * Once the emergency personnel have positively identified
@@ -41,6 +44,8 @@ public class Emergency {
 	 * The state of the Emergency.
 	 */
 	private EmergencyState emergencyState;
+	
+	private Integer organizationUuid;
 	
 	public Emergency(){}
 	
@@ -72,6 +77,14 @@ public class Emergency {
 	public void setPickupLocation(String pickupLocation) {
 		this.pickupLocation = pickupLocation;
 	}
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
 	public List<Integer> getPossiblePatientUuids() {
 		return possiblePatientUuids;
 	}
@@ -97,6 +110,14 @@ public class Emergency {
 	}
 	public void setEmergencyState(EmergencyState emergencyState) {
 		this.emergencyState = emergencyState;
+	}
+
+	public Integer getOrganizationUuid() {
+		return organizationUuid;
+	}
+
+	public void setOrganizationUuid(Integer organizationUuid) {
+		this.organizationUuid = organizationUuid;
 	}
 	
 	

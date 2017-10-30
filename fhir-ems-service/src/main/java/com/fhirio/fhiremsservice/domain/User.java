@@ -18,6 +18,13 @@ public class User {
 	private String userName;
 	
 	/**
+	 * The password that corresponds to a specific user. This should only
+	 * ever be populated during the creation of a new user.
+	 */
+	private String password;
+
+	
+	/**
 	 * The user's first name.
 	 */
 	private String firstName;
@@ -32,6 +39,9 @@ public class User {
 	 * the user belongs to.
 	 */
 	private Integer organizationUuid;
+	
+	private Organization organization;
+	
 	
 	public User(){}
 	
@@ -56,6 +66,14 @@ public class User {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -73,6 +91,14 @@ public class User {
 	}
 	public void setOrganizationUuid(Integer organizationUuid) {
 		this.organizationUuid = organizationUuid;
+	}
+
+	public Organization getOrganization() {
+		return organization;
+	}
+
+	public void setOrganization(Organization organization) {
+		this.organization = organization;
 	}
 
 }

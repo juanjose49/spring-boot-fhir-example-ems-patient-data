@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.fhirio.fhiremsservice.domain.Authentication;
 import com.fhirio.fhiremsservice.domain.Token;
+import com.fhirio.fhiremsservice.domain.User;
 
 public class AuthenticationService {
 	private Map<Integer, Integer> authenticationMap = new HashMap<>();
@@ -16,11 +17,15 @@ public class AuthenticationService {
 		// let's bootstrap a few mappings
 		String userName = "emspersonnel";
 		String password = "password";
-		authenticationMap.put(Integer.valueOf((userName+password).hashCode()), Integer.valueOf(1));
+		authenticationMap.put(hashCredentials(userName, password), Integer.valueOf(1));
 		
 		userName = "emscallcenter";
 		password = "password";
-		authenticationMap.put(Integer.valueOf((userName+password).hashCode()), Integer.valueOf(2));
+		authenticationMap.put(hashCredentials(userName, password), Integer.valueOf(2));
+	}
+
+	private Integer hashCredentials(String userName, String password) {
+		return Integer.valueOf((userName+password).hashCode());
 	}
 	
 	/**
@@ -57,4 +62,19 @@ public class AuthenticationService {
 		this.authenticationMap = authenticationMap;
 	}
 
+	public Authentication createAuthentication(User user) {
+		if(user.getUserName() != null && user.getPassword() != null
+				&& !user.getUserName().isEmpty() && !user.getPassword().isEmpty()
+				&& user.getUserUuid() != null){
+			saveUserAuthentication(user);
+			Authentication auth = new Authentication(user.getUserName(), user.getPassword());
+			user.setPassword(null);
+			return auth;
+		}
+		return null;
+	}
+
+	private Integer saveUserAuthentication(User user) {
+		return authenticationMap.put(hashCredentials(user.getUserName(), user.getPassword()), user.getUserUuid());
+	}
 }

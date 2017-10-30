@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,9 +21,11 @@ public class OrganizationService {
 	public OrganizationService(){
 		// bootstrap organizations
 		Organization org = new Organization();
-		org.setOrganizationUuid(Integer.valueOf(1));
-		org.setEmergencyUuids(Arrays.asList(1,2,3,4,5));
-		organizationMap.put(Integer.valueOf(1), org);
+		org.setOrganizationUuid(1);
+		org.setEmergencyUuids(new ArrayList<Integer>(Arrays.asList(1,2,3,4,5)));
+		org.setName("Mock Organization");
+		org.setUserUuids(new ArrayList<Integer>(Arrays.asList(1,2)));
+		saveOrganization(org);
 	}
 	
 	/**
@@ -66,9 +67,7 @@ public class OrganizationService {
 	 * @return the Organization with updated UUID.
 	 */
 	public Organization saveOrganization(Organization organization){
-		Integer uuid = UUID.randomUUID().toString().hashCode();
-		organization.setOrganizationUuid(uuid);
-		this.organizationMap.put(uuid, organization);
+		this.organizationMap.put(organization.getOrganizationUuid(), organization);
 		return organization;
 	}
 	
@@ -101,5 +100,24 @@ public class OrganizationService {
 		this.organizationMap = organizationMap;
 	}
 
+	public Organization createOrganization(Organization organization) {
+		organization.setOrganizationUuid(UuidService.getUuid());
+		organization = saveOrganization(organization);
+		return organization;
+	}
+
+	public Organization addEmergencyUuidToOrganization(Integer organizationUuid, Integer emergencyUuid){
+		Organization org = getOrganization(organizationUuid);
+		org.getEmergencyUuids().add(emergencyUuid);
+		saveOrganization(org);
+		return org;
+	}
+	
+	public Organization addUserUuidToOrganization(Integer organizationUuid, Integer userUuid){
+		Organization org = getOrganization(organizationUuid);
+		org.getUserUuids().add(userUuid);
+		saveOrganization(org);
+		return org;
+	}
 
 }
