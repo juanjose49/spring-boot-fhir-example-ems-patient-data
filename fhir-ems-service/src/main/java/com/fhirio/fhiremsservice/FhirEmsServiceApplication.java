@@ -4,7 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fhirio.fhiremsservice.service.AuthenticationService;
 import com.fhirio.fhiremsservice.service.EmergencyService;
 import com.fhirio.fhiremsservice.service.OrganizationService;
@@ -44,4 +47,24 @@ public class FhirEmsServiceApplication {
         return new UserService();
     }
     
+    @Bean
+    public FhirClient getFhirClient() {
+		return new FhirClient("http://fhirtesting.hdap.gatech.edu/hapi-fhir-jpaserver-example/baseDstu3");
+
+    }
+    
+    @Bean
+    public Jackson2ObjectMapperBuilder jacksonBuilder() {
+        Jackson2ObjectMapperBuilder b = new Jackson2ObjectMapperBuilder();
+        b.indentOutput(true).mixIn(org.hl7.fhir.dstu3.model.Reference.class, ReferenceMixin.class);
+        b.serializationInclusion(Include.NON_NULL);
+        b.serializationInclusion(Include.NON_EMPTY);
+        return b;
+    }
+
+    public interface ReferenceMixin {
+    	 @JsonIgnore
+    	 void setReferenceElement(org.hl7.fhir.dstu3.model.StringType reference);
+        
+    }
 }

@@ -92,7 +92,57 @@ public class FhirClient {
 		}
 		return idList;
 	}
+	
+	public List<com.fhirio.fhiremsservice.domain.Patient> getPossiblePatients(com.fhirio.fhiremsservice.domain.Patient patient){
+		List<com.fhirio.fhiremsservice.domain.Patient> patients = new ArrayList<>();
+		try {
+			Bundle bundle = (Bundle) getClient()
+					.search()
+					.forResource(Patient.class)
+					.where(new StringClientParam("address-country").matches()
+							.value(patient.getAddress().getCountry()))
+					.where(new StringClientParam("address-state").matches()
+							.value(patient.getAddress().getState()))
+					.where(new StringClientParam("address-city").matches()
+							.value(patient.getAddress().getCity()))
+					.where(new StringClientParam("address").matches().value(
+							patient.getAddress().getAddressLine()))
+					.where(new StringClientParam("address-postalcode")
+							.matches().value(patient.getAddress().zip))
+					.where(new StringClientParam("name").matches().value(patient.getFirstName()))
+					.where(new StringClientParam("family").matches().value(patient.getLastName()))
+					.prettyPrint().execute();
+			for (BundleEntryComponent entry : bundle.getEntry()) {
+				Patient fhirPatient = (Patient) entry.getResource();
+				com.fhirio.fhiremsservice.domain.Patient emsPatient = new com.fhirio.fhiremsservice.domain.Patient();
 
+
+				if (!fhirPatient.getName().isEmpty()) {
+					emsPatient.setFirstName(fhirPatient.getName().get(0)
+							.getGivenAsSingleString());
+					emsPatient.setLastName(fhirPatient.getName().get(0)
+							.getFamily());
+				}
+
+
+				if (!fhirPatient.getAddress().isEmpty()) {
+					org.hl7.fhir.dstu3.model.Address patientAddress = fhirPatient
+							.getAddress().get(0);
+					emsPatient.getAddress().setAddressLine(patientAddress.getLine().get(0).asStringValue());
+					emsPatient.getAddress().setCity(patientAddress.getCity());
+					emsPatient.getAddress().setCountry(patientAddress.getCountry());
+					emsPatient.getAddress().setState(patientAddress.getState());
+					emsPatient.getAddress().setZip(patientAddress.getPostalCode());
+				}
+				emsPatient.setFhirPatient(fhirPatient);
+				patients.add(emsPatient);
+
+			}
+		} catch (Exception exc) {
+			exc.printStackTrace();
+		}
+		return patients;
+	}
 	/**
 	 * Method to get list of ids for a given name
 	 * 

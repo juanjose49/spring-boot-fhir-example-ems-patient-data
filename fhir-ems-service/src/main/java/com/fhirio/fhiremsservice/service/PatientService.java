@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ThreadLocalRandom;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.fhirio.fhiremsservice.FhirClient;
 import com.fhirio.fhiremsservice.domain.Patient;
 
 public class PatientService {
 	private Map<Integer, Patient> patientMap = new HashMap<>();
-	
+	@Autowired
+	private FhirClient fhirClient;
 	/**
 	 * Basic constructor used to initialize mock data.
 	 */
@@ -57,12 +60,25 @@ public class PatientService {
 	}
 
 	public List<Integer> getPossiblePatientUuids(Patient patient) {
-		List<Patient> patients = new ArrayList<>(patientMap.values());
+		patient = createPatient(patient);
 		List<Integer> possiblePatientUuids = new ArrayList<>();
-		for(int i=0; i<3; i++){
-			possiblePatientUuids.add(patients.get(ThreadLocalRandom.current().nextInt(0, patients.size())).getPatientUuid());
+		possiblePatientUuids.add(patient.getPatientUuid());
+		for(Patient fhirPatient : fhirClient.getPossiblePatients(patient)){
+			fhirPatient = createPatient(fhirPatient);
+			possiblePatientUuids.add(fhirPatient.getPatientUuid());
 		}
 		return possiblePatientUuids;
+	}
+
+	public Patient createPatient(Patient patient) {
+		patient.setPatientUuid(UuidService.getUuid());
+		patient = savePatient(patient);
+		return patient;
+	}
+
+	public Patient savePatient(Patient patient) {
+		patientMap.put(patient.getPatientUuid(), patient);
+		return patient;
 	}
 	
 }

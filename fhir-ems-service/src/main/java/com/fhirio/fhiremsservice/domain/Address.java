@@ -8,6 +8,9 @@ package com.fhirio.fhiremsservice.domain;
  *
  */
 public class Address {
+	
+	public Address(){};
+	
 	public Address(String addressLine, String city, String state,
 			String country, String zip) {
 		super();

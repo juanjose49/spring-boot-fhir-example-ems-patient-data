@@ -1,5 +1,7 @@
 package com.fhirio.fhiremsservice.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * The Patient class is meant to represent all the health information
  * related to a patient involved in an emergency.
@@ -21,6 +23,10 @@ public class Patient {
 	 */
 	private String lastName;
 	
+	private Address address = new Address();
+	
+	private org.hl7.fhir.dstu3.model.Patient fhirPatient;
+
 	public Patient(){}
 	
 	public Patient(Integer patientUuid, String firstName, String lastName) {
@@ -47,5 +53,22 @@ public class Patient {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
+	@JsonIgnore
+	public org.hl7.fhir.dstu3.model.Patient getFhirPatient() {
+		return fhirPatient;
+	}
+	@JsonIgnore
+	public void setFhirPatient(org.hl7.fhir.dstu3.model.Patient fhirPatient) {
+		this.fhirPatient = fhirPatient;
 	}
 }
