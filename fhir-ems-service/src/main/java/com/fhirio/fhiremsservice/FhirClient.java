@@ -78,7 +78,12 @@ public class FhirClient {
     		      .execute();
         for(BundleEntryComponent entry: bundle.getEntry()){
         	Patient patient = (Patient) entry.getResource();
-        	idList.add(patient.getId());
+        	String idURL = patient.getId();
+        	int fromIndex = idURL.indexOf("Patient/") + 8;
+        	int toIndex = idURL.indexOf("/_history");
+        	String idString = idURL.substring(fromIndex, toIndex);
+        	
+        	idList.add(idString);
         }
         return idList;
     }
