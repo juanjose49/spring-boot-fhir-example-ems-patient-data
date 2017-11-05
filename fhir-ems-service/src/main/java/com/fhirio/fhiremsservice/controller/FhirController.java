@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fhirio.fhiremsservice.FhirClient;
+import com.fhirio.fhiremsservice.domain.Address;
 
 
 /**
@@ -54,9 +56,26 @@ public class FhirController {
 	 * @return patient id list
 	 */
 	@RequestMapping(value = "/patient/list", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody List<JSONObject> getPatientDetails(HttpServletRequest request, HttpServletResponse response) {
+
+		FhirClient fhirClient = new FhirClient(baseUrl);
+		
+		Address address = new Address(request.getParameter("address"), request.getParameter("address-city"), request.getParameter("address-state"), request.getParameter("address-country"), request.getParameter("address-postalcode"));
+	
+		return fhirClient.getPatientDetails(request.getParameter("name"), address);
+	}
+	
+	/**
+	 * Web service end point which returns the patient name for the given patient id.
+	 * @param request
+	 * @param response
+	 * @return patient id list
+	 */
+	@RequestMapping(value = "/patient/id/list", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody List<String> getPatientIdList(HttpServletRequest request, HttpServletResponse response) {
 
 		FhirClient fhirClient = new FhirClient(baseUrl);
+		
 	
 		return fhirClient.getIDByPatientName(request.getParameter("name"));
 	}
