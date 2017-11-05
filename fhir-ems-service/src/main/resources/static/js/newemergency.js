@@ -58,5 +58,7 @@ function createEmergency(){
 
             }
         });
+    } else{
+        alert("All fields are required and must not be blank");
     }
 }
