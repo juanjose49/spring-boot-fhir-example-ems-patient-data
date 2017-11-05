@@ -125,6 +125,22 @@ public class EmergencyService {
 	public void setEmergencyMap(Map<Integer, Emergency> emergencyMap) {
 		this.emergencyMap = emergencyMap;
 	}
+	public Emergency updateEmergency(Emergency emergency) {
+		if(getEmergency(emergency.getEmergencyUuid()) != null){
+			return saveEmergency(emergency);
+		}
+		return null;
+	}
+	public Emergency deleteEmergency(Integer emergencyUuid) {
+		Emergency emergency = getEmergency(emergencyUuid);
+		if(emergency != null){
+			orgService.removeEmergencyUuidFromOrganization(
+					emergency.getOrganizationUuid(), emergency.getEmergencyUuid());
+			emergencyMap.remove(emergency.getEmergencyUuid());
+			return emergency;
+		}
+		return null;
+	}
 
 
 }
