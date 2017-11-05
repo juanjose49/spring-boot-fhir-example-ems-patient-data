@@ -27,7 +27,7 @@ function createEmergency(){
     console.log('am I being called? ');
 
     var emergencyTitle=$.trim($("#emergencyTitle").val());
-    var firstName=$.trim($("#lastName").val());
+    var firstName=$.trim($("#firstName").val());
     var lastName=$.trim($("#lastName").val());
     var pickupLocation =$.trim($("#pickupLocation").val());
 
