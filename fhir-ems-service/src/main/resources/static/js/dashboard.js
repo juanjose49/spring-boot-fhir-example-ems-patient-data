@@ -30,6 +30,10 @@ $(document).ready(function () {
         }
     });
 
+    $('a.createEmergency').on('click', function (e) {
+        $(this).attr("href", "/newemergency.html?id="+token);
+    });
+
 
 
     var table = $('#emergenciesTable').DataTable({
