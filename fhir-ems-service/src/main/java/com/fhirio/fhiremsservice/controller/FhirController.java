@@ -6,8 +6,6 @@ package com.fhirio.fhiremsservice.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -67,6 +65,10 @@ public class FhirController {
 		if(patientDetails.isEmpty()){
 			JSONObject errorJSON = new JSONObject();
 			errorJSON.put("error", "No matches found for the given search.");
+			patientDetails.add(errorJSON);
+		} else if (patientDetails.size() > 10) {
+			JSONObject errorJSON = new JSONObject();
+			errorJSON.put("error", "Result set is too broad for the given search.");
 			patientDetails.add(errorJSON);
 		}
 		
