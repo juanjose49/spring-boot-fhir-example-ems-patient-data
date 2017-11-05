@@ -42,7 +42,7 @@ public class FhirController {
 	 * @return patient name
 	 */
 	@RequestMapping(value = "/patient/{patientUuid}/name", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody String getPatientName(@PathVariable("patientUuid") String patientUuid, HttpServletRequest request, HttpServletResponse response) {
+	public @ResponseBody String getPatientName(@PathVariable("patientUuid") String patientUuid, HttpServletRequest request) {
 
 		FhirClient fhirClient = new FhirClient(baseUrl);
 	
@@ -55,14 +55,22 @@ public class FhirController {
 	 * @param response
 	 * @return patient id list
 	 */
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/patient/list", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody List<JSONObject> getPatientDetails(HttpServletRequest request, HttpServletResponse response) {
+	public @ResponseBody List<JSONObject> getPatientDetails(HttpServletRequest request) {
 
 		FhirClient fhirClient = new FhirClient(baseUrl);
 		
 		Address address = new Address(request.getParameter("address"), request.getParameter("address-city"), request.getParameter("address-state"), request.getParameter("address-country"), request.getParameter("address-postalcode"));
 	
-		return fhirClient.getPatientDetails(request.getParameter("name"), address);
+		List<JSONObject> patientDetails = fhirClient.getPatientDetails(request.getParameter("name"), address);
+		if(patientDetails.isEmpty()){
+			JSONObject errorJSON = new JSONObject();
+			errorJSON.put("error", "No matches found for the given search.");
+			patientDetails.add(errorJSON);
+		}
+		
+		return patientDetails;
 	}
 	
 	/**
@@ -72,7 +80,7 @@ public class FhirController {
 	 * @return patient id list
 	 */
 	@RequestMapping(value = "/patient/id/list", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody List<String> getPatientIdList(HttpServletRequest request, HttpServletResponse response) {
+	public @ResponseBody List<String> getPatientIdList(HttpServletRequest request) {
 
 		FhirClient fhirClient = new FhirClient(baseUrl);
 		
