@@ -120,4 +120,11 @@ public class OrganizationService {
 		return org;
 	}
 
+	public Organization removeEmergencyUuidFromOrganization(Integer organizationUuid, Integer emergencyUuid) {
+		Organization org = getOrganization(organizationUuid);
+		org.getEmergencyUuids().remove(emergencyUuid);
+		saveOrganization(org);
+		return org;
+	}
+
 }
