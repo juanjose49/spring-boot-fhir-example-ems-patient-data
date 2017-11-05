@@ -7,19 +7,20 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import org.hl7.fhir.dstu3.model.Bundle;
+import org.hl7.fhir.dstu3.model.Bundle.BundleEntryComponent;
+import org.hl7.fhir.dstu3.model.ContactPoint;
+import org.hl7.fhir.dstu3.model.ContactPoint.ContactPointSystem;
+import org.hl7.fhir.dstu3.model.Observation;
+import org.hl7.fhir.dstu3.model.Patient;
+import org.hl7.fhir.dstu3.model.Quantity;
+import org.hl7.fhir.dstu3.model.Reference;
+
 import ca.uhn.fhir.context.FhirContext;
-import ca.uhn.fhir.model.dstu2.composite.ContactPointDt;
-import ca.uhn.fhir.model.dstu2.composite.QuantityDt;
-import ca.uhn.fhir.model.dstu2.composite.ResourceReferenceDt;
-import ca.uhn.fhir.model.dstu2.resource.Bundle;
-import ca.uhn.fhir.model.dstu2.resource.Observation;
-import ca.uhn.fhir.model.dstu2.resource.Patient;
-import ca.uhn.fhir.model.dstu2.resource.Bundle.Entry;
-import ca.uhn.fhir.model.dstu2.valueset.ContactPointSystemEnum;
-import ca.uhn.fhir.model.dstu2.valueset.ContactPointUseEnum;
 import ca.uhn.fhir.model.primitive.IdDt;
 import ca.uhn.fhir.rest.api.MethodOutcome;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
+import ca.uhn.fhir.rest.gclient.StringClientParam;
 
 /**
  * @author Team FHIR I/O
@@ -36,7 +37,8 @@ public class FhirClient {
      * @param connection
      */
     public FhirClient(String baseUrl) {
-    	FhirContext fhirContext = FhirContext.forDstu2();
+    	@SuppressWarnings("deprecation")
+		FhirContext fhirContext = new FhirContext();
 		this.client = fhirContext.newRestfulGenericClient(baseUrl);
     }
     
@@ -70,13 +72,13 @@ public class FhirClient {
      */
     public List<String> getIDByPatientName(String name) {
         List<String> idList = new ArrayList<String>();
-        Bundle bundle = getClient().search().forResource(Patient.class)
-    			.where(Patient.NAME.matches().value(name))
-    		      .returnBundle(Bundle.class)
+        Bundle bundle = (Bundle) getClient().search().forResource(Patient.class)
+    			.where(new StringClientParam("name").matches().value(name))
+    		      .prettyPrint()
     		      .execute();
-        for(Entry entry: bundle.getEntry()){
+        for(BundleEntryComponent entry: bundle.getEntry()){
         	Patient patient = (Patient) entry.getResource();
-        	idList.add(patient.getId().getIdPart());
+        	idList.add(patient.getId());
         }
         return idList;
     }
@@ -96,9 +98,9 @@ public class FhirClient {
     		      .returnBundle(Bundle.class)
     		      .execute();
         
-        for(Entry entry: bundle.getEntry()){
+        for(BundleEntryComponent entry: bundle.getEntry()){
         	Observation observation = (Observation) entry.getResource();
-        	String id = observation.getSubject().getReference().getIdPart();
+        	String id = observation.getSubject().getReference();
         	patientIdSet.add(id);
         }
         
@@ -114,7 +116,7 @@ public class FhirClient {
 	public String addPatient(String firstName, String lastName) {
 
 		Patient patient = new Patient();
-		patient.addName().addFamily(lastName).addGiven(firstName);
+		patient.addName().setFamily(lastName).addGiven(firstName);
 
 		MethodOutcome outcome = getClient().create()
 				.resource(patient).prettyPrint().encodedJson().execute();
@@ -141,10 +143,10 @@ public class FhirClient {
 
 		observation.getCode().addCoding().setSystem("http://loinc.org")
 				.setCode(loincCode).setDisplay(loincDisplayName);
-		observation.setValue(new QuantityDt().setValue(value)
+		observation.setValue(new Quantity().setValue(value)
 				.setUnit(valueUnit).setCode(valueCode));
 
-		observation.setSubject(new ResourceReferenceDt(new IdDt("Patient", patientId)));
+		observation.setSubject(new Reference(new IdDt("Patient", patientId)));
 
 		MethodOutcome outcomeObservation = getClient().create()
 				.resource(observation).prettyPrint().encodedJson().execute();
@@ -168,9 +170,8 @@ public class FhirClient {
                 .withId(patientId)
                 .execute();
 
-	   	ContactPointDt contact = new ContactPointDt();
-	   	contact.setSystem(ContactPointSystemEnum.PHONE);
-	   	contact.setUse(ContactPointUseEnum.HOME);
+	   	ContactPoint contact = new ContactPoint();
+	   	contact.setSystem(ContactPointSystem.PHONE);
 	   	contact.setValue(homePhoneNumber);
 	   	
 	   	patient.addTelecom(contact);
@@ -195,7 +196,7 @@ public class FhirClient {
                 .withId(observationId)
                 .execute();
 	   	
-	   	observation.setValue(new QuantityDt().setValue(value));
+	   	observation.setValue(new Quantity().setValue(value));
 		
 		MethodOutcome outcome = getClient().update()
 				.resource(observation).prettyPrint().encodedJson().execute();

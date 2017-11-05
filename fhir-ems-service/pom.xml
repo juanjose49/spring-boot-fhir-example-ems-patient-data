@@ -15,7 +15,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.7.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
@@ -39,7 +39,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- HAPI FHIR Dependencies -->
 		<dependency>
 			<groupId>ca.uhn.hapi.fhir</groupId>
@@ -48,7 +48,7 @@
 		</dependency>
 		<dependency>
 			<groupId>ca.uhn.hapi.fhir</groupId>
-			<artifactId>hapi-fhir-structures-dstu2</artifactId>
+			<artifactId>hapi-fhir-structures-dstu3</artifactId>
 			<version>3.0.0</version>
 		</dependency>
 		<dependency>
@@ -56,7 +56,7 @@
 			<artifactId>hapi-fhir-client</artifactId>
 			<version>3.0.0</version>
 		</dependency>
-		
+
 		<!-- JSON Dependencies -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>

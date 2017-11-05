@@ -30,7 +30,8 @@ public class FhirController {
 	/**
 	 * Instance Variables
 	 */
-	private String baseUrl = "https://fhirtest.uhn.ca/baseDstu2/";
+	//private String baseUrl = "https://fhirtest.uhn.ca/baseDstu2/";
+	private String baseUrl = "http://fhirtesting.hdap.gatech.edu/hapi-fhir-jpaserver-example/baseDstu3";
 	
 	/**
 	 * Web service end point which returns the patient name for the given patient id.
