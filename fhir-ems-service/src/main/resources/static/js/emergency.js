@@ -40,7 +40,14 @@ $(document).ready(function () {
         "aoColumns": [
             { "mData": "patientUuid" },
             { "mData": "firstName" },
-            { "mData": "lastName" }
+            { "mData": "lastName" },
+            {
+                mData: "Action",
+                bSortable: false,
+                mRender: function (data, type, row) {
+                    return '<a href="patientdetails.html?id='+token+'&patientID='+row.patientID+'" class="btn btn-default btn-sm" role="button">View Patient Details</a>'
+                }
+            }
         ]
     });
 
