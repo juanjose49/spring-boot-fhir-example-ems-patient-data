@@ -17,9 +17,11 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 
 $(document).ready(function () {
+    $("#dashboardLink").attr("href","dashboard.html?id="+getUrlParameter("id"))
+    
     token = getUrlParameter('id');
     console.log(token);
-
+    orgUuid = getUrlParameter('orgId');
 });
 
 function createEmergency(){
@@ -42,7 +44,7 @@ function createEmergency(){
         patient.firstName=firstName;
         patient.lastName=lastName;
         data.patient=patient;
-        data.organizationUuid=token;
+        data.organizationUuid=orgUuid;
         data = JSON.stringify(data);
 
         $.ajax({
@@ -53,7 +55,7 @@ function createEmergency(){
             data: data,
             cache: false,
             success: function (response) {
-                alert("Emergency successfully submitted!");
+                alert("Emergency successfully submitted!"); 
                 window.location.href = "dashboard.html?id="+token;
 
             }

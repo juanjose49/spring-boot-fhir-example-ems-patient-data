@@ -57,8 +57,6 @@ public class FhirEmsServiceApplication {
     public Jackson2ObjectMapperBuilder jacksonBuilder() {
         Jackson2ObjectMapperBuilder b = new Jackson2ObjectMapperBuilder();
         b.indentOutput(true).mixIn(org.hl7.fhir.dstu3.model.Reference.class, ReferenceMixin.class);
-        b.serializationInclusion(Include.NON_NULL);
-        b.serializationInclusion(Include.NON_EMPTY);
         return b;
     }
 

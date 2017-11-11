@@ -38,7 +38,7 @@ public class UserController {
 		}
 	}
 	/**
-	 * New Super User (Creates Organization): E.g. curl -H "Content-Type: application/json" -X POST -d '{"userName":"newuser","password":"mypassword","firstName":"Tim","lastName":"Classyman","organization":{"name":"New Organization"}}' http://localhost:8080/api/user
+	 * New Super U ser (Creates Organization): E.g. curl -H "Content-Type: application/json" -X POST -d '{"userName":"newuser","password":"mypassword","firstName":"Tim","lastName":"Classyman","organization":{"name":"New Organization"}}' http://localhost:8080/api/user
 	 * New Org User (Created by Super User): E.g. curl -H "Content-Type: application/json" -X POST -d '{"userName":"newuser","password":"mypassword","firstName":"Tim","lastName":"Classyman","organizationUuid":1}' http://localhost:8080/api/user
 	 * @param user    
 	 * @return

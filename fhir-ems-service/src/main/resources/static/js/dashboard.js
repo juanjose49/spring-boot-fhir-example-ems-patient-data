@@ -18,6 +18,8 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 
 $(document).ready(function () {
+    $("#dashboardLink").attr("href","dashboard.html?id="+getUrlParameter("id"))
+
    var token = getUrlParameter('id');
    console.log(token);
 
@@ -26,49 +28,52 @@ $(document).ready(function () {
         cache: false,
         success: function(response){
             $("#welcomeUser").text("Welcome "+response.firstName+ " "+response.lastName);
-
+            orgUuid = response.organizationUuid
+            var table = $('#emergenciesTable').DataTable({
+                
+                        "sAjaxSource": "/api/organization/"+orgUuid+"?verbose=true",
+                        "sAjaxDataProp": "emergencies",
+                        "orderClasses": false,
+                        "order": [[ 3, "asc" ]],
+                        "aoColumns": [
+                            { "mData": "emergencyUuid" },
+                            { "mData": "emergencyTitle" },
+                            { "mData": "pickupLocation" },
+                            { "mData": "emergencyState" },
+                            {
+                                mData: "Action",
+                                bSortable: false,
+                                mRender: function (data, type, row) {
+                                    return '<a href="emergency.html?id='+token+'&emergencyid='+row.emergencyUuid+'" class="btn btn-default btn-sm" role="button">Open</a>'
+                                }
+                            }
+                        ],
+                        "createdRow": function( row, data, dataIndex ) {
+                
+                            if ( data.emergencyState == "CLOSED" ) {
+                                $(row).css( "background-color", "#ff4444" );
+                
+                            } else if (data.emergencyState == "PENDING"){
+                                $(row).css( "background-color", "#ffbb33" );
+                            } else if (data.emergencyState == "ACTIVE"){
+                                $(row).css( "background-color", "#00C851" );
+                
+                            }
+                        },
+                
+                    });
+                    $('a.createEmergency').on('click', function (e) {
+                        $(this).attr("href", "/newemergency.html?id="+token+"&orgId="+orgUuid);
+                    });
         }
     });
 
-    $('a.createEmergency').on('click', function (e) {
-        $(this).attr("href", "/newemergency.html?id="+token);
-    });
+  
 
 
 
-    var table = $('#emergenciesTable').DataTable({
 
-        "sAjaxSource": "/api/organization/"+token+"?verbose=true",
-        "sAjaxDataProp": "emergencies",
-        "orderClasses": false,
-        "order": [[ 3, "asc" ]],
-        "aoColumns": [
-            { "mData": "emergencyUuid" },
-            { "mData": "emergencyTitle" },
-            { "mData": "pickupLocation" },
-            { "mData": "emergencyState" },
-            {
-                mData: "Action",
-                bSortable: false,
-                mRender: function (data, type, row) {
-                    return '<a href="emergency.html?id='+token+'&emergencyid='+row.emergencyUuid+'" class="btn btn-default btn-sm" role="button">Open</a>'
-                }
-            }
-        ],
-        "createdRow": function( row, data, dataIndex ) {
 
-            if ( data.emergencyState == "CLOSED" ) {
-                $(row).css( "background-color", "#ff4444" );
-
-            } else if (data.emergencyState == "PENDING"){
-                $(row).css( "background-color", "#ffbb33" );
-            } else if (data.emergencyState == "ACTIVE"){
-                $(row).css( "background-color", "#00C851" );
-
-            }
-        },
-
-    });
 
 });
 

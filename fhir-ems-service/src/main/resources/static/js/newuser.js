@@ -10,7 +10,6 @@ function register(){
 	
 	var lastname=$('#lastname').val();
 	var orgname=$('#organization').val();
-	var orgUuid=$('#orgUuid').val();
 	
 	if (newpass!==repass){
 		window.alert("Password mismatch, please try again");}
@@ -24,7 +23,6 @@ function register(){
         newUser.password=newpass;
 		newUser.firstName=firstname;
 		newUser.lastName=lastname;
-		newUser.organizationUuid=orgUuid;	
 		newUser.organization=organization;
 		
 		newUser = JSON.stringify(newUser);
@@ -37,7 +35,7 @@ function register(){
             contentType: "application/json",
             success:function(data) {
                 window.alert ("Registration succeed!");
-				window.location.href = "login.html";
+				window.location.href = "index.html";
             }
         });
 

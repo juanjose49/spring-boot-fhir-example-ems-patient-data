@@ -18,6 +18,8 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 
 $(document).ready(function () {
+    $("#dashboardLink").attr("href","dashboard.html?id="+getUrlParameter("id"))
+    
    var token = getUrlParameter('emergencyid');
    console.log(token);
 
