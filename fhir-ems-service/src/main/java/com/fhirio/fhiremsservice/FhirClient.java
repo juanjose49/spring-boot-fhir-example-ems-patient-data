@@ -10,21 +10,27 @@ import java.util.List;
 
 import org.hl7.fhir.dstu3.model.Bundle;
 import org.hl7.fhir.dstu3.model.Bundle.BundleEntryComponent;
+import org.hl7.fhir.dstu3.model.Coding;
 import org.hl7.fhir.dstu3.model.ContactPoint;
 import org.hl7.fhir.dstu3.model.ContactPoint.ContactPointSystem;
+import org.hl7.fhir.dstu3.model.MedicationRequest;
 import org.hl7.fhir.dstu3.model.Observation;
 import org.hl7.fhir.dstu3.model.Patient;
 import org.hl7.fhir.dstu3.model.Quantity;
 import org.hl7.fhir.dstu3.model.Reference;
+import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.json.simple.JSONObject;
 
 import com.fhirio.fhiremsservice.domain.Address;
+import com.fhirio.fhiremsservice.domain.Medication;
 
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.model.primitive.IdDt;
 import ca.uhn.fhir.rest.api.MethodOutcome;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
+import ca.uhn.fhir.rest.gclient.ReferenceClientParam;
 import ca.uhn.fhir.rest.gclient.StringClientParam;
+import ca.uhn.fhir.rest.gclient.TokenClientParam;
 
 /**
  * @author Team FHIR I/O
@@ -143,12 +149,13 @@ public class FhirClient {
 		}
 		return patients;
 	}
+	
 	/**
-	 * Method to get list of ids for a given name
+	 * Method to get details of patients for a given name and address
 	 * 
 	 * @param name
-	 * @param
-	 * @return patientList
+	 * @param address
+	 * @return patient details list
 	 */
 	@SuppressWarnings("unchecked")
 	public List<JSONObject> getPatientDetails(String name, Address address) {
@@ -224,6 +231,63 @@ public class FhirClient {
 			exc.printStackTrace();
 		}
 		return patientList;
+	}
+	
+	/**
+	 * Method to get details of medications for the given patientUuid
+	 * 
+	 * @param patientUuid
+	 * @return patient medications list
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Medication> getPatientMedications(String patientUuid) {
+		List<Medication> medicationList = new ArrayList<Medication>();
+		
+		try {
+			//Getting Medication Requests for Patient
+			Bundle bundle =  (Bundle) getClient().search().forResource(MedicationRequest.class)
+					.where(new ReferenceClientParam("patient").hasId(patientUuid))
+					.prettyPrint()
+					.execute();
+			for (BundleEntryComponent entry : bundle.getEntry()) {
+				MedicationRequest medicationRequest = (MedicationRequest) entry.getResource();
+				Medication medication = new Medication();
+				
+				medication.setStatus(medicationRequest.getStatus().getDisplay());
+				String medicationUuid = medicationRequest.getMedication().getId();
+				
+				//Getting Medication using id obtained from Medication request
+				Bundle bundleMedication = (Bundle) getClient().search().forResource(org.hl7.fhir.dstu3.model.Medication.class)
+						.where(new TokenClientParam("_id").exactly().code(medicationUuid))
+						.prettyPrint()
+						.execute();
+				
+				if(!bundleMedication.getEntry().isEmpty()){
+					BundleEntryComponent medicationEntry = bundleMedication.getEntry().get(0);
+					org.hl7.fhir.dstu3.model.Medication fhirMedication = (org.hl7.fhir.dstu3.model.Medication) medicationEntry.getResource();
+					
+					String idURL = fhirMedication.getId();
+					int fromIndex = idURL.indexOf("Medication/") + 11;
+					int toIndex = idURL.indexOf("/_history");
+					String idString = idURL.substring(fromIndex, toIndex);
+					medication.setMedicationUuid(idString);
+					
+					Coding coding = fhirMedication.getCode().getCodingFirstRep();
+					
+					medication.setDescription(fhirMedication.getCode().getText());
+					medication.setName(coding.getDisplay());
+					medication.setCode(coding.getCode());
+					medication.setSystem(coding.getSystem());
+				}
+				
+				medicationList.add(medication);
+			}
+			
+		} catch (Exception exc) {
+			exc.printStackTrace();
+		}
+
+		return medicationList;
 	}
 
 	/**

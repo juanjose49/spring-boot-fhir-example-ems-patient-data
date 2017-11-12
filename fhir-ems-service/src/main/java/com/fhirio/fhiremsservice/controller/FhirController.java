@@ -6,6 +6,7 @@ package com.fhirio.fhiremsservice.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+
 import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fhirio.fhiremsservice.FhirClient;
 import com.fhirio.fhiremsservice.domain.Address;
+import com.fhirio.fhiremsservice.domain.Medication;
 
 
 /**
@@ -88,5 +90,19 @@ public class FhirController {
 		
 	
 		return fhirClient.getIDByPatientName(request.getParameter("name"));
+	}
+	
+	/**
+	 * Web service end point which returns the patient name for the given patient id.
+	 * @param request
+	 * @param response
+	 * @return patient name
+	 */
+	@RequestMapping(value = "/patient/{patientUuid}/medications", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody List<Medication> getPatientMedications(@PathVariable("patientUuid") String patientUuid) {
+
+		FhirClient fhirClient = new FhirClient(baseUrl);
+	
+		return fhirClient.getPatientMedications(patientUuid);
 	}
 }
