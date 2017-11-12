@@ -261,8 +261,11 @@ public class FhirClient {
 				// Medication Status
 				medication
 						.setStatus(medicationRequest.getStatus().getDisplay());
-				String medicationUuid = medicationRequest.getMedication()
-						.getId();
+				
+				// Medication UUID
+				String medicationUuid = medicationRequest.getMedicationReference().getReference();
+				medicationUuid = medicationUuid.substring(medicationUuid.indexOf("Medication/") + 11);
+				medication.setMedicationUuid(medicationUuid);
 
 				// Getting Medication using id obtained from Medication request
 				Bundle bundleMedication = (Bundle) getClient()
@@ -276,12 +279,6 @@ public class FhirClient {
 							.getEntry().get(0);
 					org.hl7.fhir.dstu3.model.Medication fhirMedication = (org.hl7.fhir.dstu3.model.Medication) medicationEntry
 							.getResource();
-
-					// Medication UUID
-					String idURL = fhirMedication.getId();
-					int fromIndex = idURL.indexOf("Medication/") + 11;
-					int toIndex = idURL.indexOf("/_history");
-					medication.setMedicationUuid(idURL.substring(fromIndex, toIndex));
 
 					Coding coding = fhirMedication.getCode()
 							.getCodingFirstRep();
@@ -304,8 +301,8 @@ public class FhirClient {
 				// Condition for Medication
 				String conditionUuid = medicationRequest
 						.getReasonReferenceFirstRep().getReference();
-				int fromIndex = conditionUuid.indexOf("Condition/") + 10;
-				conditionUuid = conditionUuid.substring(fromIndex);
+				conditionUuid = conditionUuid.substring(conditionUuid.indexOf("Condition/") + 10);
+				medication.setConditionUuid(conditionUuid);
 
 				Bundle bundleCondition = (Bundle) getClient()
 						.search()
@@ -319,12 +316,6 @@ public class FhirClient {
 							.getResource();
 					medication.setConditionName(fhirCondition.getCode()
 							.getCodingFirstRep().getDisplay());
-					
-					
-					String idURL = fhirCondition.getId();
-					int fromIndexCondition = idURL.indexOf("Condition/") + 11;
-					int toIndex = idURL.indexOf("/_history");
-					medication.setConditionUuid(idURL.substring(fromIndexCondition, toIndex));
 				}
 
 				medicationList.add(medication);
