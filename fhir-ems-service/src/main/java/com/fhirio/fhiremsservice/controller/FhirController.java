@@ -94,10 +94,9 @@ public class FhirController {
 	}
 	
 	/**
-	 * Web service end point which returns the patient name for the given patient id.
-	 * @param request
-	 * @param response
-	 * @return patient name
+	 * Web service end point which returns the medication details for the given patient id.
+	 * @PathVariable("patientUuid")
+	 * @return List<Medication>
 	 */
 	@RequestMapping(value = "/patient/{patientUuid}/medications", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody List<Medication> getPatientMedications(@PathVariable("patientUuid") String patientUuid) {
@@ -108,10 +107,9 @@ public class FhirController {
 	}
 	
 	/**
-	 * Web service end point which returns the patient name for the given patient id.
-	 * @param request
-	 * @param response
-	 * @return patient name
+	 * Web service end point which returns the condition details for the given patient id.
+	 * @PathVariable("patientUuid")
+	 * @return List<Condition>
 	 */
 	@RequestMapping(value = "/patient/{patientUuid}/conditions", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody List<Condition> getPatientConditions(@PathVariable("patientUuid") String patientUuid) {
