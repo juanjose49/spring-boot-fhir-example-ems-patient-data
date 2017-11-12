@@ -17,6 +17,8 @@ public class Medication {
 	private String system;
 	private String code;
 	private String description;
+	private String conditionName;
+	private String conditionUuid;
 	
 	public String getMedicationUuid() {
 		return medicationUuid;
@@ -54,5 +56,18 @@ public class Medication {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public String getConditionName() {
+		return conditionName;
+	}
+	public void setConditionName(String conditionName) {
+		this.conditionName = conditionName;
+	}
+	public String getConditionUuid() {
+		return conditionUuid;
+	}
+	public void setConditionUuid(String conditionUuid) {
+		this.conditionUuid = conditionUuid;
+	}
+	
 	
 }

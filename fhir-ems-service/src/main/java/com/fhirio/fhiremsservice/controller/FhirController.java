@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fhirio.fhiremsservice.FhirClient;
 import com.fhirio.fhiremsservice.domain.Address;
+import com.fhirio.fhiremsservice.domain.Condition;
 import com.fhirio.fhiremsservice.domain.Medication;
 
 
@@ -104,5 +105,19 @@ public class FhirController {
 		FhirClient fhirClient = new FhirClient(baseUrl);
 	
 		return fhirClient.getPatientMedications(patientUuid);
+	}
+	
+	/**
+	 * Web service end point which returns the patient name for the given patient id.
+	 * @param request
+	 * @param response
+	 * @return patient name
+	 */
+	@RequestMapping(value = "/patient/{patientUuid}/conditions", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody List<Condition> getPatientConditions(@PathVariable("patientUuid") String patientUuid) {
+
+		FhirClient fhirClient = new FhirClient(baseUrl);
+	
+		return fhirClient.getPatientConditions(patientUuid);
 	}
 }

@@ -18,10 +18,10 @@ import org.hl7.fhir.dstu3.model.Observation;
 import org.hl7.fhir.dstu3.model.Patient;
 import org.hl7.fhir.dstu3.model.Quantity;
 import org.hl7.fhir.dstu3.model.Reference;
-import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.json.simple.JSONObject;
 
 import com.fhirio.fhiremsservice.domain.Address;
+import com.fhirio.fhiremsservice.domain.Condition;
 import com.fhirio.fhiremsservice.domain.Medication;
 
 import ca.uhn.fhir.context.FhirContext;
@@ -98,8 +98,9 @@ public class FhirClient {
 		}
 		return idList;
 	}
-	
-	public List<com.fhirio.fhiremsservice.domain.Patient> getPossiblePatients(com.fhirio.fhiremsservice.domain.Patient patient){
+
+	public List<com.fhirio.fhiremsservice.domain.Patient> getPossiblePatients(
+			com.fhirio.fhiremsservice.domain.Patient patient) {
 		List<com.fhirio.fhiremsservice.domain.Patient> patients = new ArrayList<>();
 		try {
 			Bundle bundle = (Bundle) getClient()
@@ -115,13 +116,13 @@ public class FhirClient {
 							patient.getAddress().getAddressLine()))
 					.where(new StringClientParam("address-postalcode")
 							.matches().value(patient.getAddress().zip))
-					.where(new StringClientParam("name").matches().value(patient.getFirstName()))
-					.where(new StringClientParam("family").matches().value(patient.getLastName()))
-					.prettyPrint().execute();
+					.where(new StringClientParam("name").matches().value(
+							patient.getFirstName()))
+					.where(new StringClientParam("family").matches().value(
+							patient.getLastName())).prettyPrint().execute();
 			for (BundleEntryComponent entry : bundle.getEntry()) {
 				Patient fhirPatient = (Patient) entry.getResource();
 				com.fhirio.fhiremsservice.domain.Patient emsPatient = new com.fhirio.fhiremsservice.domain.Patient();
-
 
 				if (!fhirPatient.getName().isEmpty()) {
 					emsPatient.setFirstName(fhirPatient.getName().get(0)
@@ -130,15 +131,17 @@ public class FhirClient {
 							.getFamily());
 				}
 
-
 				if (!fhirPatient.getAddress().isEmpty()) {
 					org.hl7.fhir.dstu3.model.Address patientAddress = fhirPatient
 							.getAddress().get(0);
-					emsPatient.getAddress().setAddressLine(patientAddress.getLine().get(0).asStringValue());
+					emsPatient.getAddress().setAddressLine(
+							patientAddress.getLine().get(0).asStringValue());
 					emsPatient.getAddress().setCity(patientAddress.getCity());
-					emsPatient.getAddress().setCountry(patientAddress.getCountry());
+					emsPatient.getAddress().setCountry(
+							patientAddress.getCountry());
 					emsPatient.getAddress().setState(patientAddress.getState());
-					emsPatient.getAddress().setZip(patientAddress.getPostalCode());
+					emsPatient.getAddress().setZip(
+							patientAddress.getPostalCode());
 				}
 				emsPatient.setFhirPatient(fhirPatient);
 				patients.add(emsPatient);
@@ -149,7 +152,7 @@ public class FhirClient {
 		}
 		return patients;
 	}
-	
+
 	/**
 	 * Method to get details of patients for a given name and address
 	 * 
@@ -232,7 +235,7 @@ public class FhirClient {
 		}
 		return patientList;
 	}
-	
+
 	/**
 	 * Method to get details of medications for the given patientUuid
 	 * 
@@ -242,52 +245,155 @@ public class FhirClient {
 	@SuppressWarnings("unchecked")
 	public List<Medication> getPatientMedications(String patientUuid) {
 		List<Medication> medicationList = new ArrayList<Medication>();
-		
+
 		try {
-			//Getting Medication Requests for Patient
-			Bundle bundle =  (Bundle) getClient().search().forResource(MedicationRequest.class)
-					.where(new ReferenceClientParam("patient").hasId(patientUuid))
-					.prettyPrint()
-					.execute();
+			// Getting Medication Requests for Patient
+			Bundle bundle = (Bundle) getClient()
+					.search()
+					.forResource(MedicationRequest.class)
+					.where(new ReferenceClientParam("patient")
+							.hasId(patientUuid)).prettyPrint().execute();
 			for (BundleEntryComponent entry : bundle.getEntry()) {
-				MedicationRequest medicationRequest = (MedicationRequest) entry.getResource();
+				MedicationRequest medicationRequest = (MedicationRequest) entry
+						.getResource();
 				Medication medication = new Medication();
-				
-				medication.setStatus(medicationRequest.getStatus().getDisplay());
-				String medicationUuid = medicationRequest.getMedication().getId();
-				
-				//Getting Medication using id obtained from Medication request
-				Bundle bundleMedication = (Bundle) getClient().search().forResource(org.hl7.fhir.dstu3.model.Medication.class)
-						.where(new TokenClientParam("_id").exactly().code(medicationUuid))
-						.prettyPrint()
-						.execute();
-				
-				if(!bundleMedication.getEntry().isEmpty()){
-					BundleEntryComponent medicationEntry = bundleMedication.getEntry().get(0);
-					org.hl7.fhir.dstu3.model.Medication fhirMedication = (org.hl7.fhir.dstu3.model.Medication) medicationEntry.getResource();
-					
+
+				// Medication Status
+				medication
+						.setStatus(medicationRequest.getStatus().getDisplay());
+				String medicationUuid = medicationRequest.getMedication()
+						.getId();
+
+				// Getting Medication using id obtained from Medication request
+				Bundle bundleMedication = (Bundle) getClient()
+						.search()
+						.forResource(org.hl7.fhir.dstu3.model.Medication.class)
+						.where(new TokenClientParam("_id").exactly().code(
+								medicationUuid)).prettyPrint().execute();
+
+				if (!bundleMedication.getEntry().isEmpty()) {
+					BundleEntryComponent medicationEntry = bundleMedication
+							.getEntry().get(0);
+					org.hl7.fhir.dstu3.model.Medication fhirMedication = (org.hl7.fhir.dstu3.model.Medication) medicationEntry
+							.getResource();
+
+					// Medication UUID
 					String idURL = fhirMedication.getId();
 					int fromIndex = idURL.indexOf("Medication/") + 11;
 					int toIndex = idURL.indexOf("/_history");
-					String idString = idURL.substring(fromIndex, toIndex);
-					medication.setMedicationUuid(idString);
-					
-					Coding coding = fhirMedication.getCode().getCodingFirstRep();
-					
-					medication.setDescription(fhirMedication.getCode().getText());
+					medication.setMedicationUuid(idURL.substring(fromIndex, toIndex));
+
+					Coding coding = fhirMedication.getCode()
+							.getCodingFirstRep();
+
+					// Medication Description
+					medication.setDescription(fhirMedication.getCode()
+							.getText());
+
+					// Medication Name
 					medication.setName(coding.getDisplay());
-					medication.setCode(coding.getCode());
+
+					// Medication Coding System (Eg: RxNorm)
 					medication.setSystem(coding.getSystem());
+
+					// Medication Code
+					medication.setCode(coding.getCode());
+
 				}
-				
+
+				// Condition for Medication
+				String conditionUuid = medicationRequest
+						.getReasonReferenceFirstRep().getReference();
+				int fromIndex = conditionUuid.indexOf("Condition/") + 10;
+				conditionUuid = conditionUuid.substring(fromIndex);
+
+				Bundle bundleCondition = (Bundle) getClient()
+						.search()
+						.forResource(org.hl7.fhir.dstu3.model.Condition.class)
+						.where(new TokenClientParam("_id").exactly().code(
+								conditionUuid)).prettyPrint().execute();
+				if (!bundleCondition.getEntry().isEmpty()) {
+					BundleEntryComponent conditionEntry = bundleCondition
+							.getEntry().get(0);
+					org.hl7.fhir.dstu3.model.Condition fhirCondition = (org.hl7.fhir.dstu3.model.Condition) conditionEntry
+							.getResource();
+					medication.setConditionName(fhirCondition.getCode()
+							.getCodingFirstRep().getDisplay());
+					
+					
+					String idURL = fhirCondition.getId();
+					int fromIndexCondition = idURL.indexOf("Condition/") + 11;
+					int toIndex = idURL.indexOf("/_history");
+					medication.setConditionUuid(idURL.substring(fromIndexCondition, toIndex));
+				}
+
 				medicationList.add(medication);
 			}
-			
+
 		} catch (Exception exc) {
 			exc.printStackTrace();
 		}
 
 		return medicationList;
+	}
+
+	/**
+	 * Method to get details of chronic illnesses for the given patientUuid
+	 * 
+	 * @param patientUuid
+	 * @return patient conditions list
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Condition> getPatientConditions(String patientUuid) {
+		List<Condition> conditionList = new ArrayList<Condition>();
+
+		try {
+			// Getting Conditions for Patient
+			Bundle bundle = (Bundle) getClient()
+					.search()
+					.forResource(org.hl7.fhir.dstu3.model.Condition.class)
+					.where(new ReferenceClientParam("patient")
+							.hasId(patientUuid)).prettyPrint().execute();
+			for (BundleEntryComponent entry : bundle.getEntry()) {
+				org.hl7.fhir.dstu3.model.Condition fhirCondition = (org.hl7.fhir.dstu3.model.Condition) entry
+						.getResource();
+				Condition condition = new Condition();
+
+				// Condition UUID
+				String idURL = fhirCondition.getId();
+				int fromIndex = idURL.indexOf("Condition/") + 11;
+				int toIndex = idURL.indexOf("/_history");
+				condition.setConditionUuid(idURL.substring(fromIndex, toIndex));
+
+				Coding coding = fhirCondition.getCode().getCodingFirstRep();
+				// Condition Name
+				condition.setName(coding.getDisplay());
+
+				// Condition Coding System
+				condition.setSystem(coding.getSystem());
+
+				// Condition Code
+				condition.setCode(coding.getCode());
+
+				// Condition Statuses
+				condition.setClinicalStatus(fhirCondition.getClinicalStatus()
+						.getDisplay());
+				condition.setVerificationStatus(fhirCondition
+						.getVerificationStatus().getDisplay());
+
+				// Condition Dates
+				condition.setOnsetDateTime(fhirCondition.getOnsetDateTimeType()
+						.asStringValue());
+				condition.setAssertedDate(fhirCondition.getAssertedDate()
+						.toString());
+
+				conditionList.add(condition);
+			}
+		} catch (Exception exc) {
+			exc.printStackTrace();
+		}
+
+		return conditionList;
 	}
 
 	/**
