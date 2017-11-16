@@ -5,10 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.fhirio.fhiremsservice.domain.*;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fhirio.fhiremsservice.FhirClient;
-import com.fhirio.fhiremsservice.domain.Patient;
 
 public class PatientService {
 	private Map<Integer, Patient> patientMap = new HashMap<>();
@@ -80,5 +81,52 @@ public class PatientService {
 		patientMap.put(patient.getPatientUuid(), patient);
 		return patient;
 	}
-	
+
+	public String getNameByPatientID(String id) {
+		return fhirClient.getNameByPatientID(id);
+	}
+
+
+	public List<String> getIDByPatientName(String id) {
+		return fhirClient.getIDByPatientName(id);
+	}
+
+	public List<String> getIDByPatientFullName(String firstName, String lastName) {
+		return fhirClient.getIDByPatientFullName(firstName, lastName);
+	}
+
+	public List<com.fhirio.fhiremsservice.domain.Patient> getPossiblePatients(
+			com.fhirio.fhiremsservice.domain.Patient patient) {
+		return fhirClient.getPossiblePatients(patient);
+	}
+
+	public List<JSONObject> getPatientDetails(String name, Address address) {
+		return fhirClient.getPatientDetails(name, address);
+	}
+
+	public List<Medication> getPatientMedications(String patientUuid) {
+		return fhirClient.getPatientMedications(patientUuid);
+	}
+
+	public List<Condition> getPatientConditions(String patientUuid) {
+		return fhirClient.getPatientConditions(patientUuid);
+	}
+
+	public String addPatient(String firstName, String lastName) {
+		return fhirClient.addPatient(firstName, lastName);
+	}
+
+	public String addObservation(String patientId, String loincCode,
+								 String loincDisplayName, double value, String valueUnit,
+								 String valueCode) {
+		return fhirClient.addObservation(patientId, loincCode, loincDisplayName, value, valueUnit, valueCode);
+	}
+
+	public String updateObservationValue(String observationId, double value) {
+		return fhirClient.updateObservationValue(observationId, value);
+	}
+
+	public Measurement getObservation(String patientId, String loincCode) {
+		return fhirClient.getObservation(patientId, loincCode);
+	}
 }

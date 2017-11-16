@@ -18,11 +18,13 @@ import org.hl7.fhir.dstu3.model.Observation;
 import org.hl7.fhir.dstu3.model.Patient;
 import org.hl7.fhir.dstu3.model.Quantity;
 import org.hl7.fhir.dstu3.model.Reference;
+import org.hl7.fhir.exceptions.FHIRException;
 import org.json.simple.JSONObject;
 
 import com.fhirio.fhiremsservice.domain.Address;
 import com.fhirio.fhiremsservice.domain.Condition;
 import com.fhirio.fhiremsservice.domain.Medication;
+import com.fhirio.fhiremsservice.domain.Measurement;
 
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.model.primitive.IdDt;
@@ -86,7 +88,29 @@ public class FhirClient {
 		Bundle bundle = (Bundle) getClient().search()
 				.forResource(Patient.class)
 				.where(new StringClientParam("name").matches().value(name))
-				.prettyPrint().execute();
+				.where(new StringClientParam("family").matches().value(
+				name)).prettyPrint().execute();
+
+		for (BundleEntryComponent entry : bundle.getEntry()) {
+			Patient patient = (Patient) entry.getResource();
+			String idURL = patient.getId();
+			int fromIndex = idURL.indexOf("Patient/") + 8;
+			int toIndex = idURL.indexOf("/_history");
+			String idString = idURL.substring(fromIndex, toIndex);
+
+			idList.add(idString);
+		}
+		return idList;
+	}
+
+	public List<String> getIDByPatientFullName(String firstName, String lastName) {
+		List<String> idList = new ArrayList<String>();
+		Bundle bundle = (Bundle) getClient().search()
+				.forResource(Patient.class)
+				.where(new StringClientParam("name").matches().value(firstName))
+				.where(new StringClientParam("family").matches().value(
+						lastName)).prettyPrint().execute();
+
 		for (BundleEntryComponent entry : bundle.getEntry()) {
 			Patient patient = (Patient) entry.getResource();
 			String idURL = patient.getId();
@@ -421,12 +445,8 @@ public class FhirClient {
 		Patient patient = new Patient();
 		patient.addName().setFamily(lastName).addGiven(firstName);
 
-		MethodOutcome outcome = getClient().create().resource(patient)
-				.prettyPrint().encodedJson().execute();
-
-		IdDt idDt = (IdDt) outcome.getId();
-
-		return idDt.getIdPart();
+		MethodOutcome outcome = getClient().create().resource(patient).prettyPrint().encodedJson().execute();
+		return outcome.getId().getIdPart();
 	}
 
 	/**
@@ -455,9 +475,34 @@ public class FhirClient {
 		MethodOutcome outcomeObservation = getClient().create()
 				.resource(observation).prettyPrint().encodedJson().execute();
 
-		IdDt idDtObservation = (IdDt) outcomeObservation.getId();
+		return outcomeObservation.getId().getIdPart();
+	}
 
-		return idDtObservation.getIdPart();
+	@SuppressWarnings("unchecked")
+	public Measurement getObservation(String patientId, String loincCode) {
+		Measurement measurement = new Measurement();
+
+		Bundle bundle = getClient().search().forResource(Observation.class)
+				.where(Observation.CODE.exactly().code(loincCode))
+				.where(Observation.PATIENT.hasId(patientId))
+				.returnBundle(Bundle.class).execute();
+
+		if (!bundle.getEntry().isEmpty()) {
+			BundleEntryComponent obEntry = bundle.getEntry().get(0);
+			Observation observation = (Observation) obEntry.getResource();
+			String pid = observation.getSubject().getReference();
+			try {
+				measurement.setName(observation.getCode().getCodingFirstRep().getDisplay());
+				measurement.setCode(observation.getCode().getCodingFirstRep().getCode());
+				measurement.setValueCode(observation.getValueQuantity().getCode());
+				measurement.setValue(observation.getValueQuantity().getValue().doubleValue());
+				measurement.setValueUnit(observation.getValueQuantity().getUnit());
+			} catch (FHIRException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return measurement;
 	}
 
 	/**
@@ -503,9 +548,7 @@ public class FhirClient {
 		MethodOutcome outcome = getClient().update().resource(observation)
 				.prettyPrint().encodedJson().execute();
 
-		IdDt idDt = (IdDt) outcome.getId();
-
-		return idDt.getIdPart();
+		return outcome.getId().getIdPart();
 	}
 
 	/**

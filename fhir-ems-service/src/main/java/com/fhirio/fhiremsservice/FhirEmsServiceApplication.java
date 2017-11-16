@@ -49,8 +49,8 @@ public class FhirEmsServiceApplication {
     
     @Bean
     public FhirClient getFhirClient() {
-		return new FhirClient("http://fhirtesting.hdap.gatech.edu/hapi-fhir-jpaserver-example/baseDstu3");
-
+//		return new FhirClient("http://fhirtesting.hdap.gatech.edu/hapi-fhir-jpaserver-example/baseDstu3");
+        return new FhirClient("http://localhost:8080/baseDstu3");
     }
     
     @Bean
