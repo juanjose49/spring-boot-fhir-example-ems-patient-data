@@ -33,13 +33,12 @@ function refreshTable(token){
                     { "mData": "emergencyUuid" },
                     { "mData": "emergencyTitle" },
                     { "mData": "pickupLocation" },
-                    { "mData": "emergencyState" },
                     {
-                        mData: "Set Emegency State",
+                        mData: "emergencyState",
                         bSortable: false,
                         render: function (data, type, row, meta){
                             var $select = $("<select  id='emergency"+row.emergencyUuid+"'><option value='CLOSED'>CLOSED</option><option value='ACTIVE'>ACTIVE</option><option value='PENDING'>PENDING</option>");
-                            $select.find('option[value="'+row.emergencyState+'"]').attr('selected', 'selected');
+                            $select.find('option[value="'+data+'"]').attr('selected', 'selected');
                             $('#emergency'+row.emergencyUuid).on('change', function(){
                                 console.log(this.value);
                                 sendUpdate(token, row.emergencyUuid, this.value)
@@ -90,7 +89,6 @@ function getEmergency(token, id){
             console.log(data);
             for (emergency in data.emergencies){
                 if (data.emergencies[emergency].emergencyUuid == id){
-                    console.log("match!!!!!");
                     json = data.emergencies[emergency];
                 }
             }
@@ -136,6 +134,6 @@ $(document).ready(function () {
     var token = getUrlParameter('id');
 
     refreshTable(token);
-    
+
 });
 
