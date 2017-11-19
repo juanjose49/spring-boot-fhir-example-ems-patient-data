@@ -32,10 +32,14 @@ $(document).ready(function () {
         }
     });
 
+    updateTable(token);
 
 
+});
+
+function updateTable(tokenParam){
     var table = $('#emergenciesTable').DataTable({
-        "sAjaxSource": "/api/emergency/"+token+"?verbose=true",
+        "sAjaxSource": "/api/emergency/"+tokenParam+"?verbose=true",
         "sAjaxDataProp": "possiblePatients",
         "orderClasses": false,
         "order": [[ 0, "asc" ]],
@@ -47,12 +51,12 @@ $(document).ready(function () {
                 mData: "Action",
                 bSortable: false,
                 mRender: function (data, type, row) {
-                    return '<a href="patientdetails.html?id='+token+'&patientID='+row.patientUuid+'" class="btn btn-default btn-sm" role="button">View Patient Details</a>'
+                    return '<a href="patientdetails.html?id='+tokenParam+'&patientID='+row.patientUuid+'" class="btn btn-default btn-sm" role="button">View Patient Details</a>'
                 }
             }
         ]
     });
 
-});
+}
 
 
