@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new organizational user</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" language="javascript"  src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="/js/NewOrganizationalUser.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">EMS Patient Data Platform</a>
+        </div>
+    </div>
+</nav>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">New Organizational User Registration</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="newuser">Username:</label>
+                    <input type="text" class="form-control" id="newuser">
+                </div>
+                <div class="form-group">
+                    <label for="newpass">Password:</label>
+                    <input type="password" class="form-control" id="newpass">
+                </div>
+				<div class="form-group">
+                    <label for="repeatpass">Repeat Password:</label>
+                    <input type="password" class="form-control" id="repass">
+                </div>
+				<div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" class="form-control" id="firstname">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" class="form-control" id="lastname">
+                </div>
+				<div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block" onClick="register();">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
