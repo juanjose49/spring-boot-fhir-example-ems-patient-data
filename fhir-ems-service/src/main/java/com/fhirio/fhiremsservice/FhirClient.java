@@ -169,7 +169,7 @@ public class FhirClient {
 							patientAddress.getPostalCode());
 				}
 				
-				//Adding fhirpatient UUID to emsPatient
+				//Adding fhirPatient UUID to emsPatient
 				String idURL = fhirPatient.getId();
 				int fromIndex = idURL.indexOf("Patient/") + 8;
 				int toIndex = idURL.indexOf("/_history");
