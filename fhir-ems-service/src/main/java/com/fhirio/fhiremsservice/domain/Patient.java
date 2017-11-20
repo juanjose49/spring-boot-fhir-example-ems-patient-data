@@ -26,6 +26,8 @@ public class Patient {
 	private Address address = new Address();
 	
 	private org.hl7.fhir.dstu3.model.Patient fhirPatient;
+	
+	private String fhirUuid;
 
 	public Patient(){}
 	
@@ -70,5 +72,13 @@ public class Patient {
 	@JsonIgnore
 	public void setFhirPatient(org.hl7.fhir.dstu3.model.Patient fhirPatient) {
 		this.fhirPatient = fhirPatient;
+	}
+
+	public String getFhirUuid() {
+		return fhirUuid;
+	}
+
+	public void setFhirUuid(String fhirUuid) {
+		this.fhirUuid = fhirUuid;
 	}
 }
