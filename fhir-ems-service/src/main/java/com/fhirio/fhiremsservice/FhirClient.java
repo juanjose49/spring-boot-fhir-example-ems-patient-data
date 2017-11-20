@@ -88,8 +88,8 @@ public class FhirClient {
 		Bundle bundle = (Bundle) getClient().search()
 				.forResource(Patient.class)
 				.where(new StringClientParam("name").matches().value(name))
-				.where(new StringClientParam("family").matches().value(
-				name)).prettyPrint().execute();
+				.where(new StringClientParam("family").matches().value(name))
+				.prettyPrint().execute();
 
 		for (BundleEntryComponent entry : bundle.getEntry()) {
 			Patient patient = (Patient) entry.getResource();
@@ -105,11 +105,12 @@ public class FhirClient {
 
 	public List<String> getIDByPatientFullName(String firstName, String lastName) {
 		List<String> idList = new ArrayList<String>();
-		Bundle bundle = (Bundle) getClient().search()
+		Bundle bundle = (Bundle) getClient()
+				.search()
 				.forResource(Patient.class)
 				.where(new StringClientParam("name").matches().value(firstName))
-				.where(new StringClientParam("family").matches().value(
-						lastName)).prettyPrint().execute();
+				.where(new StringClientParam("family").matches()
+						.value(lastName)).prettyPrint().execute();
 
 		for (BundleEntryComponent entry : bundle.getEntry()) {
 			Patient patient = (Patient) entry.getResource();
@@ -167,7 +168,14 @@ public class FhirClient {
 					emsPatient.getAddress().setZip(
 							patientAddress.getPostalCode());
 				}
-				emsPatient.setFhirPatient(fhirPatient);
+				
+				//Adding fhirpatient UUID to emsPatient
+				String idURL = fhirPatient.getId();
+				int fromIndex = idURL.indexOf("Patient/") + 8;
+				int toIndex = idURL.indexOf("/_history");
+				String idString = idURL.substring(fromIndex, toIndex);
+				emsPatient.setFhirUuid(idString);
+				
 				patients.add(emsPatient);
 
 			}
@@ -285,10 +293,12 @@ public class FhirClient {
 				// Medication Status
 				medication
 						.setStatus(medicationRequest.getStatus().getDisplay());
-				
+
 				// Medication UUID
-				String medicationUuid = medicationRequest.getMedicationReference().getReference();
-				medicationUuid = medicationUuid.substring(medicationUuid.indexOf("Medication/") + 11);
+				String medicationUuid = medicationRequest
+						.getMedicationReference().getReference();
+				medicationUuid = medicationUuid.substring(medicationUuid
+						.indexOf("Medication/") + 11);
 				medication.setMedicationUuid(medicationUuid);
 
 				// Getting Medication using id obtained from Medication request
@@ -325,7 +335,8 @@ public class FhirClient {
 				// Condition for Medication
 				String conditionUuid = medicationRequest
 						.getReasonReferenceFirstRep().getReference();
-				conditionUuid = conditionUuid.substring(conditionUuid.indexOf("Condition/") + 10);
+				conditionUuid = conditionUuid.substring(conditionUuid
+						.indexOf("Condition/") + 10);
 				medication.setConditionUuid(conditionUuid);
 
 				Bundle bundleCondition = (Bundle) getClient()
@@ -445,7 +456,8 @@ public class FhirClient {
 		Patient patient = new Patient();
 		patient.addName().setFamily(lastName).addGiven(firstName);
 
-		MethodOutcome outcome = getClient().create().resource(patient).prettyPrint().encodedJson().execute();
+		MethodOutcome outcome = getClient().create().resource(patient)
+				.prettyPrint().encodedJson().execute();
 		return outcome.getId().getIdPart();
 	}
 
@@ -492,11 +504,16 @@ public class FhirClient {
 			Observation observation = (Observation) obEntry.getResource();
 			String pid = observation.getSubject().getReference();
 			try {
-				measurement.setName(observation.getCode().getCodingFirstRep().getDisplay());
-				measurement.setCode(observation.getCode().getCodingFirstRep().getCode());
-				measurement.setValueCode(observation.getValueQuantity().getCode());
-				measurement.setValue(observation.getValueQuantity().getValue().doubleValue());
-				measurement.setValueUnit(observation.getValueQuantity().getUnit());
+				measurement.setName(observation.getCode().getCodingFirstRep()
+						.getDisplay());
+				measurement.setCode(observation.getCode().getCodingFirstRep()
+						.getCode());
+				measurement.setValueCode(observation.getValueQuantity()
+						.getCode());
+				measurement.setValue(observation.getValueQuantity().getValue()
+						.doubleValue());
+				measurement.setValueUnit(observation.getValueQuantity()
+						.getUnit());
 			} catch (FHIRException e) {
 				e.printStackTrace();
 			}
