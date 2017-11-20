@@ -71,6 +71,11 @@ function refreshTable(token){
             $('a.createEmergency').on('click', function (e) {
                 $(this).attr("href", "/newemergency.html?id="+token+"&orgId="+orgUuid);
             });
+			console.log(token);
+			console.log(orgUuid);
+			$('a.register').on('click', function (e) {
+                $(this).attr("href", "/newOrganizationalUser.html?id="+token+"&orgId="+orgUuid);
+            });
         }
     });
 

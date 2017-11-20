@@ -34,7 +34,7 @@ function register(){
 	var firstname=$('#firstname').val();
 	
 	var lastname=$('#lastname').val();
-	var orgUUID=orgUuid;
+	
 	
 	if (newpass!==repass){
 		window.alert("Password mismatch, please try again");}
