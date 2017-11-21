@@ -129,4 +129,12 @@ public class PatientService {
 	public Measurement getObservation(String patientId, String loincCode) {
 		return fhirClient.getObservation(patientId, loincCode);
 	}
+
+
+	public Patient updatePatient(Patient patient) {
+		if(getPatient(patient.getPatientUuid()) != null){
+			return savePatient(patient);
+		}
+		return null;
+	}
 }

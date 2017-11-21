@@ -29,7 +29,15 @@ public class Patient {
 	
 	private String fhirUuid;
 
+	private String patientNotes;
+
 	public Patient(){}
+
+	public Patient(Integer patientUuid, String patientNotes) {
+		super();
+		this.patientUuid = patientUuid;
+		this.patientNotes = patientNotes;
+	}
 	
 	public Patient(Integer patientUuid, String firstName, String lastName) {
 		super();
@@ -64,7 +72,17 @@ public class Patient {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	
+
+
+	public String getPatientNotes() {
+		return patientNotes;
+	}
+
+
+	public void setPatientNotes(String patientNotes) {
+		this.patientNotes = patientNotes;
+	}
+
 	@JsonIgnore
 	public org.hl7.fhir.dstu3.model.Patient getFhirPatient() {
 		return fhirPatient;

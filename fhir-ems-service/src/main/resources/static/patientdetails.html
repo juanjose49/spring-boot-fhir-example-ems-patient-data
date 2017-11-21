@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <script src="/js/patientdetails.js"></script>
+	<script src="/js/newnotes.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -42,6 +43,7 @@
                 <th>Patient Last Name</th>
                 <th>Something 1</th>
                 <th>Something 2</th>
+				
             </tr>
             </thead>
             <!-- Footer Table -->
@@ -52,11 +54,17 @@
                 <th>Patient Last Name</th>
                 <th>Something 1</th>
                 <th>Something 2</th>
+				
             </tr>
             </tfoot>
         </table>
-
+		
+		<div class="form-group">
+         <h3>Patient Notes </h3>:      <input type="text" class="form-control" id="notes">
+        </div>
+		<button class="btn btn-success createEmergency" onClick="response();">Update</button>
     </div>
+	
 </div>
 
 </body>
