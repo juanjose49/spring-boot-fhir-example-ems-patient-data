@@ -129,4 +129,39 @@ public class PatientService {
 	public Measurement getObservation(String patientId, String loincCode) {
 		return fhirClient.getObservation(patientId, loincCode);
 	}
+
+	public void addBPM(String patientId, Double bpm) {
+		addObservation(patientId, "8867-4", "Heart rate", bpm, "BPM", "BPM");
+	}
+
+	public void addDiastolicPressure(String patientId, Double diastolicPressrure) {
+		addObservation(patientId, "8462-4", "Diastolic blood pressure", diastolicPressrure, "mmHg", "mmHg");
+	}
+
+	public void addSystolicPressure(String patientId, Double systolicPressrure) {
+		addObservation(patientId, "8480-6", "Systolic blood pressure", systolicPressrure, "mmHg", "mmHg");
+	}
+
+	public void addMedicalNote(String patientId, String medicalNote) {
+		addObservation(patientId, "34133-9", "Episode Note", 0, "Episode Note", medicalNote);
+	}
+
+	public Double getBPM(String patientId) {
+		return getObservation(patientId, "8867-4").getValue();
+	}
+
+	public Double getDiastolicPressure(String patientId) {
+		return getObservation(patientId, "8462-4").getValue();
+	}
+
+	public Double getSystolicPressure(String patientId) {
+		return getObservation(patientId, "8480-6").getValue();
+	}
+
+	public String getMedicalNote(String patientId) {
+		return getObservation(patientId, "34133-9").getValueCode();
+	}
+
+
 }
+
