@@ -59,7 +59,7 @@ public class PatientUpdateTest {
 
     @Test
     public void testSimpleRead() {
-        String patientName = this.patientService.getNameByPatientID("162209");
+        String patientName = this.patientService.getNameByPatientID("1e19bb7a-d990-4924-9fae-be84f19c53c1");
         assertThat(patientName).isNotNull();
         System.out.println(patientName);
         assertEquals("Carlos Barton", patientName);
@@ -96,12 +96,12 @@ public class PatientUpdateTest {
         }
     }
 
-//    @Test
-//    public void testaddPatient() {
-//        String patientID = this.patientService.addPatient("Jon", "Snow");
-//        assertThat(patientID).isNotNull();
-//        System.out.println("add patient : " + patientID);
-//    }
+    @Test
+    public void testaddPatient() {
+        String patientID = this.patientService.addPatient("Jon", "Snow");
+        assertThat(patientID).isNotNull();
+        System.out.println("add patient : " + patientID);
+    }
 
 //    @Test
 //    public void testaddObservation() {
@@ -110,10 +110,19 @@ public class PatientUpdateTest {
 //        System.out.println("add observation : " + observationID);
 //    }
 
+//    @Test
+//    public void testgetObservation() {
+//        Measurement measurement = this.patientService.getObservation("162209", "85354-9");
+//        assertThat(measurement).isNotNull();
+//        System.out.println("get observation : " + measurement.getName() + measurement.getValue() + measurement.getValueUnit());
+//    }
+
+
     @Test
-    public void testgetObservation() {
-        Measurement measurement = this.patientService.getObservation("162209", "85354-9");
-        assertThat(measurement).isNotNull();
-        System.out.println("get observation : " + measurement.getName() + measurement.getValue() + measurement.getValueUnit());
+    public void testaddObservation() {
+        this.patientService.addBPM("1e19bb7a-d990-4924-9fae-be84f19c53c1", 60.0);
+        Double bmp = this.patientService.getBPM("1e19bb7a-d990-4924-9fae-be84f19c53c1");
+        assertThat(bmp).isNotNull();
+        System.out.println("get bmp : " + bmp);
     }
 }
