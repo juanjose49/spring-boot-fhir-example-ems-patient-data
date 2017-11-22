@@ -18,13 +18,13 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 
 $(document).ready(function () {
-    $("#dashboardLink").attr("href","dashboard.html?id="+getUrlParameter("id"))
+    $("#dashboardLink").attr("href","dashboard.html?userId="+getUrlParameter("id")+"orgID="+getUrlParameter("orgId"));
     
-   var token = getUrlParameter('emergencyid');
-   console.log(token);
+   var emergencyId = getUrlParameter('emergencyId');
+   console.log(emergencyId);
 
     $.ajax({
-        url: "/api/user/"+token,
+        url: "/api/user/"+emergencyId,
         cache: false,
         success: function(response){
             $("#welcomeUser").text("Welcome "+response.firstName+ " "+response.lastName);
@@ -32,14 +32,14 @@ $(document).ready(function () {
         }
     });
 
-    updateTable(token);
+    updateTable(emergencyId);
 
 
 });
 
-function updateTable(tokenParam){
+function updateTable(emergencyId){
     var table = $('#emergenciesTable').DataTable({
-        "sAjaxSource": "/api/emergency/"+tokenParam+"?verbose=true",
+        "sAjaxSource": "/api/emergency/"+emergencyId+"?verbose=true",
         "sAjaxDataProp": "possiblePatients",
         "orderClasses": false,
         "order": [[ 0, "asc" ]],
@@ -51,7 +51,7 @@ function updateTable(tokenParam){
                 mData: "Action",
                 bSortable: false,
                 mRender: function (data, type, row) {
-                    return '<a href="patientdetails.html?id='+tokenParam+'&patientID='+row.patientUuid+'" class="btn btn-default btn-sm" role="button">View Patient Details</a>'
+                    return '<a href="patientdetails.html?userId'+getUrlParameter('userId')+'&orgId='+getUrlParameter('orgId')+'&emergencyId='+emergencyId+'&patientId='+row.patientUuid+'" class="btn btn-default btn-sm" role="button">View Patient Details</a>'
                 }
             }
         ]

@@ -1,4 +1,4 @@
-var token = null;
+
 
 var getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
@@ -17,17 +17,16 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 
 $(document).ready(function () {
-    $("#dashboardLink").attr("href","dashboard.html?id="+getUrlParameter("id"))
+    $("#dashboardLink").attr("href","dashboard.html?userId="+getUrlParameter("userId"));
     
-    token = getUrlParameter('id');
-    console.log(token);
-    orgUuid = getUrlParameter('orgId');
+    userId = getUrlParameter('userId');
+    console.log(userId);
+    orgId = getUrlParameter('orgId');
 });
 
 function createEmergency(){
 
-    console.log('am I being called? ');
-
+    var orgId = getUrlParameter('orgId');
     var emergencyTitle=$.trim($("#emergencyTitle").val());
     var firstName=$.trim($("#firstName").val());
     var lastName=$.trim($("#lastName").val());
@@ -44,7 +43,7 @@ function createEmergency(){
         patient.firstName=firstName;
         patient.lastName=lastName;
         data.patient=patient;
-        data.organizationUuid=orgUuid;
+        data.organizationUuid=orgId;
         data = JSON.stringify(data);
 
         $.ajax({
@@ -55,8 +54,8 @@ function createEmergency(){
             data: data,
             cache: false,
             success: function (response) {
-                alert("Emergency successfully submitted!"); 
-                window.location.href = "dashboard.html?id="+token;
+                alert("Emergency successfully submitted!");
+                window.location.href = "dashboard.html?userId="+getUrlParameter('userId')+"&orgId="+getUrlParameter('orgId');
 
             }
         });

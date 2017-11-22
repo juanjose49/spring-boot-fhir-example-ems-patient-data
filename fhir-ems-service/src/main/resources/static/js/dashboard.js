@@ -13,18 +13,18 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
 };
 
-function refreshTable(token){
+function refreshTable(userId){
 
     $.ajax({
         // get user
-        url: "/api/user/"+token,
+        url: "/api/user/"+userId,
         cache: false,
         success: function(response){
             // if user found, render table and welcome message
             $("#welcomeUser").text("Welcome "+response.firstName+ " "+response.lastName);
-            orgUuid = response.organizationUuid;
+            orgId = response.organizationUuid;
             var table = $('#emergenciesTable').DataTable({
-                "sAjaxSource": "/api/organization/"+orgUuid+"?verbose=true",
+                "sAjaxSource": "/api/organization/"+orgId+"?verbose=true",
                 "sAjaxDataProp": "emergencies",
                 "orderClasses": false,
                 "order": [[ 3, "asc" ]],
@@ -41,7 +41,7 @@ function refreshTable(token){
                             $select.find('option[value="'+data+'"]').attr('selected', 'selected');
                             $('#emergency'+row.emergencyUuid).on('change', function(){
                                 console.log(this.value);
-                                sendUpdate(token, row.emergencyUuid, this.value)
+                                sendUpdate(orgId, userId, row.emergencyUuid, this.value)
                             });
                             return $select[0].outerHTML;
                         }
@@ -50,7 +50,7 @@ function refreshTable(token){
                         mData: "View Emergency",
                         bSortable: false,
                         mRender: function (data, type, row) {
-                            return '<a href="emergency.html?id='+token+'&emergencyid='+row.emergencyUuid+'" class="btn btn-default btn-sm" role="button">Open</a>'
+                            return '<a href="emergency.html?orgId='+getUrlParameter('orgId')+'&userId='+userId+'&emergencyId='+row.emergencyUuid+'" class="btn btn-default btn-sm" role="button">Open</a>'
                         }
                     }
                 ],
@@ -69,26 +69,24 @@ function refreshTable(token){
 
             });
             $('a.createEmergency').on('click', function (e) {
-                $(this).attr("href", "/newemergency.html?id="+token+"&orgId="+orgUuid);
+                $(this).attr("href", "/newemergency.html?userId="+userId+"&orgId="+orgId);
             });
-			console.log(token);
-			console.log(orgUuid);
 			$('a.register').on('click', function (e) {
-                $(this).attr("href", "/newOrganizationalUser.html?id="+token+"&orgId="+orgUuid);
+                $(this).attr("href", "/newOrganizationalUser.html?userId="+userId+"&orgId="+orgId);
             });
         }
     });
 
 }
 
-function getEmergency(token, id){
+function getEmergency(orgId, id){
 
     var id = id;
     var json;
     //get all emergencies
     $.ajax({
         dataType: "json",
-        url: "/api/organization/"+token+"?verbose=true",
+        url: "/api/organization/"+orgId+"?verbose=true",
         async:false,
         success: function (data) {
             console.log(data);
@@ -103,13 +101,14 @@ function getEmergency(token, id){
 
 }
 
-function sendUpdate(token, emergencyUuid, emergencyStatus){
-    var token = token;
+function sendUpdate(orgId, userId, emergencyUuid, emergencyStatus){
+    var userId = userId;
+    var orgId = orgId;
     var emergencyUuid = emergencyUuid;
     var emergencyStatus = emergencyStatus;
 
     // get specific emergency
-    var emergencyObject = getEmergency(token, emergencyUuid);
+    var emergencyObject = getEmergency(orgId, emergencyUuid);
     // set new emergency state
     emergencyObject.emergencyState = emergencyStatus;
 
@@ -125,7 +124,7 @@ function sendUpdate(token, emergencyUuid, emergencyStatus){
         type: 'PUT',
         data: emergencyObject,
         success: function (data) {
-            refreshTable(token);
+            refreshTable(userId);
         }
     });
 
@@ -135,10 +134,10 @@ function sendUpdate(token, emergencyUuid, emergencyStatus){
 $(document).ready(function () {
 
 
-    $("#dashboardLink").attr("href","dashboard.html?id="+getUrlParameter("id"));
-    var token = getUrlParameter('id');
+    $("#dashboardLink").attr("href","dashboard.html?userId="+getUrlParameter("userId"));
+    var userId = getUrlParameter('userId');
 
-    refreshTable(token);
+    refreshTable(userId);
 
 });
 

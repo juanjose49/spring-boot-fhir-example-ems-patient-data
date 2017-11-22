@@ -3,8 +3,6 @@
 
 function authenticate(){
 
-    console.log("hey imn here!");
-
     var username=$('#username').val();
     var password=$('#password').val();
 
@@ -23,7 +21,8 @@ function authenticate(){
             dataType: 'json',
             contentType: "application/json",
             success:function(data) {
-                window.location.href = "dashboard.html?id="+data.token;
+                console.log(data.token);
+                window.location.href = "dashboard.html?userId="+data.token;
             }
         });
 
