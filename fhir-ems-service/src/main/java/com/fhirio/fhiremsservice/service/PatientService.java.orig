@@ -130,6 +130,7 @@ public class PatientService {
 		return fhirClient.getObservation(patientId, loincCode);
 	}
 
+<<<<<<< HEAD
 
 	public Patient updatePatient(Patient patient) {
 		if(getPatient(patient.getPatientUuid()) != null){
@@ -137,7 +138,7 @@ public class PatientService {
 		}
 		return null;
 	}
-	
+=======
 	public void addBPM(String patientId, Double bpm) {
 		addObservation(patientId, "8867-4", "Heart rate", bpm, "BPM", "BPM");
 	}
@@ -171,5 +172,6 @@ public class PatientService {
 	}
 
 
+>>>>>>> ywang412
 }
 
