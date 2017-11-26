@@ -1,11 +1,10 @@
-FROM openjdk:jre
+FROM maven:3-jdk-8-alpine
 
-#ENTRYPOINT ["/usr/bin/java", "-jar", "/usr/share/myservice/myservice.jar"]
-ENTRYPOINT ["/usr/bin/java", "-jar", "/usr/share/myservice/fhir-ems-service-0.0.1-SNAPSHOT.jar"]
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
+ADD . /usr/src/app
 
-#ARG JAR_FILE
-#ADD target/${JAR_FILE} /usr/share/myservice/myservice.jar
-ADD target/fhir-ems-service-0.0.1-SNAPSHOT.jar /usr/share/myservice/fhir-ems-service-0.0.1-SNAPSHOT.jar
+CMD ["mvn", "clean", "spring-boot:run"]
 
 EXPOSE 8080
