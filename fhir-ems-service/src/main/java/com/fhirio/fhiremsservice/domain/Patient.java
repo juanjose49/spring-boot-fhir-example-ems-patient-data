@@ -25,14 +25,14 @@ public class Patient {
 	
 	private String fhirUuid;
 
-	private String patientNotes;
+	private String notes;
 
 	public Patient(){}
 
-	public Patient(Integer patientUuid, String patientNotes) {
+	public Patient(Integer patientUuid, String notes) {
 		super();
 		this.patientUuid = patientUuid;
-		this.patientNotes = patientNotes;
+		this.notes = notes;
 	}
 	
 	public Patient(Integer patientUuid, String firstName, String lastName) {
@@ -70,13 +70,13 @@ public class Patient {
 	}
 
 
-	public String getPatientNotes() {
-		return patientNotes;
+	public String getNotes() {
+		return notes;
 	}
 
 
-	public void setPatientNotes(String patientNotes) {
-		this.patientNotes = patientNotes;
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
 
 	public String getFhirUuid() {

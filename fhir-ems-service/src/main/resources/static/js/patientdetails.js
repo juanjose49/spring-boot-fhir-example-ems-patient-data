@@ -13,8 +13,6 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
 };
 
-var token = null;
-
 $(document).ready(function () {
     $("#dashboardLink").attr("href","dashboard.html?userId="+getUrlParameter("userId"))
     updatePatientDetailsTable()
@@ -33,7 +31,9 @@ function updatePatientDetailsTable(){
             contentType: 'application/json',
             dataType: 'json',
             success: function(patient){
+
                 console.log(patient)
+                $("#notes").text(patient.notes)
 
                 var patientUuid = patient.patientUuid
                 var fhirUuid = patient.fhirUuid
@@ -59,6 +59,34 @@ function updatePatientDetailsTable(){
             }
         });
     }
+
+    function updateNotes(){
+        
+            var patientId = getUrlParameter('patientId');
+            $.ajax({
+                url: "/api/patient/"+patientId,
+                cache: false,
+                contentType: 'application/json',
+                dataType: 'json',
+                success: function(patient){
+                    console.log(patient)
+                    patient.notes = $("#notes").val()
+                    $.ajax({
+                        url: "/api/patient",
+                        cache: false,
+                        contentType: 'application/json',
+                        dataType: 'json',
+                        type: "PUT",
+                        data: JSON.stringify(patient),
+                        success: function(patient){
+                            window.alert ("Successfully updated patient notes!");
+                        }
+                    });
+                    
+                }
+            });
+        
+        }
 
     function updateMedicationsTable(){
         
@@ -107,53 +135,3 @@ function updatePatientDetailsTable(){
 
 
 
-function response(){
-	//get original patient json data
-	if (patientUuid !== null){
-		var originalPatient;
-		
-		$.ajax({
-		dataType: "json",
-        url: "/api/patient/"+patientUuid,
-        async:false,
-        success: function (data) {
-            console.log(data);
-			originalPatient = data;
-			
-        }
-    });
-      
-	}
-	
-	var originalNotes = originalPatient.patientNotes;
-	console.log(originalNotes);
-    
-	var newNotes=$('#notes').val();
-		
-    if (patientUuid !== null && originalNotes !== newNotes){
-
-		//update patient notes
-	    originalPatient.patientNotes = newNotes;
-        	
-		
-		originalPatient = JSON.stringify(originalPatient);
-        console.log(originalPatient);
-        $.ajax({
-		    type: "PUT",
-            url: '/api/patient/',
-            data: originalPatient,
-            dataType: 'json',
-            contentType: "application/json",
-            success:function(data) {
-                window.alert ("Patient Notes Updated!");
-				//window.location.href = "patientdetails.html?id="+token+"&patientID="+patientUuid;
-            }
-        });
-
-    }
-	else
-	{
-		//window.location.href = "patientdetails.html?id="+token+"&patientID="+patientUuid;
-		window.alert ("No update made!");
-	}
-}
