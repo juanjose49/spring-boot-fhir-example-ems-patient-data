@@ -23,8 +23,8 @@ import org.json.simple.JSONObject;
 
 import com.fhirio.fhiremsservice.domain.Address;
 import com.fhirio.fhiremsservice.domain.Condition;
-import com.fhirio.fhiremsservice.domain.Medication;
 import com.fhirio.fhiremsservice.domain.Measurement;
+import com.fhirio.fhiremsservice.domain.Medication;
 
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.model.primitive.IdDt;
@@ -274,7 +274,6 @@ public class FhirClient {
 	 * @param patientUuid
 	 * @return patient medications list
 	 */
-	@SuppressWarnings("unchecked")
 	public List<Medication> getPatientMedications(String patientUuid) {
 		List<Medication> medicationList = new ArrayList<Medication>();
 
@@ -369,7 +368,6 @@ public class FhirClient {
 	 * @param patientUuid
 	 * @return patient conditions list
 	 */
-	@SuppressWarnings("unchecked")
 	public List<Condition> getPatientConditions(String patientUuid) {
 		List<Condition> conditionList = new ArrayList<Condition>();
 
@@ -490,7 +488,6 @@ public class FhirClient {
 		return outcomeObservation.getId().getIdPart();
 	}
 
-	@SuppressWarnings("unchecked")
 	public Measurement getObservation(String patientId, String loincCode) {
 		Measurement measurement = new Measurement();
 

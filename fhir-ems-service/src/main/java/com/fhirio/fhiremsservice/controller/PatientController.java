@@ -1,14 +1,17 @@
 package com.fhirio.fhiremsservice.controller;
 
-import com.fhirio.fhiremsservice.domain.Emergency;
-import com.fhirio.fhiremsservice.domain.Note;
-import com.fhirio.fhiremsservice.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.fhirio.fhiremsservice.domain.Note;
 import com.fhirio.fhiremsservice.domain.Patient;
 import com.fhirio.fhiremsservice.service.PatientService;
 

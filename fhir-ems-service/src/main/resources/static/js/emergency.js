@@ -82,7 +82,7 @@ function updateTable(emergencyId){
                 mData: "Action",
                 bSortable: false,
                 mRender: function (data, type, row) {
-                    return '<a href="patientdetails.html?userId='+getUrlParameter('userId')+'&orgId='+getUrlParameter('orgId')+'&emergencyId='+emergencyId+'&patientId='+row.patientUuid+'" class="btn btn-default btn-sm" role="button">View Patient Details</a>'
+                    return '<a href="patientdetails.html?userId='+getUrlParameter('userId')+'&orgId='+getUrlParameter('orgId')+'&emergencyId='+emergencyId+'&patientId='+row.patientUuid+'&fhirUuid='+row.fhirUuid+'" class="btn btn-default btn-sm" role="button">View Patient Details</a>'
                 }
             }
         ]

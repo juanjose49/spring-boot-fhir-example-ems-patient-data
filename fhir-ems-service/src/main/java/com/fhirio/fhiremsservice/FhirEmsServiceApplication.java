@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fhirio.fhiremsservice.service.AuthenticationService;
 import com.fhirio.fhiremsservice.service.EmergencyService;
 import com.fhirio.fhiremsservice.service.OrganizationService;
