@@ -58,7 +58,7 @@ function register(){
             contentType: "application/json",
             success:function(data) {
                 window.alert ("Registration succeed!");
-				window.location.href = "index.html";
+				window.location.href = "dashboard.html?userId="+orgUuid;
             }
         });
 
