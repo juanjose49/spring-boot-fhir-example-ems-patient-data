@@ -19,6 +19,7 @@ $(document).ready(function () {
     $("#dashboardLink").attr("href","dashboard.html?userId="+getUrlParameter("userId"))
     updatePatientDetailsTable()
     updateMedicationsTable()
+    updateConditionsTable()
     
 });
 
@@ -73,6 +74,25 @@ function updatePatientDetailsTable(){
                     { "mData": "conditionName" },
                     { "mData": "description" },
                     { "mData": "status" }
+                ]
+            });
+        
+        }
+
+    function updateConditionsTable(){
+            var fhirUuid = getUrlParameter('fhirUuid');
+            var table = $('#conditionsTable').DataTable({
+                "sAjaxSource": "/api/patient/"+fhirUuid+"/conditions",
+                "sAjaxDataProp": "conditions",
+                "orderClasses": false,
+                "order": [[ 0, "asc" ]],
+                "aoColumns": [
+                    { "mData": "conditionUuid" },
+                    { "mData": "name" },
+                    { "mData": "clinicalStatus" },
+                    { "mData": "verificationStatus" },
+                    { "mData": "onsetDateTime" },
+                    { "mData": "assertedDate" }
                 ]
             });
         

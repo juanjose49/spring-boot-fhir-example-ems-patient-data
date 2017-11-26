@@ -3,8 +3,6 @@
  */
 package com.fhirio.fhiremsservice.controller;
 
-import java.util.List;
-
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fhirio.fhiremsservice.FhirClient;
-import com.fhirio.fhiremsservice.domain.Condition;
+import com.fhirio.fhiremsservice.domain.Conditions;
 import com.fhirio.fhiremsservice.domain.Medications;
 
 
@@ -46,8 +44,8 @@ public class FhirController {
 	 * @return List<Condition>
 	 */
 	@RequestMapping(value = "/patient/{patientUuid}/conditions", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody List<Condition> getPatientConditions(@PathVariable("patientUuid") String patientUuid) {
+	public @ResponseBody Conditions getPatientConditions(@PathVariable("patientUuid") String patientUuid) {
 	
-		return fhirClient.getPatientConditions(patientUuid);
+		return new Conditions(fhirClient.getPatientConditions(patientUuid));
 	}
 }
