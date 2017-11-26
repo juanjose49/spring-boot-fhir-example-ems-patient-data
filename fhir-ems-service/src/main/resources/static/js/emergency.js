@@ -54,13 +54,13 @@ function updateTable(emergencyId){
 
             $(".emergencyInfoInner").append("<table class='emergencyInfo' cellspacing='10'>");
             var emergencyIDString = "<b>Emergency ID: </b>" + JSON.stringify(emergencyID);
-            $(".emergencyInfoInner").append("<td style='padding:0 0 0 0px; font-size: 150%;' class='emergencyInfo'>" + emergencyIDString+ "</td>");
+            $(".emergencyInfoInner").append("<tr><td style='padding:0 0 0 0px; font-size: 150%;' class='emergencyInfo'>" + emergencyIDString+ "</td></tr>");
             var emergencyTitleString = "<b>Emergency Title: </b>" + emergencyTitle;
-            $(".emergencyInfoInner").append("<td style='padding:0 15px 0 15px; font-size: 150%;' class='emergencyInfo'>" + emergencyTitleString + "</td>");
+            $(".emergencyInfoInner").append("<tr><td style='padding:0 0 0 0px; font-size: 150%;' class='emergencyInfo'>" + emergencyTitleString + "</td></tr>");
             var pickupLocationString = "<b>Pickup Location: </b>" + pickupLocation;
-            $(".emergencyInfoInner").append("<td style='padding:0 15px 0 15px; font-size: 150%;' class='emergencyInfo'>" + pickupLocationString + "</td>");
+            $(".emergencyInfoInner").append("<tr><td style='padding:0 0 0 0px; font-size: 150%;' class='emergencyInfo'>" + pickupLocationString + "</td></tr>");
             var emergencyStateString = "<b>Emergency State: </b>" + emergencyState;
-            $(".emergencyInfoInner").append("<td style='padding:0 15px 0 15px; font-size: 150%;' class='emergencyInfo'>" + emergencyStateString + "</td>");
+            $(".emergencyInfoInner").append("<tr><td style='padding:0 0 0 0px; font-size: 150%;' class='emergencyInfo'>" + emergencyStateString + "</td></tr>");
             $(".emergencyInfoInner").append("</table>");
 
         }
