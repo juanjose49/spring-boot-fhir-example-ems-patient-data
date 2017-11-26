@@ -19,8 +19,6 @@ var getUrlParameter = function getUrlParameter(sParam) {
 $(document).ready(function () {
     $("#dashboardLink").attr("href","dashboard.html?userId="+getUrlParameter("userId"))
     
-    token = getUrlParameter('id');
-    console.log(token);
     orgUuid = getUrlParameter('orgId');
 });
 function register(){
@@ -58,7 +56,7 @@ function register(){
             contentType: "application/json",
             success:function(data) {
                 window.alert ("Registration succeed!");
-				window.location.href = "dashboard.html?userId="+orgUuid;
+				window.location.href = "dashboard.html?userId="+getUrlParameter("userId");
             }
         });
 

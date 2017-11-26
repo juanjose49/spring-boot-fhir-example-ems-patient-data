@@ -60,7 +60,7 @@ function updatePatientDetailsTable(){
         });
     }
 
-    function updateNotes(){
+    function updateNotesAndIdentify(){
         
             var patientId = getUrlParameter('patientId');
             $.ajax({
@@ -71,6 +71,7 @@ function updatePatientDetailsTable(){
                 success: function(patient){
                     console.log(patient)
                     patient.notes = $("#notes").val()
+                    patient.identified = true
                     $.ajax({
                         url: "/api/patient",
                         cache: false,
@@ -79,7 +80,7 @@ function updatePatientDetailsTable(){
                         type: "PUT",
                         data: JSON.stringify(patient),
                         success: function(patient){
-                            window.alert ("Successfully updated patient notes!");
+                            window.alert ("Saved Successfully!");
                         }
                     });
                     

@@ -52,13 +52,21 @@ public class EmergencyService {
 	
 	public Emergency getVerboseEmergency(Integer emergencyUuid) {
 		Emergency emergency = this.getEmergency(emergencyUuid);
+		
 		List<Patient> possiblePatients = new ArrayList<>();
 		for(Integer patientId : emergency.getPossiblePatientUuids()){
 			Patient patient = patientService.getPatient(patientId);
 			if(patient != null){
-				possiblePatients.add(patient);
+				if(patient.isIdentified()){
+					possiblePatients = new ArrayList<>();
+					possiblePatients.add(patient);
+					break;
+				}else{
+					possiblePatients.add(patient);
+				}
 			}
 		}
+		
 		Emergency verboseEmergency = new Emergency();
 		verboseEmergency.setEmergencyUuid(emergency.getEmergencyUuid());
 		verboseEmergency.setEmergencyState(emergency.getEmergencyState());

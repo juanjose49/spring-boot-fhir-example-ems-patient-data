@@ -26,6 +26,8 @@ public class Patient {
 	private String fhirUuid;
 
 	private String notes;
+	
+	private boolean identified = false;
 
 	public Patient(){}
 
@@ -85,5 +87,13 @@ public class Patient {
 
 	public void setFhirUuid(String fhirUuid) {
 		this.fhirUuid = fhirUuid;
+	}
+
+	public boolean isIdentified() {
+		return identified;
+	}
+
+	public void setIdentified(boolean identified) {
+		this.identified = identified;
 	}
 }
