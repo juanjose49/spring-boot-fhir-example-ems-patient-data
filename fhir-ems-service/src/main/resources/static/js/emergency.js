@@ -18,26 +18,57 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 
 $(document).ready(function () {
-    $("#dashboardLink").attr("href","dashboard.html?userId="+getUrlParameter("id")+"orgID="+getUrlParameter("orgId"));
+    $("#dashboardLink").attr("href","dashboard.html?userId="+getUrlParameter("userId")+"orgID="+getUrlParameter("orgId"));
     
    var emergencyId = getUrlParameter('emergencyId');
    console.log(emergencyId);
 
-    $.ajax({
-        url: "/api/user/"+emergencyId,
-        cache: false,
-        success: function(response){
-            $("#welcomeUser").text("Welcome "+response.firstName+ " "+response.lastName);
-
-        }
-    });
 
     updateTable(emergencyId);
+
 
 
 });
 
 function updateTable(emergencyId){
+
+    var orgId = getUrlParameter('orgId');
+    var userId = getUrlParameter('userId');
+
+    $.ajax({
+        url: "/api/emergency/"+emergencyId,
+        cache: false,
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function(data){
+            $('#emergencyIdDiv').text(data.emergencyUuid);
+            $('#emergencyTitleDiv').text(data.emergencyTitle);
+            $('#pickupLocationDiv').text(data.pickupLocation);
+            $('#emergencyStateDiv').text(data.emergencyState);
+
+
+            var emergencyID = data.emergencyUuid;
+            var emergencyTitle = data.emergencyTitle;
+            var pickupLocation = data.pickupLocation;
+            var emergencyState = data.emergencyState;
+
+            $(".emergencyInfoInner").append("<table class='emergencyInfo' cellspacing='10'>");
+            var emergencyIDString = "<b>Emergency ID: </b>" + JSON.stringify(emergencyID);
+            $(".emergencyInfoInner").append("<td style='padding:0 0 0 0px; font-size: 150%;' class='emergencyInfo'>" + emergencyIDString+ "</td>");
+            var emergencyTitleString = "<b>Emergency Title: </b>" + emergencyTitle;
+            $(".emergencyInfoInner").append("<td style='padding:0 15px 0 15px; font-size: 150%;' class='emergencyInfo'>" + emergencyTitleString + "</td>");
+            var pickupLocationString = "<b>Pickup Location: </b>" + pickupLocation;
+            $(".emergencyInfoInner").append("<td style='padding:0 15px 0 15px; font-size: 150%;' class='emergencyInfo'>" + pickupLocationString + "</td>");
+            var emergencyStateString = "<b>Emergency State: </b>" + emergencyState;
+            $(".emergencyInfoInner").append("<td style='padding:0 15px 0 15px; font-size: 150%;' class='emergencyInfo'>" + emergencyStateString + "</td>");
+            $(".emergencyInfoInner").append("</table>");
+
+        }
+    });
+
+
+
+
     var table = $('#emergenciesTable').DataTable({
         "sAjaxSource": "/api/emergency/"+emergencyId+"?verbose=true",
         "sAjaxDataProp": "possiblePatients",

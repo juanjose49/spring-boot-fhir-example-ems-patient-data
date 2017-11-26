@@ -15,6 +15,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 function refreshTable(userId){
 
+
     $.ajax({
         // get user
         url: "/api/user/"+userId,
