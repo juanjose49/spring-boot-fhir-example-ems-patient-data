@@ -18,7 +18,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 
 $(document).ready(function () {
-    $("#dashboardLink").attr("href","dashboard.html?userId="+getUrlParameter("userId")+"orgID="+getUrlParameter("orgId"));
+    $("#dashboardLink").attr("href","dashboard.html?userId="+getUrlParameter("userId"));
     
    var emergencyId = getUrlParameter('emergencyId');
    console.log(emergencyId);
@@ -82,7 +82,7 @@ function updateTable(emergencyId){
                 mData: "Action",
                 bSortable: false,
                 mRender: function (data, type, row) {
-                    return '<a href="patientdetails.html?userId'+getUrlParameter('userId')+'&orgId='+getUrlParameter('orgId')+'&emergencyId='+emergencyId+'&patientId='+row.patientUuid+'" class="btn btn-default btn-sm" role="button">View Patient Details</a>'
+                    return '<a href="patientdetails.html?userId='+getUrlParameter('userId')+'&orgId='+getUrlParameter('orgId')+'&emergencyId='+emergencyId+'&patientId='+row.patientUuid+'" class="btn btn-default btn-sm" role="button">View Patient Details</a>'
                 }
             }
         ]

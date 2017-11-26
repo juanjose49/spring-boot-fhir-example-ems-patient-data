@@ -19,16 +19,16 @@ public class PatientService {
 	 * Basic constructor used to initialize mock data.
 	 */
 	public PatientService(){
-		patientMap.put(Integer.valueOf(1), new Patient(1,"Johnathan", "Borne"));
-		patientMap.put(Integer.valueOf(2), new Patient(2,"Mary", "Carry"));
-		patientMap.put(Integer.valueOf(3), new Patient(3,"Thomas", "Storm"));
-		patientMap.put(Integer.valueOf(4), new Patient(4,"Jake", "Flyer"));
-		patientMap.put(Integer.valueOf(5), new Patient(5,"Sam", "Martin"));
-		patientMap.put(Integer.valueOf(6), new Patient(6,"Terry", "Salami"));
-		patientMap.put(Integer.valueOf(7), new Patient(7,"Lily", "Fangs"));
-		patientMap.put(Integer.valueOf(8), new Patient(8,"Henry", "Fierce"));
-		patientMap.put(Integer.valueOf(9), new Patient(9,"Charles", "Clark"));
-		patientMap.put(Integer.valueOf(10), new Patient(10,"Adam", "Klein"));
+		patientMap.put(Integer.valueOf(131), new Patient(131,"Johnathan", "Borne"));
+		patientMap.put(Integer.valueOf(132), new Patient(132,"Mary", "Carry"));
+		patientMap.put(Integer.valueOf(133), new Patient(133,"Thomas", "Storm"));
+		patientMap.put(Integer.valueOf(134), new Patient(134,"Jake", "Flyer"));
+		patientMap.put(Integer.valueOf(135), new Patient(135,"Sam", "Martin"));
+		patientMap.put(Integer.valueOf(136), new Patient(136,"Terry", "Salami"));
+		patientMap.put(Integer.valueOf(137), new Patient(137,"Lily", "Fangs"));
+		patientMap.put(Integer.valueOf(138), new Patient(138,"Henry", "Fierce"));
+		patientMap.put(Integer.valueOf(139), new Patient(139,"Charles", "Clark"));
+		patientMap.put(Integer.valueOf(1310), new Patient(1310,"Adam", "Klein"));
 	}
 	
 	/**

@@ -51,7 +51,7 @@ function refreshTable(userId){
                         mData: "View Emergency",
                         bSortable: false,
                         mRender: function (data, type, row) {
-                            return '<a href="emergency.html?orgId='+getUrlParameter('orgId')+'&userId='+userId+'&emergencyId='+row.emergencyUuid+'" class="btn btn-default btn-sm" role="button">Open</a>'
+                            return '<a href="emergency.html?orgId='+row.organizationUuid+'&userId='+userId+'&emergencyId='+row.emergencyUuid+'" class="btn btn-default btn-sm" role="button">Open</a>'
                         }
                     }
                 ],

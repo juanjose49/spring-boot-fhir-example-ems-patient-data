@@ -25,19 +25,19 @@ public class EmergencyService {
 	 * data.
 	 */
 	public EmergencyService(){
-		Emergency emergency = new Emergency(Integer.valueOf(1),"Student Fainted in Class","1122 Fowler St. 30309",Arrays.asList(1,2), EmergencyState.PENDING);
+		Emergency emergency = new Emergency(Integer.valueOf(101),"Student Fainted in Class","1122 Fowler St. 30309",Arrays.asList(131,132), EmergencyState.PENDING,121);
 		saveEmergency(emergency);
 		
-		emergency = new Emergency(Integer.valueOf(2),"Car Accident on I85","I85 between exits 89 and 91",Arrays.asList(3,4), EmergencyState.PENDING);
+		emergency = new Emergency(Integer.valueOf(102),"Car Accident on I85","I85 between exits 89 and 91",Arrays.asList(133,134), EmergencyState.PENDING,121);
 		saveEmergency(emergency);
 		
-		emergency = new Emergency(Integer.valueOf(3),"Man had Heart Attack in Restaurant","Subway on Georgia Tech Campus",Arrays.asList(5,6), EmergencyState.ACTIVE);
+		emergency = new Emergency(Integer.valueOf(103),"Man had Heart Attack in Restaurant","Subway on Georgia Tech Campus",Arrays.asList(135,136), EmergencyState.ACTIVE,121);
 		saveEmergency(emergency);
 		
-		emergency = new Emergency(Integer.valueOf(4),"Dog bit Man in Neighborhood","2022 Happy Hills 30456",Arrays.asList(7,8), EmergencyState.CLOSED);
+		emergency = new Emergency(Integer.valueOf(104),"Dog bit Man in Neighborhood","2022 Happy Hills 30456",Arrays.asList(137,138), EmergencyState.CLOSED,121);
 		saveEmergency(emergency);
 		
-		emergency = new Emergency(Integer.valueOf(5),"Alcohol Poisoning at PIKE Fraternity","3212 Notso Happy Hills 30213",Arrays.asList(9,10), EmergencyState.CLOSED);
+		emergency = new Emergency(Integer.valueOf(105),"Alcohol Poisoning at PIKE Fraternity","3212 Notso Happy Hills 30213",Arrays.asList(139,1310), EmergencyState.CLOSED,121);
 		saveEmergency(emergency);
 	}
 	/**

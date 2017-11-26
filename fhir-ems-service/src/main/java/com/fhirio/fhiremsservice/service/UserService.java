@@ -21,8 +21,8 @@ public class UserService {
 	 */
 	public UserService(){
 		//bootstrap users
-		saveUser(new User(1, "emspersonnel", "John", "Smith", 1));
-		saveUser(new User(2, "emscallcenter", "Jane", "Smith", 1));
+		saveUser(new User(111, "emspersonnel", "John", "Smith", 121));
+		saveUser(new User(112, "emscallcenter", "Jane", "Smith", 121));
 	}
 	
 	/**

@@ -50,13 +50,14 @@ public class Emergency {
 	public Emergency(){}
 	
 	public Emergency(Integer emergencyUuid, String emergencyTitle, String pickupLocation,
-			List<Integer> possiblePatientUuids, EmergencyState emergencyState) {
+			List<Integer> possiblePatientUuids, EmergencyState emergencyState, Integer organizationUuid) {
 		super();
 		this.emergencyUuid = emergencyUuid;
 		this.emergencyTitle = emergencyTitle;
 		this.pickupLocation = pickupLocation;
 		this.possiblePatientUuids = possiblePatientUuids;
 		this.emergencyState = emergencyState;
+		this.organizationUuid = organizationUuid;
 	}
 	
 	public Integer getEmergencyUuid() {

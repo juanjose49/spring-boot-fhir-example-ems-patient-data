@@ -21,10 +21,10 @@ public class OrganizationService {
 	public OrganizationService(){
 		// bootstrap organizations
 		Organization org = new Organization();
-		org.setOrganizationUuid(1);
-		org.setEmergencyUuids(new ArrayList<Integer>(Arrays.asList(1,2,3,4,5)));
+		org.setOrganizationUuid(121);
+		org.setEmergencyUuids(new ArrayList<Integer>(Arrays.asList(101,102,103,104,105)));
 		org.setName("Mock Organization");
-		org.setUserUuids(new ArrayList<Integer>(Arrays.asList(1,2)));
+		org.setUserUuids(new ArrayList<Integer>(Arrays.asList(111,112)));
 		saveOrganization(org);
 	}
 	

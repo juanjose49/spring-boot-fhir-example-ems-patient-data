@@ -17,11 +17,11 @@ public class AuthenticationService {
 		// let's bootstrap a few mappings
 		String userName = "emspersonnel";
 		String password = "password";
-		authenticationMap.put(hashCredentials(userName, password), Integer.valueOf(1));
+		authenticationMap.put(hashCredentials(userName, password), Integer.valueOf(111));
 		
 		userName = "emscallcenter";
 		password = "password";
-		authenticationMap.put(hashCredentials(userName, password), Integer.valueOf(2));
+		authenticationMap.put(hashCredentials(userName, password), Integer.valueOf(112));
 	}
 
 	private Integer hashCredentials(String userName, String password) {
