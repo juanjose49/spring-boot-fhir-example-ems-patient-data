@@ -18,7 +18,7 @@ function refreshTable(userId){
 
     $.ajax({
         // get user
-        url: "/api/user/"+userId,
+        url: "../api/user/"+userId,
         cache: false,
         success: function(response){
             orgId = response.organizationUuid;
@@ -26,7 +26,7 @@ function refreshTable(userId){
             // if user found, render table and welcome message
             $("#welcomeUser").text("Welcome "+response.firstName+ " "+response.lastName);
             var table = $('#emergenciesTable').DataTable({
-                "sAjaxSource": "/api/organization/"+orgId+"?verbose=true",
+                "sAjaxSource": "../api/organization/"+orgId+"?verbose=true",
                 "sAjaxDataProp": "emergencies",
                 "orderClasses": false,
                 "order": [[ 3, "asc" ]],
@@ -71,10 +71,10 @@ function refreshTable(userId){
 
             });
             $('a.createEmergency').on('click', function (e) {
-                $(this).attr("href", "/newemergency.html?userId="+userId+"&orgId="+orgId);
+                $(this).attr("href", "newemergency.html?userId="+userId+"&orgId="+orgId);
             });
 			$('a.register').on('click', function (e) {
-                $(this).attr("href", "/newOrganizationalUser.html?userId="+userId+"&orgId="+orgId);
+                $(this).attr("href", "newOrganizationalUser.html?userId="+userId+"&orgId="+orgId);
             });
         }
     });
@@ -88,7 +88,7 @@ function getEmergency(orgId, id){
     //get all emergencies
     $.ajax({
         dataType: "json",
-        url: "/api/organization/"+orgId+"?verbose=true",
+        url: "../api/organization/"+orgId+"?verbose=true",
         async:false,
         success: function (data) {
             console.log(data);
@@ -107,7 +107,7 @@ function getEmergency(orgId, id){
 function updateOrgTitle(orgId){
         $.ajax({
             dataType: "json",
-            url: "/api/organization/"+orgId,
+            url: "../api/organization/"+orgId,
             async:false,
             success: function (data) {
                 $("#orgTitle").text(data.name+" Dashboard");
@@ -133,7 +133,7 @@ function sendUpdate(orgId, userId, emergencyUuid, emergencyStatus){
 
     $.ajax({
         dataType: "json",
-        url: "/api/emergency/",
+        url: "../api/emergency/",
         contentType: "application/json",
         type: 'PUT',
         data: emergencyObject,

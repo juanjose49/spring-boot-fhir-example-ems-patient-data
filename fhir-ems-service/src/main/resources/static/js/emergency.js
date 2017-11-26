@@ -36,7 +36,7 @@ function updateTable(emergencyId){
     var userId = getUrlParameter('userId');
 
     $.ajax({
-        url: "/api/emergency/"+emergencyId,
+        url: "../api/emergency/"+emergencyId,
         cache: false,
         contentType: 'application/json',
         dataType: 'json',
@@ -70,7 +70,7 @@ function updateTable(emergencyId){
 
 
     var table = $('#emergenciesTable').DataTable({
-        "sAjaxSource": "/api/emergency/"+emergencyId+"?verbose=true",
+        "sAjaxSource": "../api/emergency/"+emergencyId+"?verbose=true",
         "sAjaxDataProp": "possiblePatients",
         "orderClasses": false,
         "order": [[ 0, "asc" ]],

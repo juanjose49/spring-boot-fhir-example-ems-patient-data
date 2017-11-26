@@ -29,7 +29,7 @@ function register(){
         console.log(newUser);
         $.ajax({
             type: "POST",
-            url: '/api/user',
+            url: '../api/user',
             data: newUser,
             dataType: 'json',
             contentType: "application/json",

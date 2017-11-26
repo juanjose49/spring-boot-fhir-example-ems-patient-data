@@ -47,7 +47,7 @@ function createEmergency(){
         data = JSON.stringify(data);
 
         $.ajax({
-            url: "/api/emergency/",
+            url: "../api/emergency/",
             type: "POST",
             contentType: "application/json",
             dataType: "json",

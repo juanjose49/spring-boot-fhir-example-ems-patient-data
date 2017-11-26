@@ -15,7 +15,7 @@ function authenticate(){
 
         $.ajax({
             type: "POST",
-            url: '/api/authentication',
+            url: '../api/authentication',
             data: jsonBody,
             headers: { 'User': jsonBody },
             dataType: 'json',

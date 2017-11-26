@@ -26,7 +26,7 @@ function updatePatientDetailsTable(){
         var patientId = getUrlParameter('patientId');
     
         $.ajax({
-            url: "/api/patient/"+patientId,
+            url: "../api/patient/"+patientId,
             cache: false,
             contentType: 'application/json',
             dataType: 'json',
@@ -64,7 +64,7 @@ function updatePatientDetailsTable(){
         
             var patientId = getUrlParameter('patientId');
             $.ajax({
-                url: "/api/patient/"+patientId,
+                url: "../api/patient/"+patientId,
                 cache: false,
                 contentType: 'application/json',
                 dataType: 'json',
@@ -73,7 +73,7 @@ function updatePatientDetailsTable(){
                     patient.notes = $("#notes").val()
                     patient.identified = true
                     $.ajax({
-                        url: "/api/patient",
+                        url: "../api/patient",
                         cache: false,
                         contentType: 'application/json',
                         dataType: 'json',
@@ -93,7 +93,7 @@ function updatePatientDetailsTable(){
         
             var fhirUuid = getUrlParameter('fhirUuid');
             var table = $('#medicationsTable').DataTable({
-                "sAjaxSource": "/api/patient/"+fhirUuid+"/medications",
+                "sAjaxSource": "../api/patient/"+fhirUuid+"/medications",
                 "sAjaxDataProp": "medications",
                 "orderClasses": false,
                 "order": [[ 0, "asc" ]],
@@ -111,7 +111,7 @@ function updatePatientDetailsTable(){
     function updateConditionsTable(){
             var fhirUuid = getUrlParameter('fhirUuid');
             var table = $('#conditionsTable').DataTable({
-                "sAjaxSource": "/api/patient/"+fhirUuid+"/conditions",
+                "sAjaxSource": "../api/patient/"+fhirUuid+"/conditions",
                 "sAjaxDataProp": "conditions",
                 "orderClasses": false,
                 "order": [[ 0, "asc" ]],
