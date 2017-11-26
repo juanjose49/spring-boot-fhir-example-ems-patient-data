@@ -25,7 +25,7 @@ public class Patient {
 	
 	private String fhirUuid;
 
-	private String notes;
+	private String notes = "";
 	
 	private boolean identified = false;
 
