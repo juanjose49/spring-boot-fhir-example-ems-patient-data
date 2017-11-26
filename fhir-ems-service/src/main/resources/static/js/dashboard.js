@@ -21,9 +21,10 @@ function refreshTable(userId){
         url: "/api/user/"+userId,
         cache: false,
         success: function(response){
+            orgId = response.organizationUuid;
+            updateOrgTitle(orgId)
             // if user found, render table and welcome message
             $("#welcomeUser").text("Welcome "+response.firstName+ " "+response.lastName);
-            orgId = response.organizationUuid;
             var table = $('#emergenciesTable').DataTable({
                 "sAjaxSource": "/api/organization/"+orgId+"?verbose=true",
                 "sAjaxDataProp": "emergencies",
@@ -96,11 +97,23 @@ function getEmergency(orgId, id){
                     json = data.emergencies[emergency];
                 }
             }
+            $("#orgTitle").text(data.name+" Dashboard");
         }
     });
     return json;
 
 }
+
+function updateOrgTitle(orgId){
+        $.ajax({
+            dataType: "json",
+            url: "/api/organization/"+orgId,
+            async:false,
+            success: function (data) {
+                $("#orgTitle").text(data.name+" Dashboard");
+            }
+        });
+    }
 
 function sendUpdate(orgId, userId, emergencyUuid, emergencyStatus){
     var userId = userId;

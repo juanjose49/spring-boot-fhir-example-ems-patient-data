@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <script src="/js/patientdetails.js"></script>
-	<script src="/js/newnotes.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -32,29 +31,35 @@
 </nav>
 
 <div class="row">
+        
+        <div class="col-md-10 col-md-offset-1">
+            <h1>Patient Details</h1>
+            <div class="patientDetails"></div>
+        </div>
+    </div>
+
+<div class="row">
     <div class="col-md-10 col-md-offset-1">
 
-        <h1>Patient Details</h1>
-        <table id="patientdetailsTable" class="display">
+        <h1>Medications</h1>
+        <table id="medicationsTable" class="display">
             <thead>
             <tr>
-                <th>Patient ID</th>
-                <th>Patient First Name</th>
-                <th>Patient Last Name</th>
-                <th>Something 1</th>
-                <th>Something 2</th>
-				
+                <th>Medication Uuid</th>
+                <th>Name</th>
+                <th>Condition Name</th>
+                <th>Description</th>
+                <th>Status</th>
             </tr>
             </thead>
             <!-- Footer Table -->
             <tfoot>
             <tr>
-                <th>Patient ID</th>
-                <th>Patient First Name</th>
-                <th>Patient Last Name</th>
-                <th>Something 1</th>
-                <th>Something 2</th>
-				
+                <th>Medication Uuid</th>
+                <th>Name</th>
+                <th>Condition Name</th>
+                <th>Description</th>
+                <th>Status</th>
             </tr>
             </tfoot>
         </table>
