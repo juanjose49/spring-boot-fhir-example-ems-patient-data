@@ -1,29 +1,24 @@
 
 
-> <img src="media/image1.png" width="144" height="144" />**USER’S**
-> *********************************************************MANUAL**
+> <img src="media/image1.png" width="144" height="144" />USER’S MANUAL
 
-> *********************************************************EMS-Patient-Data***
->
-> *********************************************************Prepared by: FHIR I/O Team
->
-> *********************************************************Nov, 2017
+> EMS-Patient-Data***
+> Prepared by: FHIR I/O Team
+> Nov, 2017
 
 **Revision Sheet**
 
-
+|                 |          |                          |
 |-----------------|----------|--------------------------|
 | **Release No.** | **Date** | **Revision Description** |
 | Rev. 0          | 11/28/17 | User’s Manual Created    |
 | Rev. 1          |          |                          |
 | Rev. 2          |          |                          |
-
+|                 |          |                          |
 
 **USER'S MANUAL**
 
 **TABLE OF CONTENTS**
-
-
 
 1. GENERAL INFORMATION ......................................1-1
 
@@ -59,9 +54,8 @@
 
 3.9 Exit System .............................................3-6
 
-
-
-    <span id="GeneralInformation" class="anchor"><span id="_Toc229551822" class="anchor"></span></span>GENERAL INFORMATION
+    
+1.  GENERAL INFORMATION
     ===================
 
 	1.1 System Overview
