@@ -2,7 +2,7 @@
 
 > <img src="media/image1.png" width="144" height="144" />USER’S MANUAL
 
-> EMS-Patient-Data
+>
 > Prepared by: FHIR I/O Team
 > Nov, 2017
 
@@ -65,12 +65,10 @@ name/value pair assertions with some metadata, but some observations
 group other observations together logically, or even are multi-component
 observations.
 
-
-  2. SYSTEM SUMMARY
+2. SYSTEM SUMMARY
     ============================================================================================================
 
     2.1 System Configuration
-      ------------------------
 
 Each user uses their own computer running Windows OS/Linux. On those
 computers is the client application that will connect to a FHIR Server
@@ -88,13 +86,11 @@ have authority to access the records in their organization. The Super
 Users are still Organizational users employees, but are part of the
 administration of the organization.
 
-
- 3. GETTING STARTED
+3. GETTING STARTED
     ==============================================================================================================
 
       3.1 Setting up the Application
-        ------------------------------
-
+     
 There are two ways to setting up the application.
 
 **The first way** starts by installing Docker Compose. This will begin
