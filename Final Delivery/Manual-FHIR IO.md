@@ -1,74 +1,71 @@
-<img src="media/image1.png" width="144" height="144" />
 
-> **USER’S**
+
+> <img src="media/image1.png" width="144" height="144" />**USER’S**
+> *********************************************************MANUAL**
+
+> *********************************************************EMS-Patient-Data***
 >
-> **MANUAL**
+> *********************************************************Prepared by: FHIR I/O Team
 >
-> ***EMS-Patient-Data***
->
-> Prepared by: FHIR I/O Team
->
-> Nov, 2017
+> *********************************************************Nov, 2017
 
 **Revision Sheet**
 
-|                 |          |                          |
+
 |-----------------|----------|--------------------------|
 | **Release No.** | **Date** | **Revision Description** |
 | Rev. 0          | 11/28/17 | User’s Manual Created    |
 | Rev. 1          |          |                          |
 | Rev. 2          |          |                          |
-|                 |          |                          |
-|                 |          |                          |
-|                 |          |                          |
+
 
 **USER'S MANUAL**
 
 **TABLE OF CONTENTS**
 
-*Page \#*
 
-1.. GENERAL INFORMATION 1-1
 
-1.1 System Overview 1-1
+1. GENERAL INFORMATION ......................................1-1
 
-1.2 Acronyms and Abbreviations 1-1
+1.1 System Overview .........................................1-1
 
-2. SYSTEM SUMMARY 2-1
+1.2 Acronyms and Abbreviations ..............................1-1
 
-2.1 System Configuration 2-1
+2.SYSTEM SUMMARY ............................................2-1
 
-2.2 User Access Levels 2-2
+2.1 System Configuration ....................................2-1
 
-3. GETTING STARTED 3-1
+2.2 User Access Levels ......................................2-2
 
-3.1 Setting up the Application 3-2
+3.GETTING STARTED ...........................................3-1
 
-3.2 Logging On 3-2
+3.1 Setting up the Application ..............................3-2
 
-3.3 Creating New Super User 3-3
+3.2 Logging On ..............................................3-2
 
-3.4 Creating New Emergency 3-3
+3.3 Creating New Super User .................................3-3
 
-3.5 Updating a Status of an Emergency 3-4
+3.4 Creating New Emergency ..................................3-3
 
-3.6 Creating a New Organational User 3-5
+3.5 Updating a Status of an Emergency .......................3-4
 
-3.7 Viewing Possible Patients 3-5
+3.6 Creating a New Organational User ........................3-5
 
-3.8 Viewing Patient Dashboard 3-6
+3.7 Viewing Possible Patients ...............................3-5
 
-3.8.1 Add/update patient notes 3-6
+3.8 Viewing Patient Dashboard ...............................3-6
 
-3.9 Exit System 3-6
+3.8.1 Add/update patient notes ..............................3-6
 
-**1.0 GENERAL INFORMATION**
+3.9 Exit System .............................................3-6
 
-1.  GENERAL INFORMATION
+
+
+    <span id="GeneralInformation" class="anchor"><span id="_Toc229551822" class="anchor"></span></span>GENERAL INFORMATION
     ===================
 
-    1.  1.1 System Overview
-        -------------------
+	1.1 System Overview
+    ---------------------
 
 The EMS-Patient-Data Suite is an application that utilizes an intuitive
 user interface that makes the first responders who cater to emergency
@@ -91,8 +88,8 @@ from EMS. It includes some of their personal information (i.e. name,
 address, etc.), illness history, notes about their case, and any
 medications they have or are using.
 
-1.2 Acronyms and Abbreviations
-------------------------------
+   1.2 Acronyms and Abbreviations
+   ------------------------------
 
 EMS – Emergency Medical Services. Provides services to patients who have
 medical emergencies.
@@ -110,13 +107,12 @@ name/value pair assertions with some metadata, but some observations
 group other observations together logically, or even are multi-component
 observations.
 
-**2.0 SYSTEM SUMMARY**
 
-1.  <span id="SystemSummary" class="anchor"><span id="_Toc229551822" class="anchor"></span></span>SYSTEM SUMMARY
+  <span id="SystemSummary" class="anchor"><span id="_Toc229551822" class="anchor"></span></span>SYSTEM SUMMARY
     ============================================================================================================
 
-    1.  2.1 System Configuration
-        ------------------------
+    2.1 System Configuration
+      ------------------------
 
 Each user uses their own computer running Windows OS/Linux. On those
 computers is the client application that will connect to a FHIR Server
@@ -134,12 +130,11 @@ have authority to access the records in their organization. The Super
 Users are still Organizational users employees, but are part of the
 administration of the organization.
 
-**3.0 GETTING STARTED**
 
-1.  <span id="GettingStarted" class="anchor"><span id="_Toc229551825" class="anchor"></span></span>GETTING STARTED
+ <span id="GettingStarted" class="anchor"><span id="_Toc229551825" class="anchor"></span></span>GETTING STARTED
     ==============================================================================================================
 
-    1.  3.1 Setting up the Application
+      3.1 Setting up the Application
         ------------------------------
 
 There are two ways to setting up the application.
@@ -279,18 +274,16 @@ new user is set default to the Super user’s.
 
 <img src="media/image9.png" width="520" height="323" />
 
-**3.7** <span id="InstalldotNETFramework"
-class="anchor"></span>**Viewing Possible Patients**
-
-<img src="media/image10.png" width="592" height="234" />The possible
-patients of the emergency will be get from the FHIR server by a matched
-name or patient Uuid. To view the possible patients, click on the “Open”
+3.7 Viewing Possible Patients
+---------------------------------------
+The possible patients of the emergency will be get from the FHIR server by 
+a matched name or patient Uuid. To view the possible patients, click on the “Open”
 button on the “Action” column of a selected emergency in the Emergency
 Dashboard, the list of the potential patients will show up:
+<img src="media/image10.png" width="592" height="234" />
 
-**3.8** <span id="InstallingMySQLConnector"
-class="anchor"></span>**Viewing Patient Dashboard**
-
+3.8 Viewing Patient Dashboard
+---------------------------------------
 To view the detailed record of a patient who is in emergency, click on
 the “View Patient Details” button in the “Action” column in “Potential
 Patients” list, the patient’s profile, medications, and conditions info
@@ -306,10 +299,7 @@ vital signs of the patient. Click on “Save notes & identify patient”
 button in this page, a window’s alert box will be popup indicating the
 patient notes has be updated or added to the database for further use.
 
-1.  
+3.9 Exit System
+---------------
 
-    3.9 Exit System
-    ---------------
-
-Click on Logout in the top menu.<span id="UsingTheClientApplication"
-class="anchor"></span>
+Click on Logout in the top menu.
