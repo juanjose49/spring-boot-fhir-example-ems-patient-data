@@ -39,8 +39,8 @@ This document will provide a description of every file included in this reposito
                     * 2.1.1.1.3.4 - PatientService.java
                     * 2.1.1.1.3.5 - UserService.java
                     * 2.1.1.1.3.6 - UuidService.java
-                * 2.1.1.1.4 FhirClient.java
-                * 2.1.1.1.5 FhirEmsServiceApplication.java
+                * 2.1.1.1.4 - FhirClient.java
+                * 2.1.1.1.5 - FhirEmsServiceApplication.java
             * 2.1.1.2 - resources
                 * 2.1.1.2.1 - application.properties
                 * 2.1.1.2.2 - static
@@ -112,8 +112,8 @@ This document will provide a description of every file included in this reposito
 ### 2.1.1.1.3.4 - PatientService.java
 ### 2.1.1.1.3.5 - UserService.java
 ### 2.1.1.1.3.6 - UuidService.java
-### 2.1.1.1.4 FhirClient.java
-### 2.1.1.1.5 FhirEmsServiceApplication.java
+### 2.1.1.1.4 - FhirClient.java
+### 2.1.1.1.5 - FhirEmsServiceApplication.java
 ### 2.1.1.2 - resources
 ### 2.1.1.2.1 - application.properties
 ### 2.1.1.2.2 - static
