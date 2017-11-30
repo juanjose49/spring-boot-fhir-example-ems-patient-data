@@ -16,7 +16,6 @@
 | Rev. 2          |          |                          |
 |                 |          |                          |
 
-**USER'S MANUAL**
 
     
 1.  GENERAL INFORMATION
@@ -77,7 +76,7 @@ database.
 <img src="media/image2.png" width="624" height="538" />
 
     2.2 User Access Levels
-    ----------------------
+   
 
 There are two different types of users. Super Users are users who have
 authority to create organization to access the system. Organizational
@@ -86,10 +85,9 @@ have authority to access the records in their organization. The Super
 Users are still Organizational users employees, but are part of the
 administration of the organization.
 
-3. GETTING STARTED
+GETTING STARTED
     ==============================================================================================================
-
-      3.1 Setting up the Application
+   3.1 Setting up the Application
      
 There are two ways to setting up the application.
 
