@@ -74,3 +74,76 @@ This document will provide a description of every file included in this reposito
     * 2.3 - Dockerfile
     * 2.4 - pom.xml
 * 3.0 - docker-compose.yml
+
+## 1.0 - Final Delivery
+### 1.1 - media
+### 1.2 - Manual - FHIR IO.pdf
+### 1.3 - Manual-FHIR IO.md
+## 2.0 - fhir-ems-service
+### 2.1 - src
+### 2.1.1 - main
+### 2.1.1.1 - java/com/fhirio/fhiremsservice
+### 2.1.1.1.1 - controller
+### 2.1.1.1.1.1 - AuthenticationController.java
+### 2.1.1.1.1.2 - EmergencyController.java
+### 2.1.1.1.1.3 - FhirController.java
+### 2.1.1.1.1.4 - OrganizationController.java
+### 2.1.1.1.1.5 - PatientController.java
+### 2.1.1.1.1.6 - UserController.java
+### 2.1.1.1.2 - domain
+### 2.1.1.1.2.1 - Address.java
+### 2.1.1.1.2.2 - Authentication.java
+### 2.1.1.1.2.3 - Condition.java
+### 2.1.1.1.2.4 - Conditions.java
+### 2.1.1.1.2.5 - Emergency.java
+### 2.1.1.1.2.6 - EmergencyState.java
+### 2.1.1.1.2.7 - Measurement.java
+### 2.1.1.1.2.8 - Medication.java
+### 2.1.1.1.2.9 - Medications.java
+### 2.1.1.1.2.10 - Note.java
+### 2.1.1.1.2.11 - Organization.java
+### 2.1.1.1.2.12 - Patient.java
+### 2.1.1.1.2.13 - Token.java
+### 2.1.1.1.2.14 - User.java
+### 2.1.1.1.3 - service
+### 2.1.1.1.3.1 - AuthenticationService.java
+### 2.1.1.1.3.2 - EmergencyService.java
+### 2.1.1.1.3.3 - OrganizationService.java
+### 2.1.1.1.3.4 - PatientService.java
+### 2.1.1.1.3.5 - UserService.java
+### 2.1.1.1.3.6 - UuidService.java
+### 2.1.1.1.4 FhirClient.java
+### 2.1.1.1.5 FhirEmsServiceApplication.java
+### 2.1.1.2 - resources
+### 2.1.1.2.1 - application.properties
+### 2.1.1.2.2 - static
+### 2.1.1.2.2.1 - css
+### 2.1.1.2.2.1.1 - login.css
+### 2.1.1.2.2.2 - js
+### 2.1.1.2.2.2.1 - NewOrganizationalUser.js
+### 2.1.1.2.2.2.2 - dashboard.js
+### 2.1.1.2.2.2.3 - emergency.js
+### 2.1.1.2.2.2.4 - login.js
+### 2.1.1.2.2.2.5 - newemergency.js
+### 2.1.1.2.2.2.6 - newuser.js
+### 2.1.1.2.2.2.7 - patientdetails.js
+### 2.1.1.2.2.3 - dashboard.html
+### 2.1.1.2.2.4 - emergency.html
+### 2.1.1.2.2.5 - index.html
+### 2.1.1.2.2.6 - newOrganizationalUser.html
+### 2.1.1.2.2.7 - newemergency.html
+### 2.1.1.2.2.8 - newuser.html
+### 2.1.1.2.2.9 - patientdetails.html
+### 2.1.2 - test/java/com/fhirio/fhiremsservice
+### 2.1.2.1 - FhirEmsServiceApplicationTests.java
+### 2.1.2.2 - service
+### 2.1.2.2.1 - AuthenticationServiceTest.java
+### 2.1.2.2.2 - EmergencyServiceTest.java
+### 2.1.2.2.3 - OrganizationServiceTest.java
+### 2.1.2.2.4 - PatientServiceTest.java
+### 2.1.2.2.5 - PatientUpdateTest.java
+### 2.1.2.2.6 - UserServiceTest.java
+### 2.2 - .gitignore
+### 2.3 - Dockerfile
+### 2.4 - pom.xml
+## 3.0 - docker-compose.yml
