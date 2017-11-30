@@ -68,15 +68,16 @@ observations.
     ============================================================================================================
 
     2.1 System Configuration
+    ------------------------------
 
 Each user uses their own computer running Windows OS/Linux. On those
 computers is the client application that will connect to a FHIR Server
 database.
 
 <img src="media/image2.png" width="624" height="538" />
-
-    2.2 User Access Levels
-   
+     
+2.2 User Access Levels
+----------------------
 
 There are two different types of users. Super Users are users who have
 authority to create organization to access the system. Organizational
@@ -85,10 +86,10 @@ have authority to access the records in their organization. The Super
 Users are still Organizational users employees, but are part of the
 administration of the organization.
 
-GETTING STARTED
+3. GETTING STARTED
     ==============================================================================================================
    3.1 Setting up the Application
-     
+   ----------------------  
 There are two ways to setting up the application.
 
 **The first way** starts by installing Docker Compose. This will begin
