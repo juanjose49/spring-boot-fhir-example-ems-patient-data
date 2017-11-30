@@ -6,7 +6,6 @@ This document will provide a description of every file included in this reposito
     * 1.1 - media
     * 1.2 - Manual - FHIR IO.pdf
     * 1.3 - Manual-FHIR IO.md
-
 * 2.0 - fhir-ems-service
     * 2.1 - src
         * 2.1.1 - main
@@ -45,6 +44,16 @@ This document will provide a description of every file included in this reposito
             * 2.1.1.2 - resources
                 * 2.1.1.2.1 - application.properties
                 * 2.1.1.2.2 - static
+                    * 2.1.1.2.2.1 - css
+                        * 2.1.1.2.2.1.1 - login.css
+                    * 2.1.1.2.2.2 - js
+                        * 2.1.1.2.2.2.1 - NewOrganizationalUser.js
+                        * 2.1.1.2.2.2.2 - dashboard.js
+                        * 2.1.1.2.2.2.3 - emergency.js
+                        * 2.1.1.2.2.2.4 - login.js
+                        * 2.1.1.2.2.2.5 - newemergency.js
+                        * 2.1.1.2.2.2.6 - newuser.js
+                        * 2.1.1.2.2.2.7 - patientdetails.js
                     * 2.1.1.2.2.3 - dashboard.html
                     * 2.1.1.2.2.4 - emergency.html
                     * 2.1.1.2.2.5 - index.html
@@ -52,16 +61,6 @@ This document will provide a description of every file included in this reposito
                     * 2.1.1.2.2.7 - newemergency.html
                     * 2.1.1.2.2.8 - newuser.html
                     * 2.1.1.2.2.9 - patientdetails.html
-                    * 2.1.1.2.2.10 - css
-                        * 2.1.1.2.2.10.1 - login.css
-                    * 2.1.1.2.2.11 - js
-                        * 2.1.1.2.2.11.1 - NewOrganizationalUser.js
-                        * 2.1.1.2.2.11.2 - dashboard.js
-                        * 2.1.1.2.2.11.3 - emergency.js
-                        * 2.1.1.2.2.11.4 - login.js
-                        * 2.1.1.2.2.11.5 - newemergency.js
-                        * 2.1.1.2.2.11.6 - newuser.js
-                        * 2.1.1.2.2.11.7 - patientdetails.js
         * 2.1.2 - test/java/com/fhirio/fhiremsservice
             * 2.1.2.1 - FhirEmsServiceApplicationTests.java
             * 2.1.2.2 - service
