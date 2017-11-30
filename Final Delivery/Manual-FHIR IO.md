@@ -2,7 +2,7 @@
 
 > <img src="media/image1.png" width="144" height="144" />USER’S MANUAL
 
-> EMS-Patient-Data***
+> EMS-Patient-Data
 > Prepared by: FHIR I/O Team
 > Nov, 2017
 
@@ -17,42 +17,6 @@
 |                 |          |                          |
 
 **USER'S MANUAL**
-
-**TABLE OF CONTENTS**
-
-1. GENERAL INFORMATION ......................................1-1
-
-1.1 System Overview .........................................1-1
-
-1.2 Acronyms and Abbreviations ..............................1-1
-
-2.SYSTEM SUMMARY ............................................2-1
-
-2.1 System Configuration ....................................2-1
-
-2.2 User Access Levels ......................................2-2
-
-3.GETTING STARTED ...........................................3-1
-
-3.1 Setting up the Application ..............................3-2
-
-3.2 Logging On ..............................................3-2
-
-3.3 Creating New Super User .................................3-3
-
-3.4 Creating New Emergency ..................................3-3
-
-3.5 Updating a Status of an Emergency .......................3-4
-
-3.6 Creating a New Organational User ........................3-5
-
-3.7 Viewing Possible Patients ...............................3-5
-
-3.8 Viewing Patient Dashboard ...............................3-6
-
-3.8.1 Add/update patient notes ..............................3-6
-
-3.9 Exit System .............................................3-6
 
     
 1.  GENERAL INFORMATION
@@ -102,7 +66,7 @@ group other observations together logically, or even are multi-component
 observations.
 
 
-  <span id="SystemSummary" class="anchor"><span id="_Toc229551822" class="anchor"></span></span>SYSTEM SUMMARY
+  2. SYSTEM SUMMARY
     ============================================================================================================
 
     2.1 System Configuration
@@ -114,8 +78,8 @@ database.
 
 <img src="media/image2.png" width="624" height="538" />
 
-2.2 User Access Levels
-----------------------
+    2.2 User Access Levels
+    ----------------------
 
 There are two different types of users. Super Users are users who have
 authority to create organization to access the system. Organizational
@@ -125,7 +89,7 @@ Users are still Organizational users employees, but are part of the
 administration of the organization.
 
 
- <span id="GettingStarted" class="anchor"><span id="_Toc229551825" class="anchor"></span></span>GETTING STARTED
+ 3. GETTING STARTED
     ==============================================================================================================
 
       3.1 Setting up the Application
