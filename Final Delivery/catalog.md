@@ -184,4 +184,6 @@ This is the webpage showing detailed information of the patient. User can also a
 ### 2.2 - .gitignore
 ### 2.3 - Dockerfile
 ### 2.4 - pom.xml
+This is the XML file that contains information about the project and configuration details used by Maven to build the project.
 ## 3.0 - docker-compose.yml
+This is the docker file that used to build and run docker for the application.
