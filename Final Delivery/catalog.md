@@ -76,11 +76,17 @@ This document will provide a description of every file included in this reposito
 * [3.0 - docker-compose.yml](#30---docker-composeyml)
 
 ## 1.0 - Final Delivery
+This is the top-level directory that contains all our documentation for Deliverables 4/5.
 ### 1.1 - media
+This directory contains all the images used in our documentation.
 ### 1.2 - Manual - FHIR IO.pdf
+This is the PDF version of our manual, which contains instructions on how to make use of all the features our application was built to support.
 ### 1.3 - Manual-FHIR IO.md
+This is the markdown version of our manual, which contains instructions on how to make use of all the features our application was built to support.
 ## 2.0 - fhir-ems-service
+This is the top-level directory that holds all the source code, dependency management, git files.
 ### 2.1 - src
+This directory holds all of the source code including Java backend service code and unit testing.
 ### 2.1.1 - main
 ### 2.1.1.1 - java/com/fhirio/fhiremsservice
 ### 2.1.1.1.1 - controller
