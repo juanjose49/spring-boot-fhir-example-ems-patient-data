@@ -173,8 +173,10 @@ This is the webpage for user to fill information to register. Such as user's nam
 ### 2.1.1.2.2.9 - patientdetails.html
 This is the webpage showing detailed information of the patient. User can also add patient's note from this page. 
 ### 2.1.2 - test/java/com/fhirio/fhiremsservice
+This directory contains all the testing files for the application.
 ### 2.1.2.1 - FhirEmsServiceApplicationTests.java
 ### 2.1.2.2 - service
+This directory contains the testing files for the services.
 ### 2.1.2.2.1 - AuthenticationServiceTest.java
 This is the testing file to test if a user's authentication is valid, including test on username and passowrd.
 ### 2.1.2.2.2 - EmergencyServiceTest.java
