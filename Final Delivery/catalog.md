@@ -176,12 +176,19 @@ This is the webpage showing detailed information of the patient. User can also a
 ### 2.1.2.1 - FhirEmsServiceApplicationTests.java
 ### 2.1.2.2 - service
 ### 2.1.2.2.1 - AuthenticationServiceTest.java
+This is the testing file to test if a user's authentication is valid, including test on username and passowrd.
 ### 2.1.2.2.2 - EmergencyServiceTest.java
+This is the testing file to test if a emergency's Uuid is valid, giing a set of emergencies.
 ### 2.1.2.2.3 - OrganizationServiceTest.java
+This is the testing file to test if an organization is exitted by checking its Uuid.
 ### 2.1.2.2.4 - PatientServiceTest.java
+This is the testing file to test if a patient is available, giving patient's Uuid and name.
 ### 2.1.2.2.5 - PatientUpdateTest.java
+This is the testing file to test if patient's name, medications, conditions can be get, and if new patient can be added to te database.
 ### 2.1.2.2.6 - UserServiceTest.java
+This is the testing file to test if the user service can get the user by user's Uuid.
 ### 2.2 - .gitignore
+This is the file for Git to determine which files and directories to ignore. 
 ### 2.3 - Dockerfile
 ### 2.4 - pom.xml
 This is the XML file that contains information about the project and configuration details used by Maven to build the project.
