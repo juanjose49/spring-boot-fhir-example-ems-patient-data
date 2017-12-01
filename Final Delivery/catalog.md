@@ -140,17 +140,17 @@ This directory contains the front-end code (html/js/css) and application.propert
 ### 2.1.1.2.2.1.1 - login.css
 This is the css format file for log in page.
 ### 2.1.1.2.2.2 - js
-This includes all javascript files for the HTML web pages.
+This directory contains all javascript files for the HTML web pages.
 ### 2.1.1.2.2.2.1 - NewOrganizationalUser.js
 This is the javascript file for creating a new organizational user by a super user.
 ### 2.1.1.2.2.2.2 - dashboard.js
 This is the javascript file for the emergency dashboard.
 ### 2.1.1.2.2.2.3 - emergency.js
-
+This is the javascript file to get details of an emergency from the backend.
 ### 2.1.1.2.2.2.4 - login.js
 This is the javascript file to authenticate user to login.
 ### 2.1.1.2.2.2.5 - newemergency.js
-This is the javascript file for creating a new emergency dashboard.
+This is the javascript file for creating a new emergency, and post it to the backend .
 ### 2.1.1.2.2.2.6 - newuser.js
 This is the javascript file for creating a new super user.
 ### 2.1.1.2.2.2.7 - patientdetails.js
@@ -158,9 +158,11 @@ This is the javascript file for collecting and showing detailed information of a
 ### 2.1.1.2.2.3 - dashboard.html
 This is the webpage for creating a new emergency dashboard.
 ### 2.1.1.2.2.4 - emergency.html
+This is the webpage contains details of an emergency and possible patients invlolved in the emergency.
 ### 2.1.1.2.2.5 - index.html
 This is the webpage for user log in, or new user to register.
 ### 2.1.1.2.2.6 - newOrganizationalUser.html
+This is the webpage for super user to enroll an new organizationl user. Username and password are required to be filled in. 
 ### 2.1.1.2.2.7 - newemergency.html
 This is the webpage for user to fill information of a new emergency. Such as patient name and picking up location.
 ### 2.1.1.2.2.8 - newuser.html
