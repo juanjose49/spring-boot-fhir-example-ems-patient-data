@@ -142,19 +142,31 @@ This is the css format file for log in page.
 ### 2.1.1.2.2.2 - js
 This includes all javascript files for the HTML web pages.
 ### 2.1.1.2.2.2.1 - NewOrganizationalUser.js
+This is the javascript file for creating a new organizational user by a super user.
 ### 2.1.1.2.2.2.2 - dashboard.js
+This is the javascript file for the emergency dashboard.
 ### 2.1.1.2.2.2.3 - emergency.js
+
 ### 2.1.1.2.2.2.4 - login.js
+This is the javascript file to authenticate user to login.
 ### 2.1.1.2.2.2.5 - newemergency.js
+This is the javascript file for creating a new emergency dashboard.
 ### 2.1.1.2.2.2.6 - newuser.js
+This is the javascript file for creating a new super user.
 ### 2.1.1.2.2.2.7 - patientdetails.js
+This is the javascript file for collecting and showing detailed information of a patient, including profile, medications,etc.
 ### 2.1.1.2.2.3 - dashboard.html
+This is the webpage for creating a new emergency dashboard.
 ### 2.1.1.2.2.4 - emergency.html
 ### 2.1.1.2.2.5 - index.html
+This is the webpage for user log in, or new user to register.
 ### 2.1.1.2.2.6 - newOrganizationalUser.html
 ### 2.1.1.2.2.7 - newemergency.html
+This is the webpage for user to fill information of a new emergency. Such as patient name and picking up location.
 ### 2.1.1.2.2.8 - newuser.html
+This is the webpage for user to fill information to register. Such as user's name, password, organization name.
 ### 2.1.1.2.2.9 - patientdetails.html
+This is the webpage showing detailed information of the patient. User can also add patient's note from this page. 
 ### 2.1.2 - test/java/com/fhirio/fhiremsservice
 ### 2.1.2.1 - FhirEmsServiceApplicationTests.java
 ### 2.1.2.2 - service
