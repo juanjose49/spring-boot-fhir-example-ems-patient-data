@@ -86,17 +86,27 @@ This is the markdown version of our manual, which contains instructions on how t
 ## 2.0 - fhir-ems-service
 This is the top-level directory that holds all the source code, dependency management, git files.
 ### 2.1 - src
-This directory holds all of the source code including Java backend service code and unit testing.
+This directory holds all of the source code including Java backend service code, front-end code, and unit tests.
 ### 2.1.1 - main
+This directory contains the Java backend service code and front-end code (html/js/css).
 ### 2.1.1.1 - java/com/fhirio/fhiremsservice
+This directory contains the Java backend service code.
 ### 2.1.1.1.1 - controller
+This directory holds all the REST controllers that expose our services.
 ### 2.1.1.1.1.1 - AuthenticationController.java
+This is a REST controller used to expose our AuthenticationService in a RESTful fashion.
 ### 2.1.1.1.1.2 - EmergencyController.java
+This is a REST controller used to expose our EmergencyService in a RESTful fashion.
 ### 2.1.1.1.1.3 - FhirController.java
+This is a REST controller used to expose our FhirClient in a RESTful fashion.
 ### 2.1.1.1.1.4 - OrganizationController.java
+This is a REST controller used to expose our OrganizationService in a RESTful fashion.
 ### 2.1.1.1.1.5 - PatientController.java
+This is a REST controller used to expose our PatientService in a RESTful fashion.
 ### 2.1.1.1.1.6 - UserController.java
+This is a REST controller used to expose our UserService in a RESTful fashion.
 ### 2.1.1.1.2 - domain
+This directory holds all the POJOs used by our application to transfer data across the network and within our application.
 ### 2.1.1.1.2.1 - Address.java
 ### 2.1.1.1.2.2 - Authentication.java
 ### 2.1.1.1.2.3 - Condition.java
@@ -121,6 +131,7 @@ This directory holds all of the source code including Java backend service code 
 ### 2.1.1.1.4 - FhirClient.java
 ### 2.1.1.1.5 - FhirEmsServiceApplication.java
 ### 2.1.1.2 - resources
+This directory contains the front-end code (html/js/css) and application.properties file, which is used to configure aspects of the Java application.
 ### 2.1.1.2.1 - application.properties
 ### 2.1.1.2.2 - static
 ### 2.1.1.2.2.1 - css
