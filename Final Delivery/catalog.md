@@ -138,7 +138,9 @@ This directory contains the front-end code (html/js/css) and application.propert
 ### 2.1.1.2.2 - static
 ### 2.1.1.2.2.1 - css
 ### 2.1.1.2.2.1.1 - login.css
+This is the css format file for log in page.
 ### 2.1.1.2.2.2 - js
+This includes all javascript files for the HTML web pages.
 ### 2.1.1.2.2.2.1 - NewOrganizationalUser.js
 ### 2.1.1.2.2.2.2 - dashboard.js
 ### 2.1.1.2.2.2.3 - emergency.js
