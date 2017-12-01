@@ -108,7 +108,9 @@ This is a REST controller used to expose our UserService in a RESTful fashion.
 ### 2.1.1.1.2 - domain
 This directory holds all the POJOs used by our application to transfer data across the network and within our application.
 ### 2.1.1.1.2.1 - Address.java
+This is a POJO that holds onto a Patient's address information including street address, city, state, and zip code.
 ### 2.1.1.1.2.2 - Authentication.java
+This is a POJO that holds a User's credentials and is used primarily by the AuthenticationService to verify a user's authenticity.
 ### 2.1.1.1.2.3 - Condition.java
 ### 2.1.1.1.2.4 - Conditions.java
 ### 2.1.1.1.2.5 - Emergency.java
