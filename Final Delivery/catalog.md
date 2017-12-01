@@ -135,18 +135,21 @@ This is a POJO that holds a User's credentials and is used primarily by the Auth
 ### 2.1.1.2 - resources
 This directory contains the front-end code (html/js/css) and application.properties file, which is used to configure aspects of the Java application.
 ### 2.1.1.2.1 - application.properties
+This is properties file for the application.
 ### 2.1.1.2.2 - static
+This directory contains all the html/js/css code.
 ### 2.1.1.2.2.1 - css
+This directory contains the css file for the web pages.
 ### 2.1.1.2.2.1.1 - login.css
 This is the css format file for log in page.
 ### 2.1.1.2.2.2 - js
 This directory contains all javascript files for the HTML web pages.
 ### 2.1.1.2.2.2.1 - NewOrganizationalUser.js
-This is the javascript file for creating a new organizational user by a super user.
+This is the javascript file for creating a new organizational user by a super user. New user's infro will be post to the backend database.
 ### 2.1.1.2.2.2.2 - dashboard.js
-This is the javascript file for the emergency dashboard.
+This is the javascript file for the emergency dashboard. Emergencies with different status(pending/active/closed) will ge get from the backend.
 ### 2.1.1.2.2.2.3 - emergency.js
-This is the javascript file to get details of an emergency from the backend.
+This is the javascript file to get details of an emergency from the backend. 
 ### 2.1.1.2.2.2.4 - login.js
 This is the javascript file to authenticate user to login.
 ### 2.1.1.2.2.2.5 - newemergency.js
@@ -156,11 +159,11 @@ This is the javascript file for creating a new super user.
 ### 2.1.1.2.2.2.7 - patientdetails.js
 This is the javascript file for collecting and showing detailed information of a patient, including profile, medications,etc.
 ### 2.1.1.2.2.3 - dashboard.html
-This is the webpage for creating a new emergency dashboard.
+This is the webpage for viewing emergencies in a organzation. The details of each emergency can be shown, and the status of an emergency can be updated by user.
 ### 2.1.1.2.2.4 - emergency.html
 This is the webpage contains details of an emergency and possible patients invlolved in the emergency.
 ### 2.1.1.2.2.5 - index.html
-This is the webpage for user log in, or new user to register.
+This is the webpage for user to log in, or new user to register.
 ### 2.1.1.2.2.6 - newOrganizationalUser.html
 This is the webpage for super user to enroll an new organizationl user. Username and password are required to be filled in. 
 ### 2.1.1.2.2.7 - newemergency.html
