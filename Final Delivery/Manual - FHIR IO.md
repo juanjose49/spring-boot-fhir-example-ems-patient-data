@@ -27,12 +27,9 @@
 
 
     
-1.  GENERAL INFORMATION
-    ===================
+# 1.  GENERAL INFORMATION
 
-	1.1 System Overview
-    ---------------------
-
+## 1.1 System Overview
 The EMS-Patient-Data Suite is an application that utilizes an intuitive
 user interface that makes the first responders who cater to emergency
 calls and high-risk transportations get quick access to patient data
@@ -54,9 +51,7 @@ from EMS. It includes some of their personal information (i.e. name,
 address, etc.), illness history, notes about their case, and any
 medications they have or are using.
 
-   1.2 Acronyms and Abbreviations
-   ------------------------------
-
+## 1.2 Acronyms and Abbreviations
 EMS – Emergency Medical Services. Provides services to patients who have
 medical emergencies.
 
@@ -73,20 +68,16 @@ name/value pair assertions with some metadata, but some observations
 group other observations together logically, or even are multi-component
 observations.
 
-2. SYSTEM SUMMARY
-    ============================================================================================================
+# 2. SYSTEM SUMMARY
 
-    2.1 System Configuration
-    ------------------------------
-
+## 2.1 System Configuration
 Each user uses their own computer running Windows OS/Linux. On those
 computers is the client application that will connect to a FHIR Server
 database.
 
 <img src="media/image2.png" width="624" height="538" />
      
-2.2 User Access Levels
-----------------------
+## 2.2 User Access Levels
 
 There are two different types of users. Super Users are users who have
 authority to create organization to access the system. Organizational
@@ -95,10 +86,8 @@ have authority to access the records in their organization. The Super
 Users are still Organizational users employees, but are part of the
 administration of the organization.
 
-3. GETTING STARTED
-    ==============================================================================================================
-   3.1 Setting up the Application
-   ----------------------  
+# 3. GETTING STARTED
+## 3.1 Setting up the Application
 There are two ways to setting up the application.
 
 **The first way** starts by installing Docker Compose. This will begin
@@ -181,9 +170,7 @@ index.html page
 
 <img src="media/image4.png" width="624" height="356" />
 
-3.3 Creating New Super User
----------------------------
-
+## 3.3 Creating New Super User
 To create an new Super User, press the green ‘Sign up’ button on the
 Login page, and fill in the following required information:
 
@@ -192,9 +179,7 @@ Login page, and fill in the following required information:
 A specific organization Uuid will be provided for the new super user by
 the system automatically.
 
-3.4 Creating New Emergency
---------------------------
-
+## 3.4 Creating New Emergency
 The user can create a new emergency by press the on the “Create a new
 emergency’ button below the Emergency Dashboard after login:
 
@@ -209,9 +194,7 @@ The new emergency will be saved to the database and assigned with a
 Uuid. Then marked as a “Pending” emergency waiting in the queue for
 processing.
 
-3.5 Updating the Status of an Emergency
----------------------------------------
-
+## 3.5 Updating the Status of an Emergency
 The status of an emergency can be “Pending” -marked in Orange color,
 “Closed” – marked in Red color, and “Active” marked as Green color. The
 user can change the state of the emergency into any of these three
@@ -223,9 +206,7 @@ with Uuid 103)
 
 <img src="media/image8.png" width="624" height="256" />
 
-3.6 Creating an New Organizational User
----------------------------------------
-
+## 3.6 Creating an New Organizational User
 Based on the two types of users described above, a Super User can enroll
 Organizational Users into the system. Under the Emergency Dashboard,
 press the “Create an organizational user”, a new window will pop up for
@@ -236,16 +217,14 @@ new user is set default to the Super user’s.
 
 <img src="media/image9.png" width="520" height="323" />
 
-3.7 Viewing Possible Patients
----------------------------------------
+## 3.7 Viewing Possible Patients
 The possible patients of the emergency will be get from the FHIR server by 
 a matched name or patient Uuid. To view the possible patients, click on the “Open”
 button on the “Action” column of a selected emergency in the Emergency
 Dashboard, the list of the potential patients will show up:
 <img src="media/image10.png" width="592" height="234" />
 
-3.8 Viewing Patient Dashboard
----------------------------------------
+## 3.8 Viewing Patient Dashboard
 To view the detailed record of a patient who is in emergency, click on
 the “View Patient Details” button in the “Action” column in “Potential
 Patients” list, the patient’s profile, medications, and conditions info
@@ -261,7 +240,5 @@ vital signs of the patient. Click on “Save notes & identify patient”
 button in this page, a window’s alert box will be popup indicating the
 patient notes has be updated or added to the database for further use.
 
-3.9 Exit System
----------------
-
+## 3.9 Exit System
 Click on Logout in the top menu.
