@@ -14,9 +14,16 @@ GitHub link: https://github.gatech.edu/gt-hit-fall2017/EMS-Patient-Data
 
 ## Table of Contents
 * [1.0 - Final Delivery](#10---final-delivery)
-    * [1.1 - media](#11---media)
-    * [1.2 - Manual - FHIR IO.pdf](#12---manual---fhir-iopdf)
-    * [1.3 - Manual-FHIR IO.md](#13---manual-fhir-iomd)
+    * [1.1 - Research/Project_research.pdf](#11---research-project-researchpdf)
+    * [1.2 - media](#12---media)
+    * [1.3 - Manual - FHIR IO.pdf](#13---manual---fhir-iopdf)
+    * [1.4 - Manual - FHIR IO.md](#14---manual---fhir-iomd)
+    * [1.5 - Final Gantt Chart - FHIR IO.pdf](#15---final-gantt-chart---fhir-iopdf)
+    * [1.6 - Special Instructions - FHIR IO.md](#16---special-instructions---fhir-iomd)
+    * [1.7 - Special Instructions - FHIR IO.pdf](#17---special-instructions---fhir-iopdf)
+    * [1.8 - catalog.md](#18---catalogmd)
+    * [1.9 - catalog.pdf](#19---catalogpdf)
+    * [1.10 - Final Presentation.pdf](#110---final-presentationpdf)
 * [2.0 - fhir-ems-service](#20---fhir-ems-service)
     * [2.1 - src](#21---src)
         * [2.1.1 - main](#211---main)
@@ -88,12 +95,26 @@ GitHub link: https://github.gatech.edu/gt-hit-fall2017/EMS-Patient-Data
 
 ## 1.0 - Final Delivery
 This is the top-level directory that contains all our documentation for Deliverables 4/5.
-### 1.1 - media
+## 1.1 - Research/Project_research.pdf
+This file represents all the research that was done in preparation for the development of the application.
+### 1.2 - media
 This directory contains all the images used in our documentation.
-### 1.2 - Manual - FHIR IO.pdf
+### 1.3 - Manual - FHIR IO.pdf
 This is the PDF version of our manual, which contains instructions on how to make use of all the features our application was built to support.
-### 1.3 - Manual-FHIR IO.md
+### 1.4 - Manual - FHIR IO.md
 This is the markdown version of our manual, which contains instructions on how to make use of all the features our application was built to support.
+### 1.5 - Final Gantt Chart - FHIR IO.pdf
+This is the final Gantt chart, which includes details about how the work was completed througout the semester and which team members presented in each deliverable.
+### 1.6 - Special Instructions - FHIR IO.md
+This document describes how a user could run our application using docker-compose in markdown format.
+### 1.7 - Special Instructions - FHIR IO.pdf
+This document describes how a user could run our application using docker-compose in pdf format.
+### 1.8 - catalog.md
+This document describes the contents of the entire repository on a file-by-file basis in markdown format.
+### 1.9 - catalog.pdf
+This document describes the contents of the entire repository on a file-by-file basis in pdf format.
+### 1.10 - Final Presentation.pdf
+This is a pdf version of our PowerPoint deck as seen in deliverable 4.
 ## 2.0 - fhir-ems-service
 This is the top-level directory that holds all the source code, dependency management, git files.
 ### 2.1 - src
