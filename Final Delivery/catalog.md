@@ -1,14 +1,14 @@
 # Project Catalog - EMS Patient Data
 Team Name: FHIR I/O
 
+Project Name: EMS Patient Data
+
 Team Members:
 1. Bryce Montano - bmontano6
 1. Juan San Emeterio - jjse3
 1. Haixia Shang - hshang7
 1. Yu Wang - ywang3134
 1. Smitha George - sgeorge65
-
-Project Name: EMS Patient Data
 
 GitHub link: https://github.gatech.edu/gt-hit-fall2017/EMS-Patient-Data
 
