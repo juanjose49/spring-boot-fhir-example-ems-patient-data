@@ -14,7 +14,7 @@ GitHub link: https://github.gatech.edu/gt-hit-fall2017/EMS-Patient-Data
 
 ## Table of Contents
 * [1.0 - Final Delivery](#10---final-delivery)
-    * [1.1 - Research/Project_research.pdf](#11---research-project-researchpdf)
+    * [1.1 - Research/Project_research.pdf](#11---researchprojectresearchpdf)
     * [1.2 - media](#12---media)
     * [1.3 - Manual - FHIR IO.pdf](#13---manual---fhir-iopdf)
     * [1.4 - Manual - FHIR IO.md](#14---manual---fhir-iomd)
