@@ -134,14 +134,23 @@ This is a POJO that system uses to assign token for patient and organization.
 ### 2.1.1.1.2.14 - User.java
 This ia a POJO that holds specific user of the application that may be emergency personnel or call center personnel.
 ### 2.1.1.1.3 - service
+This directory contains the Java backend service code.
 ### 2.1.1.1.3.1 - AuthenticationService.java
+This is a POJO that holds users's anthemtication, and is used to verify the user by username and password.
 ### 2.1.1.1.3.2 - EmergencyService.java
+This is a POJO that initializes the emergency service, gets an emergency by Uuid, saves an emergency pbject to memory, assigns a Uuid to it, and identify patient.
 ### 2.1.1.1.3.3 - OrganizationService.java
+This is a POJO that constructs an organization service, gets an organization by its Uuid, saves/updates/creates an organization,adds organization user, and add emergency to the organization.
 ### 2.1.1.1.3.4 - PatientService.java
+This is a POJO that get patient by Uuid, name, and get/update information of patients, including patient's condition, medication, patient notes.
 ### 2.1.1.1.3.5 - UserService.java
+This is a POJO that provides sevice related to a user, including create new super user, new organizational user, save user, etc.
 ### 2.1.1.1.3.6 - UuidService.java
+This is a POJO that radomly generate Uuid  by the system and assign to an object when is required.
 ### 2.1.1.1.4 - FhirClient.java
+This is a POJO that provides client service for the application, including getting patient list from the server, getting detailed medical information of a patient from the server.
 ### 2.1.1.1.5 - FhirEmsServiceApplication.java
+This is the main class of the application. Run this file will set up the application.
 ### 2.1.1.2 - resources
 This directory contains the front-end code (html/js/css) and application.properties file, which is used to configure aspects of the Java application.
 ### 2.1.1.2.1 - application.properties
@@ -202,6 +211,7 @@ This is the testing file to test if the user service can get the user by user's 
 ### 2.2 - .gitignore
 This is the file for Git to determine which files and directories to ignore. 
 ### 2.3 - Dockerfile
+This is the docker directory that holds required docker file for the application.
 ### 2.4 - pom.xml
 This is the XML file that contains information about the project and configuration details used by Maven to build the project.
 ## 3.0 - docker-compose.yml
