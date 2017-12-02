@@ -164,7 +164,7 @@ to set up the server.
 <span id="_Toc480255374" class="anchor"><span id="_Toc480348015" class="anchor"><span id="_Toc275378683" class="anchor"></span></span></span>3.2 Logging On
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-After the server is set up, go to <http://localhost> 8080, check the
+After the server is set up, go to <http://localhost:8080>, check the
 index.html page
 
 <img src="media/image4.png" width="624" height="356" />
