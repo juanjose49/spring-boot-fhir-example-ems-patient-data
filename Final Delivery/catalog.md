@@ -112,17 +112,27 @@ This is a POJO that holds onto a Patient's address information including street 
 ### 2.1.1.1.2.2 - Authentication.java
 This is a POJO that holds a User's credentials and is used primarily by the AuthenticationService to verify a user's authenticity.
 ### 2.1.1.1.2.3 - Condition.java
+This is a POJO that holds a patient's chronic illness information, includes clinical status, verification status, name, system, code, onset date, ect.
 ### 2.1.1.1.2.4 - Conditions.java
+This is a POJO that holds a list of patient conditions.
 ### 2.1.1.1.2.5 - Emergency.java
+This is a POJO that holds all the pertinent information to a specific emergency that may be pending, active or closed. 
 ### 2.1.1.1.2.6 - EmergencyState.java
+This is a POJO that holds possible status of an emergency, including pending, closed and active.
 ### 2.1.1.1.2.7 - Measurement.java
+This is a POJO that holds measurement of a patient including measurement Uuid, name, system, value code, description,value.
 ### 2.1.1.1.2.8 - Medication.java
+This is a POJO that holds the medication information related to a patient involved in an emergency.
 ### 2.1.1.1.2.9 - Medications.java
-### 2.1.1.1.2.10 - Note.java
+This is a POJO that holds a list of patient medications.
 ### 2.1.1.1.2.11 - Organization.java
+This is a POJO that binds together users of the EMS service and Emergencies.
 ### 2.1.1.1.2.12 - Patient.java
+This is a POJO that hold all the health information related to a patient involved in an emergency, including patient profile, address, and patient notes.
 ### 2.1.1.1.2.13 - Token.java
+This is a POJO that system uses to assign token for patient and organization.
 ### 2.1.1.1.2.14 - User.java
+This ia a POJO that holds specific user of the application that may be emergency personnel or call center personnel.
 ### 2.1.1.1.3 - service
 ### 2.1.1.1.3.1 - AuthenticationService.java
 ### 2.1.1.1.3.2 - EmergencyService.java
