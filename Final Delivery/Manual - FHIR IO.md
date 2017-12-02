@@ -95,13 +95,13 @@ the installation of Docker. Please follow this guide:
 
 -To run the services, simply cd to the ./EMS-Patient-Data and run:
 
-*sudo docker-compose up –build*
+*docker-compose up –build*
 
 -Go to <http://localhost:8080/index.html>
 
 -To stop the service,
 
-*sudo docker-compose down*
+*docker-compose down*
 
 **The second way** is using Java IDE, such as Eclipse or IntelliJ,
 importing the Maven project. Using IntelliJ as example:
