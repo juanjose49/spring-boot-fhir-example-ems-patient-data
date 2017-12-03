@@ -24,6 +24,7 @@ GitHub link: https://github.gatech.edu/gt-hit-fall2017/EMS-Patient-Data
     * [1.8 - catalog.md](#18---catalogmd)
     * [1.9 - catalog.pdf](#19---catalogpdf)
     * [1.10 - Final Presentation.pdf](#110---final-presentationpdf)
+	* [1.11 - API Documentation - FHIR IO.pdf](#111---api-documentation---fhir-iopdf)
 * [2.0 - fhir-ems-service](#20---fhir-ems-service)
     * [2.1 - src](#21---src)
         * [2.1.1 - main](#211---main)
@@ -115,6 +116,8 @@ This document describes the contents of the entire repository on a file-by-file 
 This document describes the contents of the entire repository on a file-by-file basis in pdf format.
 ### 1.10 - Final Presentation.pdf
 This is a pdf version of our PowerPoint deck as seen in deliverable 4.
+### 1.11 - API Documentation - FHIR IO.pdf
+This document explains the EMS Service API structure with details corresponding to each available API's request mapping, usage, parameters and return values.
 ## 2.0 - fhir-ems-service
 This is the top-level directory that holds all the source code, dependency management, git files.
 ### 2.1 - src
