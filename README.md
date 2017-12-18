@@ -1,5 +1,5 @@
 # USER MANUAL
-> <img src="media/image1.png" width="144" height="144" />
+> <img src="Final%20Delivery/media/image1.png" width="144" height="144" />
 >
 > Team Name: FHIR I/O
 >
