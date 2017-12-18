@@ -74,7 +74,7 @@ Each user uses their own computer running Windows OS/Linux. On those
 computers is the client application that will connect to a FHIR Server
 database.
 
-<img src="media/image2.png" width="624" height="538" />
+<img src="Final%20Delivery/media/image2.png" width="624" height="538" />
      
 ## 2.2 User Access Levels
 
@@ -114,7 +114,7 @@ importing the Maven project. Using IntelliJ as example:
     project (./fhir-ems-service/pom.xml). Click <span id="d369633e145"
     class="anchor"></span>**OK**.
 
-<img src="media/image3.png" width="557" height="388" />
+<img src="Final%20Delivery/media/image3.png" width="557" height="388" />
 
 1.  <span id="maven_import_project" class="anchor"></span>On the first
     page of the <span id="d369633e151" class="anchor"></span>**Import
@@ -167,13 +167,13 @@ to set up the server.
 After the server is set up, go to <http://localhost:8080>, check the
 index.html page
 
-<img src="media/image4.png" width="624" height="356" />
+<img src="Final%20Delivery/media/image4.png" width="624" height="356" />
 
 ## 3.3 Creating New Super User
 To create an new Super User, press the green ‘Sign up’ button on the
 Login page, and fill in the following required information:
 
-<img src="media/image5.png" width="433" height="368" />
+<img src="Final%20Delivery/media/image5.png" width="433" height="368" />
 
 A specific organization Uuid will be provided for the new super user by
 the system automatically.
@@ -182,12 +182,12 @@ the system automatically.
 The user can create a new emergency by press the on the “Create a new
 emergency’ button below the Emergency Dashboard after login:
 
-<img src="media/image6.png" width="624" height="248" />
+<img src="Final%20Delivery/media/image6.png" width="624" height="248" />
 
 Then a new window will jump out for user to fill in the required
 information to create a new emergency:
 
-<img src="media/image7.png" width="624" height="359" />
+<img src="Final%20Delivery/media/image7.png" width="624" height="359" />
 
 The new emergency will be saved to the database and assigned with a
 Uuid. Then marked as a “Pending” emergency waiting in the queue for
@@ -203,7 +203,7 @@ Then the color of the emergency row will change to the corresponding
 status. (See the dropdown menu in the following picture for Emergency
 with Uuid 103)
 
-<img src="media/image8.png" width="624" height="256" />
+<img src="Final%20Delivery/media/image8.png" width="624" height="256" />
 
 ## 3.6 Creating an New Organizational User
 Based on the two types of users described above, a Super User can enroll
@@ -214,14 +214,14 @@ Different from creating a Super User, the Organizational User does not
 need to fill the ‘organization name’. The Organizational Uuid for the
 new user is set default to the Super user’s.
 
-<img src="media/image9.png" width="520" height="323" />
+<img src="Final%20Delivery/media/image9.png" width="520" height="323" />
 
 ## 3.7 Viewing Possible Patients
 The possible patients of the emergency will be get from the FHIR server by 
 a matched name or patient Uuid. To view the possible patients, click on the “Open”
 button on the “Action” column of a selected emergency in the Emergency
 Dashboard, the list of the potential patients will show up:
-<img src="media/image10.png" width="592" height="234" />
+<img src="Final%20Delivery/media/image10.png" width="592" height="234" />
 
 ## 3.8 Viewing Patient Dashboard
 To view the detailed record of a patient who is in emergency, click on
@@ -229,7 +229,7 @@ the “View Patient Details” button in the “Action” column in “Potential
 Patients” list, the patient’s profile, medications, and conditions info
 will show up.
 
-<img src="media/image11.png" width="624" height="308" />
+<img src="Final%20Delivery/media/image11.png" width="624" height="308" />
 
 ### <span id="_Toc275378687" class="anchor"><span id="_Toc229551843" class="anchor"></span></span>3.8.1 Add/Update Patient Notes
 
